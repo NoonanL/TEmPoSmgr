@@ -4,6 +4,7 @@ import TEmPoSmgr.TEmPoSmgr;
 import Utils.ParameterStringBuilder;
 import daos.URLConnection;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.json.JSONException;
 
@@ -23,15 +24,13 @@ public class LoginController {
     //declare text field for password input
     @FXML
     private TextField password;
-
-    //declare boolean for login clicked (true or false)
-    final boolean loginClicked = false;
-
+    @FXML
+    private Label error;
 
        //method to check if login has been clicked
     @FXML
         public void isLoginClicked() throws IOException, JSONException {
-
+            error.setText("");
             //assign the text currently in the username and password text boxes to variables
             String authenticateID = username.getText();
             String authenticatePassword = password.getText();
@@ -39,19 +38,19 @@ public class LoginController {
             Map<String, String> parameters = new LinkedHashMap<>();
             parameters.put("username" , authenticateID);
             parameters.put("password" , authenticatePassword);
+
             //send the parameters to the ParameterStringBuilder utility class for formatting
             String postData = ParameterStringBuilder.getParamsString(parameters);
-            //call the Put class method which requires the path (which api call you're executing and the postData itself
-            //URLConnection.sendPOST("http://localhost:9001/loginServlet",postData);
-
-            //URLConnection test = new URLConnection();
-            //if authenticate method(from main) returns true
             if(URLConnection.sendPOST("http://localhost:9001/loginServlet", postData)){
                 System.out.println("LOGGED IN");
+                mainApp.showHome();
             }else{
-                System.out.println("LOGIN FAILED YO");
+                System.out.println("LOGIN FAILED");
+                error.setText("Incorrect Username or Password");
             }
         }
+
+        //THis is a test line of code lawl
 
     //this MUST be here. Initializes the class. Ignore "not used" hint.
     @FXML

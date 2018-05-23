@@ -1,5 +1,6 @@
 package TEmPoSmgr;
 
+import View.HomeController;
 import View.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ public class TEmPoSmgr extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
+    public String authenticatedUser;
 
     @Override
     public void start(Stage primaryStage) {
@@ -63,6 +65,32 @@ public class TEmPoSmgr extends Application {
 
             //this is important. This loads the loginPageController so that the Main App can access its methods
             LoginController controller = loader.getController();
+            //calls the setMainApp method from loginPageController to make this the main app in the rootLayout
+            controller.setMainApp(this);
+
+
+            //required exception handling - don't worry about hint.
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    //this method shows the Login prompt where users can either login or register an account
+    public void showHome(){
+
+        try{
+
+            //load fxml page
+            FXMLLoader loader = new FXMLLoader(TEmPoSmgr.class.getResource("/View/Home.fxml"));
+            //load LoginPage of fxml type AnchorPane
+            AnchorPane Home = (AnchorPane) loader.load();
+
+            //Set login page to the centre of root layout
+            rootLayout.setCenter(Home);
+
+            //this is important. This loads the loginPageController so that the Main App can access its methods
+            HomeController controller = loader.getController();
             //calls the setMainApp method from loginPageController to make this the main app in the rootLayout
             controller.setMainApp(this);
 
