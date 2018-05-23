@@ -50,7 +50,11 @@ public class LoginController {
             }
         }
 
-        //THis is a test line of code lawl
+
+        @FXML
+        public void handleQuit(){
+        System.exit(0);
+        }
 
     //this MUST be here. Initializes the class. Ignore "not used" hint.
     @FXML
