@@ -39,6 +39,7 @@ public class AdminSettingsController {
         if(URLConnection.sendPOST("http://localhost:9001/getUsersServlet", postData, "auth")){
             System.out.println("Got the list of users");
 
+
         }else{
             //System.out.println("LOGIN FAILED");
 
@@ -50,7 +51,6 @@ public class AdminSettingsController {
         // get a handle to the stage
         Stage stage = (Stage) back.getScene().getWindow();
         // do what you have to do
-        getUsers();
         stage.close();
     }
 
