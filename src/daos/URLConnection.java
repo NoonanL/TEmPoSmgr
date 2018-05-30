@@ -43,7 +43,7 @@ public class URLConnection {
             }
             in.close();
             // print result
-            //System.out.println(response.toString());
+            System.out.println(response.toString());
             JSONObject responseJson = new JSONObject(response.toString());
             String test = responseJson.getString(responseKey);
             //System.out.println(test);

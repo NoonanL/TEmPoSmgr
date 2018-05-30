@@ -32,11 +32,25 @@ public class AdminSettingsController {
     @FXML
     private Label error;
 
+    private void getUsers() throws IOException, JSONException {
+        Map<String, String> parameters = new LinkedHashMap<>();
+        //send the parameters to the ParameterStringBuilder utility class for formatting
+        String postData = ParameterStringBuilder.getParamsString(parameters);
+        if(URLConnection.sendPOST("http://localhost:9001/getUsersServlet", postData, "auth")){
+            System.out.println("Got the list of users");
+
+        }else{
+            //System.out.println("LOGIN FAILED");
+
+        }
+    }
+
     @FXML
-    private void backClicked() throws IOException{
+    private void backClicked() throws IOException, JSONException {
         // get a handle to the stage
         Stage stage = (Stage) back.getScene().getWindow();
         // do what you have to do
+        getUsers();
         stage.close();
     }
 
