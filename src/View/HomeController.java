@@ -1,10 +1,18 @@
 package View;
 
 import TEmPoSmgr.TEmPoSmgr;
+import Utils.ParameterStringBuilder;
+import daos.URLConnection;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class HomeController {
 
@@ -16,6 +24,28 @@ public class HomeController {
     public void logoutClicked() throws IOException, JSONException {
         mainApp.authenticatedUser = null;
         mainApp.showLoginStage();
+    }
+
+    @FXML
+    public void adminSettings() throws IOException, JSONException {
+
+        Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("username" , mainApp.authenticatedUser);
+        //send the parameters to the ParameterStringBuilder utility class for formatting
+        String postData = ParameterStringBuilder.getParamsString(parameters);
+        if(URLConnection.sendPOST("http://localhost:9001/isAdminServlet", postData, "admin")){
+            //System.out.println("LOGGED IN");
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/AdminSettings.fxml"));
+                Parent adminSettings = fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(adminSettings));
+                stage.show();
+
+        }else{
+            System.out.println("NOT AN ADMIN");
+            //error.setText("Incorrect Username or Password");
+        }
+
     }
 
     //this MUST be here. Initializes the class. Ignore "not used" hint.

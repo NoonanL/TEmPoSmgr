@@ -12,7 +12,7 @@ import java.net.URL;
 
 public class URLConnection {
 
-    public static boolean sendPOST(String url, String params) throws IOException, JSONException {
+    public static boolean sendPOST(String url, String params, String responseKey) throws IOException, JSONException {
 
         boolean status = false;
 
@@ -45,7 +45,7 @@ public class URLConnection {
             // print result
             //System.out.println(response.toString());
             JSONObject responseJson = new JSONObject(response.toString());
-            String test = responseJson.getString("auth");
+            String test = responseJson.getString(responseKey);
             //System.out.println(test);
             if (test.equals("OK")) {
                 status = true;
