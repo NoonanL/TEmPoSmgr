@@ -30,7 +30,7 @@ public class URLConnection {
         // For POST only - END
 
         int responseCode = con.getResponseCode();
-        System.out.println("POST Response Code :: " + responseCode);
+        //System.out.println("POST Response Code :: " + responseCode);
 
         if (responseCode == HttpURLConnection.HTTP_OK) { //success
             BufferedReader in = new BufferedReader(new InputStreamReader(
@@ -43,14 +43,14 @@ public class URLConnection {
             }
             in.close();
             // print result
-            System.out.println(response.toString());
+            //System.out.println(response.toString());
             JSONObject responseJson = new JSONObject(response.toString());
             String test = responseJson.getString("auth");
-            System.out.println(test);
+            //System.out.println(test);
             if (test.equals("OK")) {
                 status = true;
             } else {
-                System.out.println("POST request not worked");
+                //System.out.println("POST request not worked");
                 status = false;
             }
         }

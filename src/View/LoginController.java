@@ -42,10 +42,10 @@ public class LoginController {
             //send the parameters to the ParameterStringBuilder utility class for formatting
             String postData = ParameterStringBuilder.getParamsString(parameters);
             if(URLConnection.sendPOST("http://localhost:9001/loginServlet", postData)){
-                System.out.println("LOGGED IN");
+                //System.out.println("LOGGED IN");
                 mainApp.showHome();
             }else{
-                System.out.println("LOGIN FAILED");
+                //System.out.println("LOGIN FAILED");
                 error.setText("Incorrect Username or Password");
             }
         }
