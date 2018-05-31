@@ -36,14 +36,14 @@ public class AdminSettingsController {
         Map<String, String> parameters = new LinkedHashMap<>();
         //send the parameters to the ParameterStringBuilder utility class for formatting
         String postData = ParameterStringBuilder.getParamsString(parameters);
-        if(URLConnection.sendPOST("http://localhost:9001/getUsersServlet", postData, "auth")){
-            System.out.println("Got the list of users");
-
-
-        }else{
-            //System.out.println("LOGIN FAILED");
-
-        }
+//        if(URLConnection.sendPOST("http://localhost:9001/getUsersServlet", postData, "auth")){
+//            System.out.println("Got the list of users");
+//
+//
+//        }else{
+//            //System.out.println("LOGIN FAILED");
+//
+//        }
     }
 
     @FXML
@@ -84,14 +84,8 @@ public class AdminSettingsController {
         }
 
         if(!username.equals("") && !password.equals("")){
-            Map<String, String> parameters = new LinkedHashMap<>();
-            parameters.put("username" , username);
-            parameters.put("password" , password);
-            parameters.put("isAdmin" , isAdminString);
 
-            //send the parameters to the ParameterStringBuilder utility class for formatting
-            String postData = ParameterStringBuilder.getParamsString(parameters);
-            if(URLConnection.sendPOST("http://localhost:9001/createUserServlet", postData, "auth")){
+            if(URLConnection.createUser(username,password,isAdminString)){
                 //System.out.println("New user created");
                 returnString = "New user created";
             }else{

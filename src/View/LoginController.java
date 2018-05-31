@@ -1,7 +1,6 @@
 package View;
 
 import TEmPoSmgr.TEmPoSmgr;
-import Utils.ParameterStringBuilder;
 import daos.URLConnection;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,8 +8,6 @@ import javafx.scene.control.TextField;
 import org.json.JSONException;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class LoginController {
 
@@ -34,14 +31,14 @@ public class LoginController {
             //assign the text currently in the username and password text boxes to variables
             String authenticateID = username.getText();
             String authenticatePassword = password.getText();
-
-            Map<String, String> parameters = new LinkedHashMap<>();
-            parameters.put("username" , authenticateID);
-            parameters.put("password" , authenticatePassword);
-
-            //send the parameters to the ParameterStringBuilder utility class for formatting
-            String postData = ParameterStringBuilder.getParamsString(parameters);
-            if(URLConnection.sendPOST("http://localhost:9001/loginServlet", postData, "auth")){
+//
+//            Map<String, String> parameters = new LinkedHashMap<>();
+//            parameters.put("username" , authenticateID);
+//            parameters.put("password" , authenticatePassword);
+//
+//            //send the parameters to the ParameterStringBuilder utility class for formatting
+//            String postData = ParameterStringBuilder.getParamsString(parameters);
+            if(URLConnection.Login(authenticateID,authenticatePassword)){
                 //System.out.println("LOGGED IN");
                 mainApp.authenticatedUser = authenticateID;
                 mainApp.showHome();

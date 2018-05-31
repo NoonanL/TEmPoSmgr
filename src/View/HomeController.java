@@ -1,7 +1,6 @@
 package View;
 
 import TEmPoSmgr.TEmPoSmgr;
-import Utils.ParameterStringBuilder;
 import daos.URLConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,8 +10,6 @@ import javafx.stage.Stage;
 import org.json.JSONException;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class HomeController {
 
@@ -29,11 +26,11 @@ public class HomeController {
     @FXML
     public void adminSettings() throws IOException, JSONException {
 
-        Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("username" , mainApp.authenticatedUser);
+        //Map<String, String> parameters = new LinkedHashMap<>();
+        //parameters.put("username" , mainApp.authenticatedUser);
         //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        if(URLConnection.sendPOST("http://localhost:9001/isAdminServlet", postData, "admin")){
+       // String postData = ParameterStringBuilder.getParamsString(parameters);
+        if(URLConnection.isAdmin(mainApp.authenticatedUser)){
             //System.out.println("LOGGED IN");
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/AdminSettings.fxml"));
                 Parent adminSettings = fxmlLoader.load();
