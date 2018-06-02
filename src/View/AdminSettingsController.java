@@ -1,25 +1,24 @@
 package View;
 
+import Model.User;
 import TEmPoSmgr.TEmPoSmgr;
-import Utils.ParameterStringBuilder;
 import daos.URLConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.json.JSONException;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 public class AdminSettingsController {
 
     private TEmPoSmgr mainApp;
 
-    public AdminSettingsController(){}
+    public AdminSettingsController() throws IOException, JSONException {}
 
     @FXML
     private Button back;
@@ -31,19 +30,18 @@ public class AdminSettingsController {
     private CheckBox isAdminField;
     @FXML
     private Label error;
+    @FXML
+    private TableView<User> userTable;
+    @FXML
+    private TableColumn<User, String> usernameColumn;
+    @FXML
+    private TableColumn<User, String> isAdminColumn;
+
+    public final ObservableList<User> userData = FXCollections.observableList(URLConnection.getUsers());
 
     private void getUsers() throws IOException, JSONException {
-        Map<String, String> parameters = new LinkedHashMap<>();
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-//        if(URLConnection.sendPOST("http://localhost:9001/getUsersServlet", postData, "auth")){
-//            System.out.println("Got the list of users");
-//
-//
-//        }else{
-//            //System.out.println("LOGIN FAILED");
-//
-//        }
+        ArrayList<User> array = URLConnection.getUsers();
+
     }
 
     @FXML
@@ -98,6 +96,22 @@ public class AdminSettingsController {
         return(returnString);
     }
 
+
+
+    @FXML
+    private void initialize(){
+        usernameColumn.setCellValueFactory(
+                new PropertyValueFactory<>("username")
+        );
+        isAdminColumn.setCellValueFactory(
+                new PropertyValueFactory<>("isAdmin")
+        );
+
+        //usernameColumn.setCellValueFactory(cellData -> cellData.getValue().getUsername());
+        //isAdminColumn.setCellValueFactory(cellData -> cellData.getValue().getIsAdmin());
+        userTable.setItems(userData);
+        //listen for selection changes and show patient details when changed
+    }
 
 
 }

@@ -3,15 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/TEmPoSmgr.iml" afterPath="$PROJECT_DIR$/TEmPoSmgr.iml" />
-      <change beforePath="$PROJECT_DIR$/out/production/TEmPoSmgr/View/AdminSettingsController.class" afterPath="$PROJECT_DIR$/out/production/TEmPoSmgr/View/AdminSettingsController.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TEmPoSmgr/View/HomeController.class" afterPath="$PROJECT_DIR$/out/production/TEmPoSmgr/View/HomeController.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TEmPoSmgr/View/LoginController.class" afterPath="$PROJECT_DIR$/out/production/TEmPoSmgr/View/LoginController.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TEmPoSmgr/daos/URLConnection.class" afterPath="$PROJECT_DIR$/out/production/TEmPoSmgr/daos/URLConnection.class" />
+      <change beforePath="$PROJECT_DIR$/src/Model/User.java" afterPath="$PROJECT_DIR$/src/Model/User.java" />
+      <change beforePath="$PROJECT_DIR$/src/View/AdminSettings.fxml" afterPath="$PROJECT_DIR$/src/View/AdminSettings.fxml" />
       <change beforePath="$PROJECT_DIR$/src/View/AdminSettingsController.java" afterPath="$PROJECT_DIR$/src/View/AdminSettingsController.java" />
-      <change beforePath="$PROJECT_DIR$/src/View/HomeController.java" afterPath="$PROJECT_DIR$/src/View/HomeController.java" />
-      <change beforePath="$PROJECT_DIR$/src/View/LoginController.java" afterPath="$PROJECT_DIR$/src/View/LoginController.java" />
-      <change beforePath="$PROJECT_DIR$/src/daos/URLConnection.java" afterPath="$PROJECT_DIR$/src/daos/URLConnection.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -75,8 +69,8 @@
       <file leaf-file-name="TEmPoSmgr.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TEmPoSmgr/TEmPoSmgr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="58" column="92" lean-forward="false" selection-start-line="58" selection-start-column="76" selection-end-line="58" selection-end-column="92" />
+            <state relative-caret-position="748">
+              <caret line="53" column="33" lean-forward="true" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="33" />
               <folding>
                 <element signature="e#3532#3533#0" expanded="true" />
                 <element signature="e#3567#3568#0" expanded="true" />
@@ -90,8 +84,8 @@
       <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/View/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="47" column="13" lean-forward="true" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
+            <state relative-caret-position="680">
+              <caret line="47" column="13" lean-forward="false" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
               <folding>
                 <element signature="e#1721#1722#0" expanded="true" />
                 <element signature="e#1755#1756#0" expanded="true" />
@@ -106,7 +100,7 @@
         <entry file="file://$PROJECT_DIR$/src/View/HomeController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="359">
-              <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding>
                 <element signature="e#1848#1849#0" expanded="true" />
                 <element signature="e#1886#1887#0" expanded="true" />
@@ -115,11 +109,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AdminSettingsController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AdminSettingsController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/View/AdminSettingsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="95" column="64" lean-forward="true" selection-start-line="95" selection-start-column="64" selection-end-line="95" selection-end-column="64" />
+            <state relative-caret-position="308">
+              <caret line="106" column="51" lean-forward="false" selection-start-line="106" selection-start-column="51" selection-end-line="106" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -130,8 +124,8 @@
       <file leaf-file-name="URLConnection.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/daos/URLConnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="141" column="35" lean-forward="true" selection-start-line="141" selection-start-column="35" selection-end-line="141" selection-end-column="35" />
+            <state relative-caret-position="-1224">
+              <caret line="39" column="53" lean-forward="true" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -139,11 +133,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="URLConnectionTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Model/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="48" lean-forward="true" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
+              <folding>
+                <element signature="e#602#603#0" expanded="true" />
+                <element signature="e#645#646#0" expanded="true" />
+                <element signature="e#679#680#0" expanded="true" />
+                <element signature="e#721#722#0" expanded="true" />
+                <element signature="e#766#767#0" expanded="true" />
+                <element signature="e#807#808#0" expanded="true" />
+                <element signature="e#840#841#0" expanded="true" />
+                <element signature="e#881#882#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="URLConnectionTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/URLConnectionTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="20" column="59" lean-forward="true" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
+            <state relative-caret-position="510">
+              <caret line="30" column="56" lean-forward="false" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -185,12 +198,12 @@
         <option value="$PROJECT_DIR$/src/View/adminSettings.fxml" />
         <option value="$PROJECT_DIR$/src/View/AdminSettings.fxml" />
         <option value="$PROJECT_DIR$/src/TEmPoSmgr/TEmPoSmgr.java" />
-        <option value="$PROJECT_DIR$/src/Model/User.java" />
         <option value="$PROJECT_DIR$/src/View/LoginController.java" />
         <option value="$PROJECT_DIR$/src/View/HomeController.java" />
-        <option value="$PROJECT_DIR$/src/View/AdminSettingsController.java" />
         <option value="$PROJECT_DIR$/src/daos/URLConnection.java" />
         <option value="$PROJECT_DIR$/src/test/URLConnectionTest.java" />
+        <option value="$PROJECT_DIR$/src/Model/User.java" />
+        <option value="$PROJECT_DIR$/src/View/AdminSettingsController.java" />
       </list>
     </option>
   </component>
@@ -248,7 +261,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -277,6 +289,12 @@
               <item name="TEmPoSmgr" type="b2602c69:ProjectViewProjectNode" />
               <item name="TEmPoSmgr" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="TEmPoSmgr" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TEmPoSmgr" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TEmPoSmgr" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -287,6 +305,12 @@
             </path>
             <path>
               <item name="TEmPoSmgr" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TEmPoSmgr" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="View" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TEmPoSmgr" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -294,8 +318,9 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -346,7 +371,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.URLConnectionTest.getUsers">
+  <component name="RunManager" selected="Application.TEmPoSmgr">
     <configuration default="true" type="Applet" factoryName="Applet">
       <module />
       <option name="HTML_USED" value="false" />
@@ -539,8 +564,8 @@
     </list>
     <recent_temporary>
       <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.URLConnectionTest.getUsers" />
-        <item index="1" class="java.lang.String" itemvalue="Application.TEmPoSmgr" />
+        <item index="0" class="java.lang.String" itemvalue="Application.TEmPoSmgr" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.URLConnectionTest.getUsers" />
         <item index="2" class="java.lang.String" itemvalue="JUnit.URLConnectionTest.login" />
       </list>
     </recent_temporary>
@@ -567,7 +592,8 @@
       <workItem from="1527115085143" duration="3000" />
       <workItem from="1527695193858" duration="1710000" />
       <workItem from="1527701994266" duration="10174000" />
-      <workItem from="1527794930920" duration="12221000" />
+      <workItem from="1527794930920" duration="12320000" />
+      <workItem from="1527979902192" duration="1788000" />
     </task>
     <servers />
   </component>
@@ -604,7 +630,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39833000" />
+    <option name="totallyTimeSpent" value="41720000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="916" extended-state="6" />
@@ -619,11 +645,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33162612" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33162612" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3144699" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3187679" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -667,19 +693,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/View/Home.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding>
-            <marker date="1527703549303" expanded="true" signature="660:673" ph="..." />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Utils/ParameterStringBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
@@ -1077,67 +1090,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TEmPoSmgr/TEmPoSmgr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="58" column="92" lean-forward="false" selection-start-line="58" selection-start-column="76" selection-end-line="58" selection-end-column="92" />
-          <folding>
-            <element signature="e#3532#3533#0" expanded="true" />
-            <element signature="e#3567#3568#0" expanded="true" />
-            <element signature="e#3675#3676#0" expanded="true" />
-            <element signature="e#3703#3704#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/AdminSettings.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="26" column="32" lean-forward="true" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
-          <folding>
-            <element signature="e#406#407#0" expanded="false" />
-            <element signature="e#446#447#0" expanded="false" />
-            <element signature="e#516#517#0" expanded="false" />
-            <element signature="e#561#562#0" expanded="false" />
-            <element signature="e#599#600#0" expanded="false" />
-            <element signature="e#632#633#0" expanded="false" />
-            <element signature="e#667#668#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/AdminSettingsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="95" column="64" lean-forward="true" selection-start-line="95" selection-start-column="64" selection-end-line="95" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/HomeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding>
-            <element signature="e#1848#1849#0" expanded="true" />
-            <element signature="e#1886#1887#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Utils/ParameterStringBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -1148,8 +1100,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/View/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="47" column="13" lean-forward="true" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
+        <state relative-caret-position="680">
+          <caret line="47" column="13" lean-forward="false" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
           <folding>
             <element signature="e#1721#1722#0" expanded="true" />
             <element signature="e#1755#1756#0" expanded="true" />
@@ -1159,20 +1111,90 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/daos/URLConnection.java">
+    <entry file="file://$PROJECT_DIR$/src/View/HomeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="141" column="35" lean-forward="true" selection-start-line="141" selection-start-column="35" selection-end-line="141" selection-end-column="35" />
+        <state relative-caret-position="359">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1848#1849#0" expanded="true" />
+            <element signature="e#1886#1887#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/URLConnectionTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="20" column="59" lean-forward="true" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
+        <state relative-caret-position="510">
+          <caret line="30" column="56" lean-forward="false" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/AdminSettings.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TEmPoSmgr/TEmPoSmgr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="53" column="33" lean-forward="true" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="33" />
+          <folding>
+            <element signature="e#3532#3533#0" expanded="true" />
+            <element signature="e#3567#3568#0" expanded="true" />
+            <element signature="e#3675#3676#0" expanded="true" />
+            <element signature="e#3703#3704#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_151/javafx-src.zip!/javafx/util/Callback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="51" column="13" lean-forward="false" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="48" lean-forward="true" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
+          <folding>
+            <element signature="e#602#603#0" expanded="true" />
+            <element signature="e#645#646#0" expanded="true" />
+            <element signature="e#679#680#0" expanded="true" />
+            <element signature="e#721#722#0" expanded="true" />
+            <element signature="e#766#767#0" expanded="true" />
+            <element signature="e#807#808#0" expanded="true" />
+            <element signature="e#840#841#0" expanded="true" />
+            <element signature="e#881#882#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/daos/URLConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1224">
+          <caret line="39" column="53" lean-forward="true" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/AdminSettingsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="106" column="51" lean-forward="false" selection-start-line="106" selection-start-column="51" selection-end-line="106" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
