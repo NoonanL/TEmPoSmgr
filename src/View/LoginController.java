@@ -44,7 +44,7 @@ public class LoginController {
                 mainApp.showHome();
             }else{
                 //System.out.println("LOGIN FAILED");
-                error.setText("Incorrect Username or Password");
+                error.setText("Unable to Login");
             }
         }
 
