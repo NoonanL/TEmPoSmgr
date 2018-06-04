@@ -19,14 +19,24 @@ import java.util.Map;
 
 public class URLConnection {
 
+    /*
+    Map URLs to variables
+     */
+    private static String LOGIN = "http://localhost:9001/loginServlet";
+    private static String ISADMIN = "http://localhost:9001/isAdminServlet";
+    private static String CREATEUSER = "http://localhost:9001/createUserServlet";
+    private static String GETUSERS = "http://localhost:9001/getUsersServlet";
+
+
     /**
     Creates url connection and returns the response as a JSON object
      @String url
      @String params
      */
-    private StringBuilder sendPOST(String url, String params) throws IOException {
+    private JSONObject sendPOST(String url, String params) throws IOException {
 
         StringBuilder response = new StringBuilder();
+        JSONObject responseJson = null;
 
         try{
             //System.out.println("We're in the post method");
@@ -49,110 +59,138 @@ public class URLConnection {
                         con.getInputStream()));
                 String inputLine;
 
-
                 while ((inputLine = in.readLine()) != null) {
                     response.append(inputLine);
                 }
                 in.close();
+                responseJson = new JSONObject(response.toString());
+                responseJson.put("connection", "true");
+            }else {
+                Map<String, String> errorResponse = new LinkedHashMap<>();
+                errorResponse.put("connection", "false");
+                responseJson = new JSONObject(errorResponse);
             }
 
         }catch(ConnectException e){
+            Map<String, String> errorResponse = new LinkedHashMap<>();
+            errorResponse.put("connection", "false");
+            responseJson = new JSONObject(errorResponse);
             //e.printStackTrace();
             System.out.println("Post Request Failed, no connection to server.");
+        } catch (JSONException e) {
+            //e.printStackTrace();
+            System.out.println("Json Error.");
         }
 
-        return response;
+        return responseJson;
 
     }
 
+    /**
+     * Authentication function
+     * @param username
+     * @param password
+     * @return true for valid login, false for failed.
+     * @throws IOException
+     * @throws JSONException
+     */
     public static boolean Login(String username, String password) throws IOException, JSONException {
 
-            URLConnection connection = new URLConnection();
+        URLConnection connection = new URLConnection();
 
-            Map<String, String> parameters = new LinkedHashMap<>();
-            parameters.put("username" , username);
-            parameters.put("password" , password);
-            String postData = ParameterStringBuilder.getParamsString(parameters);
+        Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("username", username);
+        parameters.put("password", password);
+        String postData = ParameterStringBuilder.getParamsString(parameters);
 
-            StringBuilder response = connection.sendPOST("http://localhost:9001/loginServlet", postData);
-            System.out.println(response);
+        JSONObject response = connection.sendPOST(LOGIN, postData);
 
-            if(ConnectionFound(response)){
-                JSONObject responseJson = new JSONObject(response.toString());
-                return responseJson.getString("auth").equals("OK");
-            }else{
-                return false;
-            }
+        return response.getString("connection").equals("true")
+                && response.getString("auth").equals("OK");
+    }
+
+    /**
+     * Sends post to server to check if user is an admin
+     * @param username
+     * @return true for user is Admin, false for is not
+     * @throws IOException
+     * @throws JSONException
+     */
+    public static boolean isAdmin(String username) throws IOException, JSONException {
+
+        URLConnection connection = new URLConnection();
+
+        Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("username" , username);
+        String postData = ParameterStringBuilder.getParamsString(parameters);
+
+        JSONObject response = connection.sendPOST(ISADMIN, postData);
+
+        return response.getString("connection").equals("true")
+                && response.getString("isAdmin").equals("true");
         }
 
-        public static boolean isAdmin(String username) throws IOException, JSONException {
+    /**
+     * Sends a post request to the server with appropriate variables to create a new user
+      * @param username
+     * @param password
+     * @param isAdmin
+     * @return creates a new user given the appropriate input variables
+     * @throws IOException
+     * @throws JSONException
+     */
+    public static boolean createUser(String username, String password, String isAdmin) throws IOException, JSONException {
 
-            URLConnection connection = new URLConnection();
+        URLConnection connection = new URLConnection();
 
-            Map<String, String> parameters = new LinkedHashMap<>();
-            parameters.put("username" , username);
-            String postData = ParameterStringBuilder.getParamsString(parameters);
+        Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("username" , username);
+        parameters.put("password" , password);
+        parameters.put("isAdmin" , isAdmin);
 
-            StringBuilder response = connection.sendPOST("http://localhost:9001/isAdminServlet", postData);
+        //send the parameters to the ParameterStringBuilder utility class for formatting
+        String postData = ParameterStringBuilder.getParamsString(parameters);
+        JSONObject response = connection.sendPOST(CREATEUSER, postData);
 
-            if(ConnectionFound(response)){
-                JSONObject responseJson = new JSONObject(response.toString());
-                return responseJson.getString("isAdmin").equals("true");
-            }else{
-                return false;
-            }
+        return response.getString("connection").equals("true")
+                && response.getString("response").equals("OK");
 
+    }
 
-        }
+    /**
+     * Sends post request to server to get a list of Users.
+     * @return ArrayList of User objects
+     * @throws IOException
+     * @throws JSONException
+     */
+    public static ArrayList<User> getUsers() throws IOException, JSONException {
 
-        public static boolean createUser(String username, String password, String isAdmin) throws IOException, JSONException {
+        URLConnection connection = new URLConnection();
+        ArrayList<User> userList = new ArrayList<>();
+        Map<String, String> parameters = new LinkedHashMap<>();
 
-            URLConnection connection = new URLConnection();
+        //send the parameters to the ParameterStringBuilder utility class for formatting
+        String postData = ParameterStringBuilder.getParamsString(parameters);
+        JSONObject response = connection.sendPOST(GETUSERS, postData);
 
-            Map<String, String> parameters = new LinkedHashMap<>();
-            parameters.put("username" , username);
-            parameters.put("password" , password);
-            parameters.put("isAdmin" , isAdmin);
-
-            //send the parameters to the ParameterStringBuilder utility class for formatting
-            String postData = ParameterStringBuilder.getParamsString(parameters);
-            StringBuilder response = connection.sendPOST("http://localhost:9001/createUserServlet", postData);
-
-            if(ConnectionFound(response)){
-                JSONObject responseJson = new JSONObject(response.toString());
-                return responseJson.getString("response").equals("OK");
-            }else{
-                return false;
-            }
-
-        }
-
-        public static ArrayList<User> getUsers() throws IOException, JSONException {
-            URLConnection connection = new URLConnection();
-            ArrayList<User> userList = new ArrayList<>();
-            Map<String, String> parameters = new LinkedHashMap<>();
-            //send the parameters to the ParameterStringBuilder utility class for formatting
-            String postData = ParameterStringBuilder.getParamsString(parameters);
-            StringBuilder response = connection.sendPOST("http://localhost:9001/getUsersServlet", postData);
-
-            if(ConnectionFound(response)){
-                //System.out.println(response);
-                JSONObject responseJson = new JSONObject(response.toString());
-
-                for (Iterator it = responseJson.keys(); it.hasNext(); ) {
+        /**
+         * This is inefficient, of order n^3 - REFACTOR ME
+         */
+           if(response.getString("connection").equals("true")){
+               for (Iterator it = response.keys(); it.hasNext(); ) {
                     String json = it.next().toString();
-                    JSONObject userJson = (responseJson.getJSONObject(json));
-                    User user = new User();
-                    user.setUsername(userJson.getString("username"));
-                    user.setIsAdmin(userJson.getString("isAdmin"));
-                    userList.add(user);
+                    //Skip connection response object.
+                    if(!json.equals("connection")) {
+                        JSONObject userJson = (response.getJSONObject(json));
+                        User user = new User();
+                        user.setUsername(userJson.getString("username"));
+                        user.setIsAdmin(userJson.getString("isAdmin"));
+                        userList.add(user);
+                    }
                 }
-            }
+           }
             return userList;
         }
 
-        private static boolean ConnectionFound(StringBuilder in){
-            return in.length() != 0;
-        }
 
 }
