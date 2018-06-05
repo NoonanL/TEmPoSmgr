@@ -15,7 +15,7 @@ public class TEmPoSmgr extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
-    public String authenticatedUser;
+    public static String authenticatedUser;
 
     @Override
     public void start(Stage primaryStage) {

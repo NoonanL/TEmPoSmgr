@@ -26,6 +26,7 @@ public class URLConnection {
     private static String ISADMIN = "http://localhost:9001/isAdminServlet";
     private static String CREATEUSER = "http://localhost:9001/createUserServlet";
     private static String GETUSERS = "http://localhost:9001/getUsersServlet";
+    private static String DELETEUSER = "http://localhost:9001/deleteUserServlet";
 
 
     /**
@@ -65,6 +66,7 @@ public class URLConnection {
                 in.close();
                 responseJson = new JSONObject(response.toString());
                 responseJson.put("connection", "true");
+                //System.out.println(responseJson.toString());
             }else {
                 Map<String, String> errorResponse = new LinkedHashMap<>();
                 errorResponse.put("connection", "false");
@@ -78,7 +80,7 @@ public class URLConnection {
             //e.printStackTrace();
             System.out.println("Post Request Failed, no connection to server.");
         } catch (JSONException e) {
-            //e.printStackTrace();
+            e.printStackTrace();
             System.out.println("Json Error.");
         }
 
@@ -155,6 +157,21 @@ public class URLConnection {
         return response.getString("connection").equals("true")
                 && response.getString("response").equals("OK");
 
+    }
+
+    public static boolean deleteUser(String requestUser, String targetUser) throws IOException, JSONException {
+
+        URLConnection connection = new URLConnection();
+
+        Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("requestUser" , requestUser);
+        parameters.put("targetUser" , targetUser);
+
+        //send the parameters to the ParameterStringBuilder utility class for formatting
+        String postData = ParameterStringBuilder.getParamsString(parameters);
+        JSONObject response = connection.sendPOST(DELETEUSER, postData);
+        return response.getString("connection").equals("true")
+                && response.getString("response").equals("OK");
     }
 
     /**

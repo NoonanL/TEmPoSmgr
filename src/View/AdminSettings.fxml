@@ -13,17 +13,18 @@
       <Label layoutX="23.0" layoutY="23.0" text="Manage Users" />
       <Button fx:id="createNewUser" layoutX="25.0" layoutY="219.0" mnemonicParsing="false" onAction="#createNewUserClicked" text="Create New User" />
       <Button fx:id="back" layoutX="525.0" layoutY="351.0" mnemonicParsing="false" onAction="#backClicked" text="Back" />
-      <CheckBox fx:id="isAdminField" layoutX="25.0" layoutY="192.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox fx:id="isAdminField" layoutX="25.0" layoutY="192.0" mnemonicParsing="false" text="Give Admin Status?" />
       <TextField fx:id="usernameField" layoutX="25.0" layoutY="127.0" />
       <TextField fx:id="passwordField" layoutX="25.0" layoutY="159.0" />
       <Label layoutX="23.0" layoutY="87.0" text="Create New User:" />
-      <TableView fx:id="userTable" layoutX="269.0" layoutY="48.0" prefHeight="247.0" prefWidth="308.0">
+      <TableView fx:id="userTable" layoutX="269.0" layoutY="48.0" prefHeight="247.0" prefWidth="179.0">
         <columns>
-          <TableColumn fx:id="usernameColumn" prefWidth="75.0" text="username" />
-          <TableColumn fx:id="isAdminColumn" prefWidth="75.0" text="isAdmin" />
+          <TableColumn fx:id="usernameColumn" prefWidth="75.0" text="Username" />
+          <TableColumn fx:id="isAdminColumn" prefWidth="108.0" text="Admin Status" />
         </columns>
       </TableView>
       <Label layoutX="272.0" layoutY="23.0" text="Existing Users" />
-      <Label fx:id="error" layoutX="23.0" layoutY="252.0" textFill="#fc0000" />
+      <Label fx:id="error" layoutX="23.0" layoutY="252.0" prefHeight="17.0" prefWidth="149.0" textFill="#fc0000" />
+      <Button layoutX="269.0" layoutY="304.0" mnemonicParsing="false" onAction="#deleteUser" text="DeleteUser" />
    </children>
 </AnchorPane>

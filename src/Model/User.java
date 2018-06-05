@@ -1,12 +1,13 @@
 package Model;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class User {
 
     //Variables
-    private final SimpleStringProperty username;
-    private final SimpleStringProperty isAdmin;
+    private SimpleStringProperty username;
+    private SimpleStringProperty isAdmin;
 
     //Constructors
     public User(){
@@ -26,16 +27,16 @@ public class User {
         this.username.set(username);
     }
 
-    public String getUsername(){
-        return this.username.get();
+    public StringProperty getUsername(){
+        return this.username;
     }
 
     public void setIsAdmin(String isAdmin){
         this.isAdmin.set(isAdmin);
     }
 
-    public String getIsAdmin(){
-        return this.isAdmin.get();
+    public StringProperty getIsAdmin(){
+        return this.isAdmin;
     }
 
 

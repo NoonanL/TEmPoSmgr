@@ -7,12 +7,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.json.JSONException;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Optional;
 
 public class AdminSettingsController {
 
@@ -37,12 +37,8 @@ public class AdminSettingsController {
     @FXML
     private TableColumn<User, String> isAdminColumn;
 
-    public final ObservableList<User> userData = FXCollections.observableList(URLConnection.getUsers());
+    private ObservableList<User> userData = FXCollections.observableList(URLConnection.getUsers());
 
-    private void getUsers() throws IOException, JSONException {
-        ArrayList<User> array = URLConnection.getUsers();
-
-    }
 
     @FXML
     private void backClicked() throws IOException, JSONException {
@@ -70,6 +66,37 @@ public class AdminSettingsController {
 
     }
 
+    @FXML
+    private void deleteUser() throws IOException, JSONException {
+        error.setText("");
+        String targetUser = "";
+        User selectedUser = userTable.getSelectionModel().getSelectedItem();
+
+        if(selectedUser == null){
+            error.setText("No user selected.");
+        }else{
+            targetUser = selectedUser.getUsername().get();
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirm Delete User");
+            alert.setHeaderText("Are you sure?");
+            alert.setContentText("Are you sure you want to delete " + targetUser + "?"
+            + " This action cannot be undone!");
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.get() == ButtonType.OK){
+                if(URLConnection.deleteUser(TEmPoSmgr.authenticatedUser, targetUser)){
+                    error.setText(("User " + targetUser + " deleted."));
+                    refreshTable();
+                } else{
+                    error.setText("Error deleting user.");
+                }
+
+            }
+        }
+
+    }
+
     private String createNewUser(String username, String password, boolean isAdmin) throws IOException, JSONException {
 
         String isAdminString;
@@ -86,6 +113,10 @@ public class AdminSettingsController {
             if(URLConnection.createUser(username,password,isAdminString)){
                 //System.out.println("New user created");
                 returnString = "New user created";
+                userData = FXCollections.observableList(URLConnection.getUsers());
+                refreshTable();
+
+
             }else{
                 //System.out.println("LOGIN FAILED");
                 returnString = "Error creating new user.";
@@ -99,18 +130,42 @@ public class AdminSettingsController {
 
 
     @FXML
-    private void initialize(){
-        usernameColumn.setCellValueFactory(
-                new PropertyValueFactory<>("username")
-        );
-        isAdminColumn.setCellValueFactory(
-                new PropertyValueFactory<>("isAdmin")
-        );
+    private void initialize() throws IOException, JSONException {
+        //getUserData();
+        usernameColumn.setCellValueFactory(cellData -> cellData.getValue().getUsername());
+        isAdminColumn.setCellValueFactory(cellData -> cellData.getValue().getIsAdmin());
 
-        //usernameColumn.setCellValueFactory(cellData -> cellData.getValue().getUsername());
-        //isAdminColumn.setCellValueFactory(cellData -> cellData.getValue().getIsAdmin());
+        //Custom renderer for IsAdmin column to colour the cell depending on admin status
+        isAdminColumn.setCellFactory((TableColumn<User, String> column) -> new TableCell<User, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (item == null || empty) {
+                    setText(null);
+                    setStyle("");
+                }
+
+                // Style alString() == "false")l dates in March with a different color.
+                if ("N".equals(item)) {
+                    setText("Not Admin");
+                    setTextFill(Color.WHITE);
+                    setStyle("-fx-background-color: red");
+                }
+                if ("Y".equals(item)) {
+                    setText("Is Admin");
+                    setTextFill(Color.WHITE);
+                    setStyle("-fx-background-color: green");
+                }
+            }
+        });
         userTable.setItems(userData);
-        //listen for selection changes and show patient details when changed
+    }
+
+    private void refreshTable() throws IOException, JSONException {
+        userData = FXCollections.observableList(URLConnection.getUsers());
+        userTable.refresh();
+        userTable.setItems(userData);
     }
 
 

@@ -40,7 +40,7 @@ public class LoginController {
 //            String postData = ParameterStringBuilder.getParamsString(parameters);
             if(URLConnection.Login(authenticateID,authenticatePassword)){
                 //System.out.println("LOGGED IN");
-                mainApp.authenticatedUser = authenticateID;
+                TEmPoSmgr.authenticatedUser = authenticateID;
                 mainApp.showHome();
             }else{
                 //System.out.println("LOGIN FAILED");
