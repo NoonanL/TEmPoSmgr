@@ -28,16 +28,11 @@ public class LoginController {
     @FXML
         public void isLoginClicked() throws IOException, JSONException {
             error.setText("");
+
             //assign the text currently in the username and password text boxes to variables
             String authenticateID = username.getText();
             String authenticatePassword = password.getText();
-//
-//            Map<String, String> parameters = new LinkedHashMap<>();
-//            parameters.put("username" , authenticateID);
-//            parameters.put("password" , authenticatePassword);
-//
-//            //send the parameters to the ParameterStringBuilder utility class for formatting
-//            String postData = ParameterStringBuilder.getParamsString(parameters);
+
             if(USER.authenticate(authenticateID, authenticatePassword)){
                 //System.out.println("LOGGED IN");
                 TEmPoSmgr.authenticatedUser = authenticateID;

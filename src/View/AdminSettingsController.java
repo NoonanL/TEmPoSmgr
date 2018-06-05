@@ -55,12 +55,6 @@ public class AdminSettingsController {
         String username = usernameField.getText();
         String password = passwordField.getText();
         boolean isAdmin = isAdminField.isSelected();
-        System.out.println("attempting to create new user with username " +
-                            username +
-                            " password " +
-                            password +
-                            " admin status " +
-                            isAdmin + ".");
 
         error.setText(createNewUser(username,password,isAdmin));
 
@@ -118,7 +112,6 @@ public class AdminSettingsController {
 
 
             }else{
-                //System.out.println("LOGIN FAILED");
                 returnString = "Error creating new user.";
             }
         }else {
@@ -131,7 +124,8 @@ public class AdminSettingsController {
 
     @FXML
     private void initialize() throws IOException, JSONException {
-        //getUserData();
+
+        //Set columns to their appropriate value factory
         usernameColumn.setCellValueFactory(cellData -> cellData.getValue().getUsername());
         isAdminColumn.setCellValueFactory(cellData -> cellData.getValue().getIsAdmin());
 

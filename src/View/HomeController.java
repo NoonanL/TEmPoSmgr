@@ -26,17 +26,13 @@ public class HomeController {
     @FXML
     public void adminSettings() throws IOException, JSONException {
 
-        //Map<String, String> parameters = new LinkedHashMap<>();
-        //parameters.put("username" , mainApp.authenticatedUser);
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-       // String postData = ParameterStringBuilder.getParamsString(parameters);
         if(USER.isAdmin(TEmPoSmgr.authenticatedUser)){
-            //System.out.println("LOGGED IN");
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/AdminSettings.fxml"));
-                Parent adminSettings = fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(adminSettings));
-                stage.show();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/AdminSettings.fxml"));
+            Parent adminSettings = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(adminSettings));
+            stage.show();
 
         }else{
             System.out.println("NOT AN ADMIN");
@@ -45,7 +41,6 @@ public class HomeController {
 
     }
 
-    //this MUST be here. Initializes the class. Ignore "not used" hint.
     @FXML
     private void initialize(){}
 

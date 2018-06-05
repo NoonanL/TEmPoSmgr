@@ -8,11 +8,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AdminSettingsController">
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AdminSettingsController">
    <children>
       <Label layoutX="23.0" layoutY="23.0" text="Manage Users" />
       <Button fx:id="createNewUser" layoutX="25.0" layoutY="219.0" mnemonicParsing="false" onAction="#createNewUserClicked" text="Create New User" />
-      <Button fx:id="back" layoutX="525.0" layoutY="351.0" mnemonicParsing="false" onAction="#backClicked" text="Back" />
+      <Button fx:id="back" layoutX="407.0" layoutY="361.0" mnemonicParsing="false" onAction="#backClicked" text="Back" />
       <CheckBox fx:id="isAdminField" layoutX="25.0" layoutY="192.0" mnemonicParsing="false" text="Give Admin Status?" />
       <TextField fx:id="usernameField" layoutX="25.0" layoutY="127.0" />
       <TextField fx:id="passwordField" layoutX="25.0" layoutY="159.0" />
