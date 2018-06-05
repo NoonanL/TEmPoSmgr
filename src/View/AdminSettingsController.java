@@ -2,7 +2,7 @@ package View;
 
 import Model.User;
 import TEmPoSmgr.TEmPoSmgr;
-import daos.URLConnection;
+import daos.USER;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -37,7 +37,7 @@ public class AdminSettingsController {
     @FXML
     private TableColumn<User, String> isAdminColumn;
 
-    private ObservableList<User> userData = FXCollections.observableList(URLConnection.getUsers());
+    private ObservableList<User> userData = FXCollections.observableList(USER.getUsers());
 
 
     @FXML
@@ -85,7 +85,7 @@ public class AdminSettingsController {
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.get() == ButtonType.OK){
-                if(URLConnection.deleteUser(TEmPoSmgr.authenticatedUser, targetUser)){
+                if(USER.deleteUser(TEmPoSmgr.authenticatedUser, targetUser)){
                     error.setText(("User " + targetUser + " deleted."));
                     refreshTable();
                 } else{
@@ -110,10 +110,10 @@ public class AdminSettingsController {
 
         if(!username.equals("") && !password.equals("")){
 
-            if(URLConnection.createUser(username,password,isAdminString)){
+            if(USER.createUser(username,password,isAdminString)){
                 //System.out.println("New user created");
                 returnString = "New user created";
-                userData = FXCollections.observableList(URLConnection.getUsers());
+                userData = FXCollections.observableList(USER.getUsers());
                 refreshTable();
 
 
@@ -163,7 +163,7 @@ public class AdminSettingsController {
     }
 
     private void refreshTable() throws IOException, JSONException {
-        userData = FXCollections.observableList(URLConnection.getUsers());
+        userData = FXCollections.observableList(USER.getUsers());
         userTable.refresh();
         userTable.setItems(userData);
     }

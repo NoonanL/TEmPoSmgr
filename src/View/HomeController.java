@@ -1,7 +1,7 @@
 package View;
 
 import TEmPoSmgr.TEmPoSmgr;
-import daos.URLConnection;
+import daos.USER;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,7 +19,7 @@ public class HomeController {
 
     @FXML
     public void logoutClicked() throws IOException, JSONException {
-        mainApp.authenticatedUser = null;
+        TEmPoSmgr.authenticatedUser = null;
         mainApp.showLoginStage();
     }
 
@@ -30,7 +30,7 @@ public class HomeController {
         //parameters.put("username" , mainApp.authenticatedUser);
         //send the parameters to the ParameterStringBuilder utility class for formatting
        // String postData = ParameterStringBuilder.getParamsString(parameters);
-        if(URLConnection.isAdmin(mainApp.authenticatedUser)){
+        if(USER.isAdmin(TEmPoSmgr.authenticatedUser)){
             //System.out.println("LOGGED IN");
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/AdminSettings.fxml"));
                 Parent adminSettings = fxmlLoader.load();

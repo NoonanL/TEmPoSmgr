@@ -50,12 +50,12 @@ public class TEmPoSmgr extends Application {
         }
     }
 
-    //this method shows the Login prompt where users can either login or register an account
+    //this method shows the USER prompt where users can either login or register an account
     public void showLoginStage(){
 
         try{
 
-            //load Login fxml page
+            //load USER fxml page
             FXMLLoader loader = new FXMLLoader(TEmPoSmgr.class.getResource("/View/Login.fxml"));
             //load LoginPage of fxml type AnchorPane
             AnchorPane Login = (AnchorPane) loader.load();
@@ -76,7 +76,7 @@ public class TEmPoSmgr extends Application {
 
     }
 
-    //this method shows the Login prompt where users can either login or register an account
+    //this method shows the USER prompt where users can either login or register an account
     public void showHome(){
 
         try{

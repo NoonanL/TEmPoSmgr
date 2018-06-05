@@ -1,7 +1,7 @@
 package View;
 
 import TEmPoSmgr.TEmPoSmgr;
-import daos.URLConnection;
+import daos.USER;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -38,13 +38,13 @@ public class LoginController {
 //
 //            //send the parameters to the ParameterStringBuilder utility class for formatting
 //            String postData = ParameterStringBuilder.getParamsString(parameters);
-            if(URLConnection.Login(authenticateID,authenticatePassword)){
+            if(USER.authenticate(authenticateID, authenticatePassword)){
                 //System.out.println("LOGGED IN");
                 TEmPoSmgr.authenticatedUser = authenticateID;
                 mainApp.showHome();
             }else{
                 //System.out.println("LOGIN FAILED");
-                error.setText("Unable to Login");
+                error.setText("Unable to USER");
             }
         }
 
