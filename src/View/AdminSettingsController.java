@@ -24,22 +24,14 @@ public class AdminSettingsController {
 
     public AdminSettingsController() throws IOException, JSONException {}
 
-    @FXML
-    private Button back;
-    @FXML
-    private TextField usernameField;
-    @FXML
-    private TextField passwordField;
-    @FXML
-    private CheckBox isAdminField;
-    @FXML
-    private Label error;
-    @FXML
-    private TableView<User> userTable;
-    @FXML
-    private TableColumn<User, String> usernameColumn;
-    @FXML
-    private TableColumn<User, String> isAdminColumn;
+    @FXML private Button back;
+    @FXML private TextField usernameField;
+    @FXML private TextField passwordField;
+    @FXML private CheckBox isAdminField;
+    @FXML private Label error;
+    @FXML private TableView<User> userTable;
+    @FXML private TableColumn<User, String> usernameColumn;
+    @FXML private TableColumn<User, String> isAdminColumn;
 
     private ObservableList<User> userData = FXCollections.observableList(USER.getUsers());
 

@@ -2,21 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/TEmPoSmgr/TEmPoSmgr/TEmPoSmgr.class" afterPath="$PROJECT_DIR$/out/production/TEmPoSmgr/TEmPoSmgr/TEmPoSmgr.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TEmPoSmgr/View/AdminSettings.fxml" afterPath="$PROJECT_DIR$/out/production/TEmPoSmgr/View/AdminSettings.fxml" />
-      <change beforePath="$PROJECT_DIR$/out/production/TEmPoSmgr/View/AdminSettingsController$1.class" afterPath="$PROJECT_DIR$/out/production/TEmPoSmgr/View/AdminSettingsController$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TEmPoSmgr/View/AdminSettingsController.class" afterPath="$PROJECT_DIR$/out/production/TEmPoSmgr/View/AdminSettingsController.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TEmPoSmgr/View/Home.fxml" afterPath="$PROJECT_DIR$/out/production/TEmPoSmgr/View/Home.fxml" />
-      <change beforePath="$PROJECT_DIR$/out/production/TEmPoSmgr/View/Login.fxml" afterPath="$PROJECT_DIR$/out/production/TEmPoSmgr/View/Login.fxml" />
-      <change beforePath="$PROJECT_DIR$/out/production/TEmPoSmgr/View/RootLayout.fxml" afterPath="$PROJECT_DIR$/out/production/TEmPoSmgr/View/RootLayout.fxml" />
-      <change beforePath="$PROJECT_DIR$/src/TEmPoSmgr/TEmPoSmgr.java" afterPath="$PROJECT_DIR$/src/TEmPoSmgr/TEmPoSmgr.java" />
-      <change beforePath="$PROJECT_DIR$/src/View/AdminSettings.fxml" afterPath="$PROJECT_DIR$/src/View/AdminSettings.fxml" />
+      <change beforePath="$PROJECT_DIR$/out/production/TEmPoSmgr/daos/USER.class" afterPath="" />
       <change beforePath="$PROJECT_DIR$/src/View/AdminSettingsController.java" afterPath="$PROJECT_DIR$/src/View/AdminSettingsController.java" />
-      <change beforePath="$PROJECT_DIR$/src/View/Home.fxml" afterPath="$PROJECT_DIR$/src/View/Home.fxml" />
-      <change beforePath="$PROJECT_DIR$/src/View/Login.fxml" afterPath="$PROJECT_DIR$/src/View/Login.fxml" />
-      <change beforePath="$PROJECT_DIR$/src/View/RootLayout.fxml" afterPath="$PROJECT_DIR$/src/View/RootLayout.fxml" />
+      <change beforePath="$PROJECT_DIR$/src/View/EditUser.fxml" afterPath="$PROJECT_DIR$/src/View/EditUser.fxml" />
+      <change beforePath="$PROJECT_DIR$/src/View/EditUserController.java" afterPath="$PROJECT_DIR$/src/View/EditUserController.java" />
+      <change beforePath="$PROJECT_DIR$/src/daos/USER.java" afterPath="$PROJECT_DIR$/src/daos/USER.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -76,7 +66,7 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.40011448">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="TEmPoSmgr.java" pinned="false" current-in-tab="false">
@@ -97,12 +87,12 @@
           <file leaf-file-name="EditUserController.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/View/EditUserController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="201">
-                  <caret line="39" column="9" lean-forward="true" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+                <state relative-caret-position="238">
+                  <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#2401#2402#0" expanded="true" />
-                    <element signature="e#2447#2448#0" expanded="true" />
+                    <element signature="e#3051#3052#0" expanded="true" />
+                    <element signature="e#3097#3098#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -125,12 +115,22 @@
           <file leaf-file-name="AdminSettingsController.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/View/AdminSettingsController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="320">
-                  <caret line="51" column="22" lean-forward="true" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
+                <state relative-caret-position="476">
+                  <caret line="53" column="37" lean-forward="false" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
                   <folding>
-                    <element signature="e#5892#6717#0" expanded="true" />
-                    <element signature="e#6716#6717#0" expanded="true" />
+                    <element signature="e#5860#6685#0" expanded="true" />
+                    <element signature="e#6684#6685#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="USER.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/daos/USER.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-493">
+                  <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -169,18 +169,18 @@
         <option value="$PROJECT_DIR$/src/Model/User.java" />
         <option value="$PROJECT_DIR$/src/daos/Login.java" />
         <option value="$PROJECT_DIR$/src/test/URLConnectionTest.java" />
-        <option value="$PROJECT_DIR$/src/daos/USER.java" />
         <option value="$PROJECT_DIR$/src/View/LoginController.java" />
         <option value="$PROJECT_DIR$/src/daos/URLConnection.java" />
         <option value="$PROJECT_DIR$/src/View/HomeController.java" />
         <option value="$PROJECT_DIR$/src/View/AdminSettings.fxml" />
-        <option value="$PROJECT_DIR$/src/View/EditUser.fxml" />
         <option value="$PROJECT_DIR$/src/View/Home.fxml" />
         <option value="$PROJECT_DIR$/src/View/Login.fxml" />
         <option value="$PROJECT_DIR$/src/View/RootLayout.fxml" />
         <option value="$PROJECT_DIR$/src/TEmPoSmgr/TEmPoSmgr.java" />
         <option value="$PROJECT_DIR$/src/View/AdminSettingsController.java" />
+        <option value="$PROJECT_DIR$/src/daos/USER.java" />
         <option value="$PROJECT_DIR$/src/View/EditUserController.java" />
+        <option value="$PROJECT_DIR$/src/View/EditUser.fxml" />
       </list>
     </option>
   </component>
@@ -194,7 +194,7 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1913" />
     <option name="width" value="1934" />
-    <option name="height" value="2137" />
+    <option name="height" value="2167" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -570,7 +570,7 @@
       <workItem from="1528127854742" duration="7949000" />
       <workItem from="1528224626495" duration="271000" />
       <workItem from="1528234678681" duration="6723000" />
-      <workItem from="1528288724233" duration="5951000" />
+      <workItem from="1528288724233" duration="10336000" />
     </task>
     <servers />
   </component>
@@ -607,7 +607,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65992000" />
+    <option name="totallyTimeSpent" value="70377000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="3856" height="2176" extended-state="6" />
@@ -1034,16 +1034,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/daos/USER.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="45" lean-forward="false" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/View/HomeController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
@@ -1085,14 +1075,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/EditUser.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/TEmPoSmgr/TEmPoSmgr.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="115" lean-forward="false" selection-start-line="9" selection-start-column="115" selection-end-line="9" selection-end-column="115" />
-          <folding />
+        <state relative-caret-position="850">
+          <caret line="59" column="52" lean-forward="true" selection-start-line="59" selection-start-column="52" selection-end-line="59" selection-end-column="52" />
+          <folding>
+            <element signature="e#3554#3555#0" expanded="true" />
+            <element signature="e#3589#3590#0" expanded="true" />
+            <element signature="e#3697#3698#0" expanded="true" />
+            <element signature="e#3725#3726#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1107,38 +1099,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TEmPoSmgr/TEmPoSmgr.java">
+    <entry file="file://$PROJECT_DIR$/src/daos/USER.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="59" column="52" lean-forward="true" selection-start-line="59" selection-start-column="52" selection-end-line="59" selection-end-column="52" />
-          <folding>
-            <element signature="e#3554#3555#0" expanded="true" />
-            <element signature="e#3589#3590#0" expanded="true" />
-            <element signature="e#3697#3698#0" expanded="true" />
-            <element signature="e#3725#3726#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-493">
+          <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/View/AdminSettingsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="51" column="22" lean-forward="true" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
+        <state relative-caret-position="476">
+          <caret line="53" column="37" lean-forward="false" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
           <folding>
-            <element signature="e#5892#6717#0" expanded="true" />
-            <element signature="e#6716#6717#0" expanded="true" />
+            <element signature="e#5860#6685#0" expanded="true" />
+            <element signature="e#6684#6685#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/EditUser.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/View/EditUserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="39" column="9" lean-forward="true" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+        <state relative-caret-position="238">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2401#2402#0" expanded="true" />
-            <element signature="e#2447#2448#0" expanded="true" />
+            <element signature="e#3051#3052#0" expanded="true" />
+            <element signature="e#3097#3098#0" expanded="true" />
           </folding>
         </state>
       </provider>

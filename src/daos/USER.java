@@ -18,6 +18,7 @@ public class USER {
     private static String CREATEUSER = "http://localhost:9001/createUserServlet";
     private static String GETUSERS = "http://localhost:9001/getUsersServlet";
     private static String DELETEUSER = "http://localhost:9001/deleteUserServlet";
+    private static String EDITUSER = "http://localhost:9001/editUserServlet";
 
     /**
      * Authentication function
@@ -84,6 +85,25 @@ public class USER {
         //send the parameters to the ParameterStringBuilder utility class for formatting
         String postData = ParameterStringBuilder.getParamsString(parameters);
         JSONObject response = connection.sendPOST(CREATEUSER, postData);
+
+        return response.getString("connection").equals("true")
+                && response.getString("response").equals("OK");
+
+    }
+
+    public static boolean editUser(String requestUser, String targetUser, String username, String isAdmin) throws IOException, JSONException {
+
+        URLConnection connection = new URLConnection();
+
+        Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("requestUser" , requestUser);
+        parameters.put("targetUser" , targetUser);
+        parameters.put("username" , username);
+        parameters.put("isAdmin" , isAdmin);
+
+        //send the parameters to the ParameterStringBuilder utility class for formatting
+        String postData = ParameterStringBuilder.getParamsString(parameters);
+        JSONObject response = connection.sendPOST(EDITUSER, postData);
 
         return response.getString("connection").equals("true")
                 && response.getString("response").equals("OK");

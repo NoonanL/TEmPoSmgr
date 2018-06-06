@@ -6,11 +6,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="View.EditUserController">
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="View.EditUserController">
    <children>
       <Button fx:id="back" layoutX="434.0" layoutY="361.0" mnemonicParsing="false" onAction="#backClicked" text="Back" />
-      <Button fx:id="submit" layoutX="344.0" layoutY="361.0" mnemonicParsing="false" text="Save Changes" />
+      <Button fx:id="submit" layoutX="344.0" layoutY="361.0" mnemonicParsing="false" onAction="#submit" text="Save Changes" />
       <TextField fx:id="usernameField" layoutX="52.0" layoutY="99.0" />
       <Label fx:id="error" layoutX="201.0" layoutY="272.0" prefHeight="17.0" prefWidth="149.0" />
       <CheckBox fx:id="isAdminField" layoutX="52.0" layoutY="144.0" mnemonicParsing="false" text="Admin Status" />

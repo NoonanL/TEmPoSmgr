@@ -26,12 +26,15 @@ public class EditUserController {
 
     private Stage dialogStage;
 
+    private User user;
+
     public void setUser(User editUser) {
 
+        this.user = editUser;
         boolean adminStatus;
-        usernameField.setText((editUser.getUsername().get()));
+        usernameField.setText((user.getUsername().get()));
 
-        adminStatus = editUser.getIsAdmin().get().equals("Y");
+        adminStatus = user.getIsAdmin().get().equals("Y");
 
         isAdminField.setSelected(adminStatus);
     }
@@ -73,9 +76,25 @@ public class EditUserController {
      * Called when the user clicks save changes.
      */
     @FXML
-    private void submit() {
+    private void submit() throws IOException, JSONException {
         //send update request here
-            dialogStage.close();
+        String requestUser = TEmPoSmgr.authenticatedUser;
+        String targetUser = this.user.getUsername().get();
+        String username = usernameField.getText();
+        String adminStatus;
+        if(isAdminField.isSelected()){
+            adminStatus = "Y";
+        }else{
+            adminStatus = "N";
+        }
+        //boolean isAdmin = isAdminField.isSelected();
+
+        if(USER.editUser(requestUser,targetUser,username,adminStatus)){
+            error.setText("Changes saved.");
+        }else{
+            error.setText("Error saving changes.");
+        }
+        //dialogStage.close();
     }
 
     /**
