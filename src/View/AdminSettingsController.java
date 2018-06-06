@@ -36,6 +36,11 @@ public class AdminSettingsController {
     private ObservableList<User> userData = FXCollections.observableList(USER.getUsers());
 
 
+    /**
+     * Returns to Home page
+     * @throws IOException
+     * @throws JSONException
+     */
     @FXML
     private void backClicked() throws IOException, JSONException {
         // get a handle to the stage
@@ -44,6 +49,11 @@ public class AdminSettingsController {
         stage.close();
     }
 
+    /**
+     * tests if a user has been selected in order to forward selected user to the EditUser page
+     * @throws IOException
+     * @throws JSONException
+     */
     @FXML
     private void editClicked() throws IOException, JSONException {
 
@@ -58,6 +68,11 @@ public class AdminSettingsController {
         }
     }
 
+    /**
+     * Forwards the data in the input fields to the createUser method
+     * @throws IOException
+     * @throws JSONException
+     */
     @FXML
     private void createNewUserClicked() throws IOException, JSONException {
         error.setText("");
@@ -69,6 +84,11 @@ public class AdminSettingsController {
         error.setText(createNewUser(username,password,isAdmin));
     }
 
+    /**
+     * Checks a user has been selected then deletes the user and refreshes the table
+     * @throws IOException
+     * @throws JSONException
+     */
     @FXML
     private void deleteUser() throws IOException, JSONException {
         error.setText("");
@@ -98,6 +118,15 @@ public class AdminSettingsController {
         }
     }
 
+    /**
+     * Sends data to server to create a new user, refreshes table if successful.
+     * @param username the new user's username
+     * @param password the new user's password
+     * @param isAdmin the new user's admin status
+     * @return the status of the createUser attempt
+     * @throws IOException
+     * @throws JSONException
+     */
     private String createNewUser(String username, String password, boolean isAdmin) throws IOException, JSONException {
 
         String isAdminString;
@@ -127,10 +156,8 @@ public class AdminSettingsController {
 
 
     /**
-     * Opens a dialog to edit details for the specified person.
-     *
-     * @param user the user object to edit
-     *
+     * shows the editUser page as a dialogue box
+     * @param user
      */
     private void showEditUserDialogue(User user) {
         try {
@@ -143,14 +170,14 @@ public class AdminSettingsController {
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Edit User");
             dialogStage.initModality(Modality.WINDOW_MODAL);
-            //dialogStage.initOwner(TEmPoSmgr.primaryStage);
+            dialogStage.initOwner(error.getScene().getWindow());
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
             // Set the person into the controller.
             EditUserController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            controller.setUser(user);
+            controller.setSelectedUser(user);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -161,9 +188,14 @@ public class AdminSettingsController {
     }
 
 
+    /**
+     * Initialises the AdminSettings page - fills the table with data, colours cells according to the user admin status
+     * @throws IOException
+     * @throws JSONException
+     */
     @FXML
     private void initialize() throws IOException, JSONException {
-
+        error.setText("");
         //Set columns to their appropriate value factory
         usernameColumn.setCellValueFactory(cellData -> cellData.getValue().getUsername());
         isAdminColumn.setCellValueFactory(cellData -> cellData.getValue().getIsAdmin());
@@ -195,9 +227,15 @@ public class AdminSettingsController {
         userTable.setItems(userData);
     }
 
+    /**
+     * Utility method to refresh the contents of the table
+     * @throws IOException
+     * @throws JSONException
+     */
     private void refreshTable() throws IOException, JSONException {
         userData = FXCollections.observableList(USER.getUsers());
         userTable.refresh();
+        error.setText("");
         userTable.setItems(userData);
     }
 

@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.json.JSONException;
 
@@ -17,21 +18,31 @@ public class HomeController {
 
     public HomeController(){}
 
+    /**
+     * Returns to login page
+     * @throws IOException
+     * @throws JSONException
+     */
     @FXML
     public void logoutClicked() throws IOException, JSONException {
         TEmPoSmgr.authenticatedUser = null;
         mainApp.showLoginStage();
     }
 
+    /**
+     * Opens the adminSettings menu when button is clicked as long as authenticated user is an admin
+     * @throws IOException
+     * @throws JSONException
+     */
     @FXML
     public void adminSettings() throws IOException, JSONException {
 
         if(USER.isAdmin(TEmPoSmgr.authenticatedUser)){
-
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/AdminSettings.fxml"));
             Parent adminSettings = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(adminSettings));
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
 
         }else{
@@ -41,6 +52,9 @@ public class HomeController {
 
     }
 
+    /**
+     * Init method for controller
+     */
     @FXML
     private void initialize(){}
 

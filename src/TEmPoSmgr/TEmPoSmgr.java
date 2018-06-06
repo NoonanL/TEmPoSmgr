@@ -3,32 +3,44 @@ package TEmPoSmgr;
 import View.HomeController;
 import View.LoginController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class TEmPoSmgr extends Application {
 
     private static Stage primaryStage;
     private BorderPane rootLayout;
+
+    //Variable to hold the currently authenticated user in memory
     public static String authenticatedUser;
 
+
+    /**
+     * the main starting point for the program, sets and initialises the first page.
+     * @param primaryStage a Stage object (primary stage, accessable via getStage)
+     */
     @Override
     public void start(Stage primaryStage) {
         TEmPoSmgr.primaryStage = primaryStage;
         TEmPoSmgr.primaryStage.setTitle("TEmPoS Manager");
-
+        ArrayList<Stage> openStages;
         //initialises the container page (RootLayout)
         initRootLayout();
         //shows the LoginPage
         showLoginStage();
     }
 
-    //the init method for the root layout
+    /**
+     * Initialises the root layout and adds any menu items to the menu bar
+     */
     private void initRootLayout(){
 
         try{
@@ -37,6 +49,59 @@ public class TEmPoSmgr extends Application {
             FXMLLoader loader = new FXMLLoader(TEmPoSmgr.class.getResource("/View/RootLayout.fxml"));
             //loads rootLayout of fxml type BorderPane (this must match the type of fxml used)
             rootLayout = (BorderPane) loader.load();
+
+
+            MenuBar menuBar = new MenuBar();
+            menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
+            rootLayout.setTop(menuBar);
+
+            // File menu - new, save, exit
+            Menu fileMenu = new Menu("File");
+            MenuItem newMenuItem = new MenuItem("Hello");
+            MenuItem saveMenuItem = new MenuItem("Liam");
+            MenuItem exitMenuItem = new MenuItem("Exit");
+            exitMenuItem.setOnAction(actionEvent -> Platform.exit());
+
+            fileMenu.getItems().addAll(newMenuItem, saveMenuItem,
+                    new SeparatorMenuItem(), exitMenuItem);
+
+            Menu aboutMenu = new Menu("Help");
+            MenuItem about = new MenuItem("About");
+            aboutMenu.getItems().addAll(about);
+
+            //Menu with example for selectable menu items
+            Menu webMenu = new Menu("Test");
+            CheckMenuItem htmlMenuItem = new CheckMenuItem("HTML");
+            htmlMenuItem.setSelected(true);
+            webMenu.getItems().add(htmlMenuItem);
+
+            CheckMenuItem cssMenuItem = new CheckMenuItem("CSS");
+            cssMenuItem.setSelected(true);
+            webMenu.getItems().add(cssMenuItem);
+
+            //menu example with nested menu and toggleable group
+            Menu sqlMenu = new Menu("SQL");
+            ToggleGroup tGroup = new ToggleGroup();
+            RadioMenuItem mysqlItem = new RadioMenuItem("MySQL");
+            mysqlItem.setToggleGroup(tGroup);
+
+            RadioMenuItem oracleItem = new RadioMenuItem("Oracle");
+            oracleItem.setToggleGroup(tGroup);
+            oracleItem.setSelected(true);
+
+            sqlMenu.getItems().addAll(mysqlItem, oracleItem,
+                    new SeparatorMenuItem());
+
+            Menu tutorialMenu = new Menu("Tutorial");
+            tutorialMenu.getItems().addAll(
+                    new CheckMenuItem("Java"),
+                    new CheckMenuItem("JavaFX"),
+                    new CheckMenuItem("Swing"));
+
+            sqlMenu.getItems().add(tutorialMenu);
+
+            menuBar.getMenus().addAll(fileMenu, aboutMenu);//, webMenu, sqlMenu);
+
 
             //Show the scene containing the root layout
             Scene scene = new Scene(rootLayout);
@@ -50,7 +115,10 @@ public class TEmPoSmgr extends Application {
         }
     }
 
-    //this method shows the USER prompt where users can either login or register an account
+
+    /**
+     * loads and shows the login stage
+     */
     public void showLoginStage(){
 
         try{
@@ -76,7 +144,10 @@ public class TEmPoSmgr extends Application {
 
     }
 
-    //this method shows the USER prompt where users can either login or register an account
+
+    /**
+     * loads and shows the home page
+     */
     public void showHome(){
 
         try{
@@ -103,10 +174,14 @@ public class TEmPoSmgr extends Application {
     }
 
 
-    //getter method for LoginStage - not important, just here because it's recommended to have.
-    public Stage getLoginStage(){
+    /**
+     * not entirely necessary as of yet but might be useful in future
+     * @return the current stage - allows the variable to be private but gives outside access to it
+     */
+    public Stage getStage(){
         return primaryStage;
     }
+
 
     /**
      * @param args the command line arguments

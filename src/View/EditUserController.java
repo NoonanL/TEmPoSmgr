@@ -13,8 +13,13 @@ import java.util.Optional;
 
 public class EditUserController {
 
-    private TEmPoSmgr mainApp;
+    private Stage dialogStage;
+    private User selectedUser;
 
+    /**
+     * constructor for the controller
+     * @throws IOException
+     */
     public EditUserController() throws IOException{}
 
     @FXML private Button back;
@@ -24,22 +29,26 @@ public class EditUserController {
     @FXML private Label error;
 
 
-    private Stage dialogStage;
+    /**
+     * Fills the empty textfields and checkboxes to the appropriate details for the currently selected user
+     * @param editUser
+     */
+    public void setSelectedUser(User editUser) {
 
-    private User user;
-
-    public void setUser(User editUser) {
-
-        this.user = editUser;
+        this.selectedUser = editUser;
         boolean adminStatus;
-        usernameField.setText((user.getUsername().get()));
+        usernameField.setText((selectedUser.getUsername().get()));
 
-        adminStatus = user.getIsAdmin().get().equals("Y");
+        adminStatus = selectedUser.getIsAdmin().get().equals("Y");
 
         isAdminField.setSelected(adminStatus);
     }
 
-
+    /**
+     * Returns to the adminSettings page
+     * @throws IOException
+     * @throws JSONException
+     */
     @FXML
     private void backClicked() throws IOException, JSONException {
         // get a handle to the stage
@@ -48,10 +57,15 @@ public class EditUserController {
         stage.close();
     }
 
+    /**
+     * Deletes user and returns to the adminSettings page
+     * @throws IOException
+     * @throws JSONException
+     */
     @FXML
     private void deleteUser() throws IOException, JSONException {
         error.setText("");
-        String targetUser = "";
+        String targetUser = selectedUser.getUsername().get();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Delete User");
         alert.setHeaderText("Are you sure?");
@@ -64,22 +78,22 @@ public class EditUserController {
                 error.setText(("User " + targetUser + " deleted."));
                 backClicked();
             } else {
-                error.setText("Error deleting user.");
+                error.setText("Error deleting selectedUser.");
             }
         }
     }
 
 
-
     /**
-     *
-     * Called when the user clicks save changes.
+     * Sends edited user data to server.
+     * @throws IOException
+     * @throws JSONException
      */
     @FXML
     private void submit() throws IOException, JSONException {
         //send update request here
         String requestUser = TEmPoSmgr.authenticatedUser;
-        String targetUser = this.user.getUsername().get();
+        String targetUser = this.selectedUser.getUsername().get();
         String username = usernameField.getText();
         String adminStatus;
         if(isAdminField.isSelected()){

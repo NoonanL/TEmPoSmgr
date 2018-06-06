@@ -5,11 +5,15 @@ import javafx.beans.property.StringProperty;
 
 public class User {
 
-    //Variables
+    /**
+     * declare variables
+     */
     private SimpleStringProperty username;
     private SimpleStringProperty isAdmin;
 
-    //Constructors
+    /**
+     * constructors
+     */
     public User(){
         this.username = new SimpleStringProperty();
         this.isAdmin = new SimpleStringProperty();
@@ -20,7 +24,10 @@ public class User {
         this.isAdmin = new SimpleStringProperty(isAdmin);
     }
 
-    //Getters and Setters
+    /**
+     * getters.setters
+     * NOTE - getters return a stringproperty for the use of FX
+     */
 
     public void setUsername(String username)
     {

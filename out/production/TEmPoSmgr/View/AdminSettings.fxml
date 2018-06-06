@@ -7,25 +7,27 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="View.AdminSettingsController">
+<AnchorPane prefHeight="620.0" prefWidth="699.0" styleClass="card" stylesheets="@test.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AdminSettingsController">
    <children>
-      <Label layoutX="23.0" layoutY="23.0" text="Manage Users" />
-      <Button fx:id="createNewUser" layoutX="25.0" layoutY="219.0" mnemonicParsing="false" onAction="#createNewUserClicked" text="Create New User" />
-      <Button fx:id="back" layoutX="407.0" layoutY="361.0" mnemonicParsing="false" onAction="#backClicked" text="Back" />
-      <CheckBox fx:id="isAdminField" layoutX="25.0" layoutY="192.0" mnemonicParsing="false" text="Give Admin Status?" />
-      <TextField fx:id="usernameField" layoutX="25.0" layoutY="127.0" />
-      <TextField fx:id="passwordField" layoutX="25.0" layoutY="159.0" />
-      <Label layoutX="23.0" layoutY="87.0" text="Create New User:" />
-      <TableView fx:id="userTable" layoutX="269.0" layoutY="48.0" prefHeight="247.0" prefWidth="179.0">
+      <Label layoutX="73.0" layoutY="42.0" styleClass="title-label" text="Manage Users">
+         <font>
+            <Font size="29.0" />
+         </font></Label>
+      <Button fx:id="createNewUser" layoutX="295.0" layoutY="548.0" mnemonicParsing="false" onAction="#createNewUserClicked" styleClass="button-raised" text="Create New User" />
+      <Button fx:id="back" layoutX="635.0" layoutY="548.0" mnemonicParsing="false" onAction="#backClicked" styleClass="button-raised" text="Back" />
+      <CheckBox fx:id="isAdminField" layoutX="286.0" layoutY="499.0" mnemonicParsing="false" text="Give Admin Status?" />
+      <TextField fx:id="usernameField" layoutX="79.0" layoutY="500.0" styleClass="text" text="USERNAME" />
+      <TextField fx:id="passwordField" layoutX="79.0" layoutY="549.0" styleClass="text-field" text="PASSWORD" />
+      <TableView fx:id="userTable" layoutX="73.0" layoutY="85.0" prefHeight="409.0" prefWidth="391.0">
         <columns>
-          <TableColumn fx:id="usernameColumn" prefWidth="75.0" text="Username" />
-          <TableColumn fx:id="isAdminColumn" prefWidth="108.0" text="Admin Status" />
+          <TableColumn fx:id="usernameColumn" prefWidth="207.0" text="Username" />
+          <TableColumn fx:id="isAdminColumn" prefWidth="181.0" text="Admin Status" />
         </columns>
       </TableView>
-      <Label layoutX="272.0" layoutY="23.0" text="Existing Users" />
-      <Label fx:id="error" layoutX="23.0" layoutY="252.0" prefHeight="17.0" prefWidth="149.0" textFill="#fc0000" />
-      <Button layoutX="269.0" layoutY="304.0" mnemonicParsing="false" onAction="#deleteUser" text="DeleteUser" />
-      <Button layoutX="359.0" layoutY="304.0" mnemonicParsing="false" onAction="#editClicked" text="Edit User" />
+      <Label fx:id="error" layoutX="486.0" layoutY="270.0" prefHeight="17.0" prefWidth="149.0" textFill="RED" />
+      <Button layoutX="486.0" layoutY="209.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="43.0" prefWidth="84.0" styleClass="button-raised" text="Delete" />
+      <Button layoutX="486.0" layoutY="158.0" mnemonicParsing="false" onAction="#editClicked" prefHeight="43.0" prefWidth="100.0" styleClass="button-raised" text="Edit" />
    </children>
 </AnchorPane>

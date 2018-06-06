@@ -91,6 +91,16 @@ public class USER {
 
     }
 
+    /**
+     * Edit a user
+     * @param requestUser the user requesting the edit - required to check admin status
+     * @param targetUser the target user to be edited
+     * @param username  the new username
+     * @param isAdmin the new admin status
+     * @return true/false boolean
+     * @throws IOException
+     * @throws JSONException
+     */
     public static boolean editUser(String requestUser, String targetUser, String username, String isAdmin) throws IOException, JSONException {
 
         URLConnection connection = new URLConnection();

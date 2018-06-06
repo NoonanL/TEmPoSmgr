@@ -5,15 +5,21 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="View.EditUserController">
+<AnchorPane prefHeight="295.0" prefWidth="426.0" styleClass="card" stylesheets="@test.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="View.EditUserController">
    <children>
-      <Button fx:id="back" layoutX="434.0" layoutY="361.0" mnemonicParsing="false" onAction="#backClicked" text="Back" />
-      <Button fx:id="submit" layoutX="344.0" layoutY="361.0" mnemonicParsing="false" onAction="#submit" text="Save Changes" />
-      <TextField fx:id="usernameField" layoutX="52.0" layoutY="99.0" />
-      <Label fx:id="error" layoutX="201.0" layoutY="272.0" prefHeight="17.0" prefWidth="149.0" />
-      <CheckBox fx:id="isAdminField" layoutX="52.0" layoutY="144.0" mnemonicParsing="false" text="Admin Status" />
-      <Label layoutX="52.0" layoutY="82.0" text="Username" />
-      <Button layoutX="46.0" layoutY="349.0" mnemonicParsing="false" onAction="#deleteUser" text="Delete User" />
+      <Button fx:id="back" layoutX="337.0" layoutY="247.0" mnemonicParsing="false" onAction="#backClicked" styleClass="button-raised" text="Back" />
+      <Button fx:id="submit" layoutX="213.0" layoutY="247.0" mnemonicParsing="false" onAction="#submit" styleClass="button-raised" text="Save Changes" />
+      <TextField fx:id="usernameField" layoutX="28.0" layoutY="124.0" styleClass="text-field" />
+      <Label fx:id="error" layoutX="27.0" layoutY="213.0" prefHeight="17.0" prefWidth="149.0" textFill="RED" />
+      <CheckBox fx:id="isAdminField" layoutX="14.0" layoutY="173.0" mnemonicParsing="false" text="Admin Status" />
+      <Label layoutX="29.0" layoutY="89.0" styleClass="card-subtitle" text="Username" />
+      <Button layoutX="25.0" layoutY="247.0" mnemonicParsing="false" onAction="#deleteUser" styleClass="button-raised" text="Delete User" />
+      <Label layoutX="25.0" layoutY="21.0" styleClass="card-title" text="Edit User">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
