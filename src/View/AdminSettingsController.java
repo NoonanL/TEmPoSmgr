@@ -6,8 +6,12 @@ import daos.USER;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.json.JSONException;
 
@@ -49,6 +53,20 @@ public class AdminSettingsController {
     }
 
     @FXML
+    private void editClicked() throws IOException, JSONException {
+
+        error.setText("");
+        User selectedUser = userTable.getSelectionModel().getSelectedItem();
+
+        if(selectedUser == null){
+            error.setText("No user selected.");
+        }else {
+            error.setText(selectedUser.getUsername().get() + " selected.");
+            showEditUserDialogue(selectedUser);
+        }
+    }
+
+    @FXML
     private void createNewUserClicked() throws IOException, JSONException {
         error.setText("");
         //assign the text currently in the username and password text boxes to variables
@@ -57,7 +75,6 @@ public class AdminSettingsController {
         boolean isAdmin = isAdminField.isSelected();
 
         error.setText(createNewUser(username,password,isAdmin));
-
     }
 
     @FXML
@@ -85,10 +102,8 @@ public class AdminSettingsController {
                 } else{
                     error.setText("Error deleting user.");
                 }
-
             }
         }
-
     }
 
     private String createNewUser(String username, String password, boolean isAdmin) throws IOException, JSONException {
@@ -109,8 +124,6 @@ public class AdminSettingsController {
                 returnString = "New user created";
                 userData = FXCollections.observableList(USER.getUsers());
                 refreshTable();
-
-
             }else{
                 returnString = "Error creating new user.";
             }
@@ -120,6 +133,40 @@ public class AdminSettingsController {
         return(returnString);
     }
 
+
+    /**
+     * Opens a dialog to edit details for the specified person.
+     *
+     * @param user the user object to edit
+     *
+     */
+    private void showEditUserDialogue(User user) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(TEmPoSmgr.class.getResource("/View/EditUser.fxml"));
+            AnchorPane page = loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Edit User");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            //dialogStage.initOwner(TEmPoSmgr.primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            EditUserController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setUser(user);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+            refreshTable();
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @FXML
@@ -161,6 +208,5 @@ public class AdminSettingsController {
         userTable.refresh();
         userTable.setItems(userData);
     }
-
 
 }

@@ -13,14 +13,14 @@ import java.io.IOException;
 
 public class TEmPoSmgr extends Application {
 
-    private Stage primaryStage;
+    private static Stage primaryStage;
     private BorderPane rootLayout;
     public static String authenticatedUser;
 
     @Override
     public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("TEmPoS Manager");
+        TEmPoSmgr.primaryStage = primaryStage;
+        TEmPoSmgr.primaryStage.setTitle("TEmPoS Manager");
 
         //initialises the container page (RootLayout)
         initRootLayout();
@@ -29,7 +29,7 @@ public class TEmPoSmgr extends Application {
     }
 
     //the init method for the root layout
-    public void initRootLayout(){
+    private void initRootLayout(){
 
         try{
 
