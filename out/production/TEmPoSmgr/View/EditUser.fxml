@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="295.0" prefWidth="426.0" styleClass="card" stylesheets="@test.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="View.EditUserController">
+<AnchorPane prefHeight="295.0" prefWidth="426.0" styleClass="card" stylesheets="@test.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.EditUserController">
    <children>
       <Button fx:id="back" layoutX="337.0" layoutY="247.0" mnemonicParsing="false" onAction="#backClicked" styleClass="button-raised" text="Back" />
       <Button fx:id="submit" layoutX="213.0" layoutY="247.0" mnemonicParsing="false" onAction="#submit" styleClass="button-raised" text="Save Changes" />

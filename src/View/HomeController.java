@@ -37,7 +37,7 @@ public class HomeController {
     @FXML
     public void adminSettings() throws IOException, JSONException {
 
-        if(USER.isAdmin(TEmPoSmgr.authenticatedUser)){
+        if(USER.isAdmin()){
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/AdminSettings.fxml"));
             Parent adminSettings = fxmlLoader.load();
             Stage stage = new Stage();

@@ -3,6 +3,7 @@ package View;
 import TEmPoSmgr.TEmPoSmgr;
 import daos.USER;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.json.JSONException;
@@ -23,6 +24,8 @@ public class LoginController {
     private TextField password;
     @FXML
     private Label error;
+    @FXML
+    private Button loginButton;
 
        //method to check if login has been clicked
     @FXML
@@ -39,7 +42,7 @@ public class LoginController {
                 mainApp.showHome();
             }else{
                 //System.out.println("LOGIN FAILED");
-                error.setText("Unable to USER");
+                error.setText("Unable to Login");
             }
         }
 
@@ -51,7 +54,11 @@ public class LoginController {
 
     //this MUST be here. Initializes the class. Ignore "not used" hint.
     @FXML
-    private void initialize(){}
+    private void initialize(){
+
+        loginButton.setDefaultButton(true);
+
+    }
 
     /**
      * This is the method that the MainApp will call to set this as the main page the user sees

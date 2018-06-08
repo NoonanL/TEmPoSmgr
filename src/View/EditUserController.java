@@ -25,7 +25,6 @@ public class EditUserController {
     @FXML private Button back;
     @FXML private TextField usernameField;
     @FXML private CheckBox isAdminField;
-    @FXML private Button submit;
     @FXML private Label error;
 
 
@@ -74,7 +73,7 @@ public class EditUserController {
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.get() == ButtonType.OK) {
-            if (USER.deleteUser(TEmPoSmgr.authenticatedUser, targetUser)) {
+            if (USER.deleteUser(targetUser)) {
                 error.setText(("User " + targetUser + " deleted."));
                 backClicked();
             } else {
@@ -103,7 +102,7 @@ public class EditUserController {
         }
         //boolean isAdmin = isAdminField.isSelected();
 
-        if(USER.editUser(requestUser,targetUser,username,adminStatus)){
+        if(USER.editUser(targetUser,username,adminStatus)){
             error.setText("Changes saved.");
         }else{
             error.setText("Error saving changes.");

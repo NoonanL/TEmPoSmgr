@@ -1,6 +1,7 @@
 package daos;
 
 import Model.User;
+import TEmPoSmgr.TEmPoSmgr;
 import Utils.ParameterStringBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,17 +46,17 @@ public class USER {
 
     /**
      * Sends post to server to check if user is an admin
-     * @param username
      * @return true for user is Admin, false for is not
      * @throws IOException
      * @throws JSONException
      */
-    public static boolean isAdmin(String username) throws IOException, JSONException {
+    public static boolean isAdmin() throws IOException, JSONException {
 
         URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("username" , username);
+        parameters.put("username" , TEmPoSmgr.authenticatedUser);
+        parameters.put("requestUser", TEmPoSmgr.authenticatedUser);
         String postData = ParameterStringBuilder.getParamsString(parameters);
 
         JSONObject response = connection.sendPOST(ISADMIN, postData);
@@ -81,6 +82,7 @@ public class USER {
         parameters.put("username" , username);
         parameters.put("password" , password);
         parameters.put("isAdmin" , isAdmin);
+        parameters.put("requestUser", TEmPoSmgr.authenticatedUser);
 
         //send the parameters to the ParameterStringBuilder utility class for formatting
         String postData = ParameterStringBuilder.getParamsString(parameters);
@@ -93,7 +95,6 @@ public class USER {
 
     /**
      * Edit a user
-     * @param requestUser the user requesting the edit - required to check admin status
      * @param targetUser the target user to be edited
      * @param username  the new username
      * @param isAdmin the new admin status
@@ -101,12 +102,12 @@ public class USER {
      * @throws IOException
      * @throws JSONException
      */
-    public static boolean editUser(String requestUser, String targetUser, String username, String isAdmin) throws IOException, JSONException {
+    public static boolean editUser(String targetUser, String username, String isAdmin) throws IOException, JSONException {
 
         URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("requestUser" , requestUser);
+        parameters.put("requestUser" , TEmPoSmgr.authenticatedUser);
         parameters.put("targetUser" , targetUser);
         parameters.put("username" , username);
         parameters.put("isAdmin" , isAdmin);
@@ -122,18 +123,17 @@ public class USER {
 
     /**
      * Deletes a target user
-     * @param requestUser the user requesting the delete operation (to test for adminStatus)
      * @param targetUser the target to delete
      * @return boolean status true, for success, false for failure
      * @throws IOException
      * @throws JSONException
      */
-    public static boolean deleteUser(String requestUser, String targetUser) throws IOException, JSONException {
+    public static boolean deleteUser(String targetUser) throws IOException, JSONException {
 
         URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("requestUser" , requestUser);
+        parameters.put("requestUser" , TEmPoSmgr.authenticatedUser);
         parameters.put("targetUser" , targetUser);
 
         //send the parameters to the ParameterStringBuilder utility class for formatting
@@ -155,6 +155,7 @@ public class USER {
         URLConnection connection = new URLConnection();
         ArrayList<User> userList = new ArrayList<>();
         Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("requestUser", TEmPoSmgr.authenticatedUser);
 
         //send the parameters to the ParameterStringBuilder utility class for formatting
         String postData = ParameterStringBuilder.getParamsString(parameters);

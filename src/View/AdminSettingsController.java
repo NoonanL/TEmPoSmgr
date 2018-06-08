@@ -108,7 +108,7 @@ public class AdminSettingsController {
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.get() == ButtonType.OK){
-                if(USER.deleteUser(TEmPoSmgr.authenticatedUser, targetUser)){
+                if(USER.deleteUser(targetUser)){
                     error.setText(("User " + targetUser + " deleted."));
                     refreshTable();
                 } else{
