@@ -178,7 +178,7 @@ public class TEmPoSmgr extends Application {
      * not entirely necessary as of yet but might be useful in future
      * @return the current stage - allows the variable to be private but gives outside access to it
      */
-    public Stage getStage(){
+    public static Stage getStage(){
         return primaryStage;
     }
 
