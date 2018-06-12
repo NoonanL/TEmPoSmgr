@@ -1,5 +1,7 @@
 package TEmPoSmgr;
 
+import View.CustomerParserController;
+import View.EditUserController;
 import View.HomeController;
 import View.LoginController;
 import javafx.application.Application;
@@ -9,7 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -65,6 +69,13 @@ public class TEmPoSmgr extends Application {
             fileMenu.getItems().addAll(newMenuItem, saveMenuItem,
                     new SeparatorMenuItem(), exitMenuItem);
 
+            // Tools Menu
+            Menu tools = new Menu("Tools");
+            MenuItem customerCSV = new MenuItem("Import Customers by CSV");
+            customerCSV.setOnAction(actionEcent -> showCustomersCSV());
+
+            tools.getItems().addAll(customerCSV);
+
             Menu aboutMenu = new Menu("Help");
             MenuItem about = new MenuItem("About");
             aboutMenu.getItems().addAll(about);
@@ -100,7 +111,7 @@ public class TEmPoSmgr extends Application {
 
             sqlMenu.getItems().add(tutorialMenu);
 
-            menuBar.getMenus().addAll(fileMenu, aboutMenu);//, webMenu, sqlMenu);
+            menuBar.getMenus().addAll(fileMenu, aboutMenu, tools);//, webMenu, sqlMenu);
 
 
             //Show the scene containing the root layout
@@ -171,6 +182,33 @@ public class TEmPoSmgr extends Application {
             e.printStackTrace();
         }
 
+    }
+
+    private void showCustomersCSV(){
+
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(TEmPoSmgr.class.getResource("/View/CustomerParser.fxml"));
+            AnchorPane page = loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Upload Customer CSV");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(rootLayout.getScene().getWindow());
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            CustomerParserController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
