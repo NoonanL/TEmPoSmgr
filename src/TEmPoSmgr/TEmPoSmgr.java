@@ -3,6 +3,7 @@ package TEmPoSmgr;
 import View.CsvParserController;
 import View.HomeController;
 import View.LoginController;
+import daos.CUSTOMER;
 import daos.USER;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -43,6 +44,7 @@ public class TEmPoSmgr extends Application {
     public void setAuthenticatedUser(String authenticatedUser) {
         this.authenticatedUser = authenticatedUser;
         USER.setAuthenticatedUser(authenticatedUser);
+        CUSTOMER.setAuthenticatedUser(authenticatedUser);
         initRootLayout();
     }
 

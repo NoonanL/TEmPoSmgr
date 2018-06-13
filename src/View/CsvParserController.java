@@ -2,6 +2,7 @@ package View;
 
 import Model.Customer;
 import Utils.CSVReader;
+import daos.CUSTOMER;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -52,22 +53,26 @@ public class CsvParserController {
     }
 
     @FXML
-    private void importCsvClicked(){
+    private void importCsvClicked() throws IOException, JSONException {
 
         for(HeaderType h : headers){
             headerList.add(h.getStringValue().get());
         }
 
+        /**
+         * This is starting to get messy - refactor me
+         */
         if(checkValidInput()){
             if(rdoCustomer.isSelected()){
                 System.out.println("Trying to parse customer data from " + file + ".");
                 ArrayList<Customer> customerList = CSVReader.parseCustomerCSV(file, headerList);
                 for(Customer c : customerList){
-                    System.out.println("List item - " + customerList.indexOf(c));
-                    System.out.println("---------------");
-                    System.out.println("User's First Name  : " + c.getFirstname().get());
-                    System.out.println("User's Second Name  : " + c.getSurname().get());
-                    System.out.println("---------------\n\n");
+                    if(CUSTOMER.createCustomer(c)){
+                        error.setText("Customer data successfuly uploaded.");
+                    }else{
+                        error.setText("Problem uploading customer data.");
+                    }
+
                 }
             }else if(rdoProduct.isSelected()){
                 System.out.println("Trying to parse product data from " + file + ".");
