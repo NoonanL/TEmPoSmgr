@@ -22,7 +22,9 @@ public class CSVReaderTest {
     @Test
     public void parseCSV() {
 
-        String[] headers = {"firstname", "surname"};
+        ArrayList<String> headers = new ArrayList<>();// = {"firstname", "surname"};
+        headers.add("firstname");
+        headers.add("surname");
 
         ArrayList<Customer> customerList = CSVReader.parseCSV("C:\\Users\\LiamN\\Desktop/testCSV.csv", headers);
         for(Customer c : customerList){

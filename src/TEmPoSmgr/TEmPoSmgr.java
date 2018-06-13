@@ -1,7 +1,6 @@
 package TEmPoSmgr;
 
-import View.CustomerParserController;
-import View.EditUserController;
+import View.CsvParserController;
 import View.HomeController;
 import View.LoginController;
 import daos.USER;
@@ -14,10 +13,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.json.JSONException;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class TEmPoSmgr extends Application {
 
@@ -47,10 +44,6 @@ public class TEmPoSmgr extends Application {
         this.authenticatedUser = authenticatedUser;
         USER.setAuthenticatedUser(authenticatedUser);
         initRootLayout();
-    }
-
-    public String getAuthenticatedUser(){
-        return this.authenticatedUser;
     }
 
     public void logout(){
@@ -211,7 +204,7 @@ public class TEmPoSmgr extends Application {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(TEmPoSmgr.class.getResource("/View/CustomerParser.fxml"));
+            loader.setLocation(TEmPoSmgr.class.getResource("/View/CsvParser.fxml"));
             AnchorPane page = loader.load();
 
             // Create the dialog Stage.
@@ -223,7 +216,7 @@ public class TEmPoSmgr extends Application {
             dialogStage.setScene(scene);
 
             // Set the person into the controller.
-            CustomerParserController controller = loader.getController();
+            CsvParserController controller = loader.getController();
             controller.setDialogStage(dialogStage);
 
             // Show the dialog and wait until the user closes it

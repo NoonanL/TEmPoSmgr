@@ -1,6 +1,8 @@
 package View;
 
+import Model.Customer;
 import Model.User;
+import Utils.CSVReader;
 import daos.USER;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -15,9 +17,10 @@ import org.json.JSONException;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Optional;
 
-public class CustomerParserController {
+public class CsvParserController {
 
     private Stage dialogStage;
 
@@ -31,7 +34,12 @@ public class CustomerParserController {
     @FXML private Label selectedFileLabel;
     @FXML private TableView<HeaderType> headerTable;
     @FXML private TableColumn<HeaderType, String> headerColumn;
+    @FXML ToggleGroup rdoToggle;
+    @FXML private RadioButton rdoCustomer;
+    @FXML private RadioButton rdoProduct;
 
+    private String file = "";
+    private ArrayList<String> headerList = new ArrayList<>();
     private ObservableList<HeaderType> headers = FXCollections.observableArrayList();
 
     /**
@@ -48,16 +56,53 @@ public class CustomerParserController {
     }
 
     @FXML
+    private void importCsvClicked(){
+
+        for(HeaderType h : headers){
+            headerList.add(h.getStringValue().get());
+        }
+
+        if(checkValidInput()){
+            if(rdoCustomer.isSelected()){
+                System.out.println("Trying to parse customer data from " + file + ".");
+                ArrayList<Customer> customerList = CSVReader.parseCSV(file, headerList);
+                for(Customer c : customerList){
+                    System.out.println("List item - " + customerList.indexOf(c));
+                    System.out.println("---------------");
+                    System.out.println("User's First Name  : " + c.getFirstname().get());
+                    System.out.println("User's Second Name  : " + c.getSurname().get());
+                    System.out.println("---------------\n\n");
+                }
+            }else if(rdoProduct.isSelected()){
+                System.out.println("Trying to parse product data from " + file + ".");
+            }else{
+                error.setText("Please select a data type.");
+            }
+        }else{
+            error.setText("Problem trying to parse file.");
+        }
+
+
+    }
+
+    @FXML
+    private boolean checkValidInput(){
+        return((rdoCustomer.isSelected() || rdoProduct.isSelected()) && (!file.equals("")) && (headerList.size() != 0));
+    }
+
+
+    @FXML
     private void chooseFile(){
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(null);
 
         if( selectedFile != null){
             selectedFileLabel.setText( "File selected: " + selectedFile.getName());
+            file = selectedFile.toString();
+            System.out.println(selectedFile.toString());
         }else{
             selectedFileLabel.setText("No file selected.");
         }
-
     }
 
     /**
@@ -74,6 +119,7 @@ public class CustomerParserController {
         if(!header.equals("")){
             HeaderType headerType = new HeaderType(header);
             headers.add(headerType);
+            headerField.setText("");
             refreshTable();
         }else{
             error.setText("Please add a valid header.");
@@ -124,6 +170,7 @@ public class CustomerParserController {
         error.setText("");
         headerTable.setItems(headers);
     }
+
 
     /**
      * Sets the stage of this dialog.

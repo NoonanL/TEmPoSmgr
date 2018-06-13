@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 
-class CSVReader {
+public class CSVReader {
 
     /**
      * Opens a CSV file, attempts to parse it and returns an arraylist of customer objects
@@ -20,7 +20,7 @@ class CSVReader {
      * @param headers the headers for to attempt to parse
      * @return an arraylist of customer objects
      */
-    static ArrayList<Customer> parseCSV(String filename, String[] headers){
+    public static ArrayList<Customer> parseCSV(String filename, ArrayList<String> headers){
 
         ArrayList<Customer> customerList = new ArrayList<>();
 
