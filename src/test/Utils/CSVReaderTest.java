@@ -7,8 +7,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
-
 public class CSVReaderTest {
 
     @Before
@@ -26,7 +24,7 @@ public class CSVReaderTest {
         headers.add("firstname");
         headers.add("surname");
 
-        ArrayList<Customer> customerList = CSVReader.parseCSV("C:\\Users\\LiamN\\Desktop/testCSV.csv", headers);
+        ArrayList<Customer> customerList = CSVReader.parseCustomerCSV("C:\\Users\\LiamN\\Desktop/testCSV.csv", headers);
         for(Customer c : customerList){
             System.out.println("List item - " + customerList.indexOf(c));
             System.out.println("---------------");

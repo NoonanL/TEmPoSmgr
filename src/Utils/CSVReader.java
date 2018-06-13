@@ -20,7 +20,7 @@ public class CSVReader {
      * @param headers the headers for to attempt to parse
      * @return an arraylist of customer objects
      */
-    public static ArrayList<Customer> parseCSV(String filename, ArrayList<String> headers){
+    public static ArrayList<Customer> parseCustomerCSV(String filename, ArrayList<String> headers){
 
         ArrayList<Customer> customerList = new ArrayList<>();
 

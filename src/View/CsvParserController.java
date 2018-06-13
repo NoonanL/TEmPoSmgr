@@ -1,16 +1,13 @@
 package View;
 
 import Model.Customer;
-import Model.User;
 import Utils.CSVReader;
-import daos.USER;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.json.JSONException;
@@ -18,7 +15,6 @@ import org.json.JSONException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class CsvParserController {
 
@@ -65,7 +61,7 @@ public class CsvParserController {
         if(checkValidInput()){
             if(rdoCustomer.isSelected()){
                 System.out.println("Trying to parse customer data from " + file + ".");
-                ArrayList<Customer> customerList = CSVReader.parseCSV(file, headerList);
+                ArrayList<Customer> customerList = CSVReader.parseCustomerCSV(file, headerList);
                 for(Customer c : customerList){
                     System.out.println("List item - " + customerList.indexOf(c));
                     System.out.println("---------------");
