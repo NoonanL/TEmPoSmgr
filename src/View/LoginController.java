@@ -38,7 +38,7 @@ public class LoginController {
 
             if(USER.authenticate(authenticateID, authenticatePassword)){
                 //System.out.println("LOGGED IN");
-                TEmPoSmgr.authenticatedUser = authenticateID;
+                mainApp.setAuthenticatedUser(authenticateID);
                 mainApp.showHome();
             }else{
                 //System.out.println("LOGIN FAILED");
@@ -46,11 +46,9 @@ public class LoginController {
             }
         }
 
-
-
         @FXML
         public void handleQuit(){
-        System.exit(0);
+        mainApp.handleQuit();
         }
 
     //this MUST be here. Initializes the class. Ignore "not used" hint.

@@ -91,7 +91,6 @@ public class EditUserController {
     @FXML
     private void submit() throws IOException, JSONException {
         //send update request here
-        String requestUser = TEmPoSmgr.authenticatedUser;
         String targetUser = this.selectedUser.getUsername().get();
         String username = usernameField.getText();
         String adminStatus;

@@ -7,13 +7,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CustomerParserController">
    <children>
       <TableView fx:id="headerTable" layoutX="43.0" layoutY="32.0" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn fx:id="headerColumn" prefWidth="199.0" text="Header" />
-            <TableColumn prefWidth="199.0" text="Header" />
+          <TableColumn fx:id="headerColumn" prefWidth="198.0" text="Header" />
         </columns>
       </TableView>
       <Label layoutX="300.0" layoutY="32.0" prefHeight="102.0" prefWidth="138.0" text="Please add the corresponding headings to match the data in the CSV file and select a valid CSV location" wrapText="true" />

@@ -3,6 +3,7 @@ package daos;
 import Model.User;
 import TEmPoSmgr.TEmPoSmgr;
 import Utils.ParameterStringBuilder;
+import javafx.stage.Stage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,6 +21,8 @@ public class USER {
     private static String GETUSERS = "http://localhost:9001/getUsersServlet";
     private static String DELETEUSER = "http://localhost:9001/deleteUserServlet";
     private static String EDITUSER = "http://localhost:9001/editUserServlet";
+    private static String authenticatedUser = "";
+
 
     /**
      * Authentication function
@@ -55,8 +58,8 @@ public class USER {
         URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("username" , TEmPoSmgr.authenticatedUser);
-        parameters.put("requestUser", TEmPoSmgr.authenticatedUser);
+        parameters.put("username" , authenticatedUser);
+        parameters.put("requestUser", authenticatedUser);
         String postData = ParameterStringBuilder.getParamsString(parameters);
 
         JSONObject response = connection.sendPOST(ISADMIN, postData);
@@ -82,7 +85,7 @@ public class USER {
         parameters.put("username" , username);
         parameters.put("password" , password);
         parameters.put("isAdmin" , isAdmin);
-        parameters.put("requestUser", TEmPoSmgr.authenticatedUser);
+        parameters.put("requestUser", authenticatedUser);
 
         //send the parameters to the ParameterStringBuilder utility class for formatting
         String postData = ParameterStringBuilder.getParamsString(parameters);
@@ -107,7 +110,7 @@ public class USER {
         URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("requestUser" , TEmPoSmgr.authenticatedUser);
+        parameters.put("requestUser" , authenticatedUser);
         parameters.put("targetUser" , targetUser);
         parameters.put("username" , username);
         parameters.put("isAdmin" , isAdmin);
@@ -133,7 +136,7 @@ public class USER {
         URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("requestUser" , TEmPoSmgr.authenticatedUser);
+        parameters.put("requestUser" , authenticatedUser);
         parameters.put("targetUser" , targetUser);
 
         //send the parameters to the ParameterStringBuilder utility class for formatting
@@ -155,7 +158,7 @@ public class USER {
         URLConnection connection = new URLConnection();
         ArrayList<User> userList = new ArrayList<>();
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("requestUser", TEmPoSmgr.authenticatedUser);
+        parameters.put("requestUser", authenticatedUser);
 
         //send the parameters to the ParameterStringBuilder utility class for formatting
         String postData = ParameterStringBuilder.getParamsString(parameters);
@@ -178,5 +181,9 @@ public class USER {
             }
         }
         return userList;
+    }
+
+    public static void setAuthenticatedUser(String authenticatedUser) {
+        USER.authenticatedUser = authenticatedUser;
     }
 }

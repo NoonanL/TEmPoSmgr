@@ -4,6 +4,7 @@ import View.CustomerParserController;
 import View.EditUserController;
 import View.HomeController;
 import View.LoginController;
+import daos.USER;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -24,8 +25,7 @@ public class TEmPoSmgr extends Application {
     private BorderPane rootLayout;
 
     //Variable to hold the currently authenticated user in memory
-    public static String authenticatedUser;
-
+    private String authenticatedUser;
 
     /**
      * the main starting point for the program, sets and initialises the first page.
@@ -35,10 +35,27 @@ public class TEmPoSmgr extends Application {
     public void start(Stage primaryStage) {
         TEmPoSmgr.primaryStage = primaryStage;
         TEmPoSmgr.primaryStage.setTitle("TEmPoS Manager");
-        ArrayList<Stage> openStages;
+        this.authenticatedUser = "";
+        //ArrayList<Stage> openStages;
         //initialises the container page (RootLayout)
         initRootLayout();
         //shows the LoginPage
+        showLoginStage();
+    }
+
+    public void setAuthenticatedUser(String authenticatedUser) {
+        this.authenticatedUser = authenticatedUser;
+        USER.setAuthenticatedUser(authenticatedUser);
+        initRootLayout();
+    }
+
+    public String getAuthenticatedUser(){
+        return this.authenticatedUser;
+    }
+
+    public void logout(){
+        this.authenticatedUser = "";
+        initRootLayout();
         showLoginStage();
     }
 
@@ -111,7 +128,13 @@ public class TEmPoSmgr extends Application {
 
             sqlMenu.getItems().add(tutorialMenu);
 
-            menuBar.getMenus().addAll(fileMenu, aboutMenu, tools);//, webMenu, sqlMenu);
+            // if no user logged in, restrict menus, else give full menus
+            if(this.authenticatedUser.equals("")){
+                menuBar.getMenus().addAll(fileMenu, aboutMenu);
+            }else{
+                menuBar.getMenus().addAll(fileMenu, aboutMenu, tools);//, webMenu, sqlMenu);
+            }
+
 
 
             //Show the scene containing the root layout
@@ -130,8 +153,7 @@ public class TEmPoSmgr extends Application {
     /**
      * loads and shows the login stage
      */
-    public void showLoginStage(){
-
+    private void showLoginStage(){
         try{
 
             //load USER fxml page
@@ -228,4 +250,15 @@ public class TEmPoSmgr extends Application {
         launch(args);
     }
 
+    public void handleQuit(){
+        this.logout();
+        System.exit(0);
+    }
+
+    @Override
+    public void stop(){
+        System.out.println("Exiting...");
+        this.handleQuit();
+        // Save file
+    }
 }

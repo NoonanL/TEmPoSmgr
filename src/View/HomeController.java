@@ -25,8 +25,7 @@ public class HomeController {
      */
     @FXML
     public void logoutClicked() throws IOException, JSONException {
-        TEmPoSmgr.authenticatedUser = null;
-        mainApp.showLoginStage();
+        mainApp.logout();
     }
 
     /**
