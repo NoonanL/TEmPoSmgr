@@ -74,11 +74,12 @@ public class TEmPoSmgr extends Application {
             // File menu - new, save, exit
             Menu fileMenu = new Menu("File");
             MenuItem newMenuItem = new MenuItem("Hello");
-            MenuItem saveMenuItem = new MenuItem("Liam");
+            MenuItem logoutMenuItem = new MenuItem("Logout");
             MenuItem exitMenuItem = new MenuItem("Exit");
+            logoutMenuItem.setOnAction(actionEvent -> logout());
             exitMenuItem.setOnAction(actionEvent -> Platform.exit());
 
-            fileMenu.getItems().addAll(newMenuItem, saveMenuItem,
+            fileMenu.getItems().addAll(newMenuItem,
                     new SeparatorMenuItem(), exitMenuItem);
 
             // Tools Menu
@@ -125,8 +126,10 @@ public class TEmPoSmgr extends Application {
 
             // if no user logged in, restrict menus, else give full menus
             if(this.authenticatedUser.equals("")){
+
                 menuBar.getMenus().addAll(fileMenu, aboutMenu);
             }else{
+                fileMenu.getItems().add(2, logoutMenuItem);
                 menuBar.getMenus().addAll(fileMenu, aboutMenu, tools);//, webMenu, sqlMenu);
             }
 
