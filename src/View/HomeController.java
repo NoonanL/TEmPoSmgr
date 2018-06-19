@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.json.JSONException;
@@ -50,6 +51,12 @@ public class HomeController {
         }
 
     }
+
+    @FXML
+    public void showCustomersPage(){
+        mainApp.showCustomerPage();
+    }
+
 
     /**
      * Init method for controller

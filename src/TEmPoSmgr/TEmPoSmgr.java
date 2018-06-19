@@ -1,6 +1,7 @@
 package TEmPoSmgr;
 
 import View.CsvParserController;
+import View.CustomerPageController;
 import View.HomeController;
 import View.LoginController;
 import daos.CUSTOMER;
@@ -173,6 +174,29 @@ public class TEmPoSmgr extends Application {
             e.printStackTrace();
         }
 
+    }
+
+    public void showCustomerPage(){
+        try{
+
+            //load USER fxml page
+            FXMLLoader loader = new FXMLLoader(TEmPoSmgr.class.getResource("/View/CustomerPage.fxml"));
+            //load LoginPage of fxml type AnchorPane
+            AnchorPane CustomerPage = (AnchorPane) loader.load();
+
+            //Set login page to the centre of root layout
+            rootLayout.setCenter(CustomerPage);
+
+            //this is important. This loads the loginPageController so that the Main App can access its methods
+            CustomerPageController controller = loader.getController();
+            //calls the setMainApp method from loginPageController to make this the main app in the rootLayout
+            controller.setMainApp(this);
+
+
+            //required exception handling - don't worry about hint.
+        } catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
 
