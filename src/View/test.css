@@ -664,6 +664,7 @@
 	-fx-border-style: null;
 	-fx-border-color: -swatch-grey;
 	-fx-border-width: 0 0 2 0;
+	-fx-dark-text-color: white;
 	-fx-background-color: transparent;
 }
 
@@ -677,6 +678,7 @@
 	.tree-table-view .filler .label, .tree-table-view .column-drag-header .label
 	{
 	-fx-alignment: CENTER_LEFT;
+	-fx-text-fill: white;
 }
 
 .table-view .column-header-background, .tree-table-view .column-header-background
