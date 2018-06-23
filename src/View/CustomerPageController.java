@@ -17,7 +17,7 @@ public class CustomerPageController {
     private TEmPoSmgr mainApp;
 
     public CustomerPageController() throws IOException, JSONException {}
-    
+
     @FXML private TableView<Customer> customerTable;
     @FXML private TableColumn<Customer, String> firstnameColumn;
     @FXML private TableColumn<Customer, String> surnameColumn;

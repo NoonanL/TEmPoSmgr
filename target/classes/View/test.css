@@ -414,7 +414,7 @@
 }
 
 .web-view {
-	-fx-font-smoothing-type: #e8e8e8;
+	-fx-font-smoothing-type: gray;
 }
 
 /*******************************************************************************
@@ -701,7 +701,7 @@
  *                                                                             *
  ******************************************************************************/
 .text {
-	-fx-font-smoothing-type: #ececec;
+	-fx-font-smoothing-type: gray;
 }
 
 .text-area, .text-field {

@@ -19,6 +19,8 @@ public class CUSTOMER {
     //Declare URLS
     private static String CREATECUSTOMER = "http://localhost:9001/createCustomerServlet";
     private static String GETCUSTOMERS = "http://localhost:9001/getCustomersServlet";
+    private static String EDITCUSTOMER = "http://localhost:9001/editCustomersServlet";
+    private static String DELETECUSTOMER = "http://localhost:9001/deleteCustomersServlet";
 
     private static String authenticatedUser = "";
 
@@ -38,6 +40,41 @@ public class CUSTOMER {
         return response.getString("connection").equals("true")
                 && response.getString("response").equals("OK");
     }
+
+    public static boolean editCustomer(String targetCustomer, String firstname, String surname) throws IOException, JSONException {
+        URLConnection connection = new URLConnection();
+
+        Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("requestUser" , authenticatedUser);
+        parameters.put("targetCustomer" , targetCustomer);
+        parameters.put("firstname" , firstname);
+        parameters.put("surname" , surname);
+
+        //send the parameters to the ParameterStringBuilder utility class for formatting
+        String postData = ParameterStringBuilder.getParamsString(parameters);
+        JSONObject response = connection.sendPOST(EDITCUSTOMER, postData);
+
+        return response.getString("connection").equals("true")
+                && response.getString("response").equals("OK");
+
+    }
+
+    public static boolean deleteCustomer(String targetCustomer) throws IOException, JSONException {
+        URLConnection connection = new URLConnection();
+
+        Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("requestUser" , authenticatedUser);
+        parameters.put("targetCustomer" , targetCustomer);
+
+        //send the parameters to the ParameterStringBuilder utility class for formatting
+        String postData = ParameterStringBuilder.getParamsString(parameters);
+        JSONObject response = connection.sendPOST(DELETECUSTOMER, postData);
+        return response.getString("connection").equals("true")
+                && response.getString("response").equals("OK");
+
+    }
+
+
 
     //get Customers
     public static ArrayList<Customer> getCustomers() throws IOException, JSONException {

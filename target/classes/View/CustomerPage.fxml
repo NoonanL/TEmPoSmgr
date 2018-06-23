@@ -15,5 +15,7 @@
           <TableColumn fx:id="surnameColumn" prefWidth="174.0" text="Surname" />
         </columns>
       </TableView>
+      <Button layoutX="72.0" layoutY="546.0" mnemonicParsing="false" onAction="#backClicked" text="View History" />
+      <Button layoutX="14.0" layoutY="546.0" mnemonicParsing="false" onAction="#backClicked" text="Edit" />
    </children>
 </AnchorPane>
