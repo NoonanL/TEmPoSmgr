@@ -6,6 +6,7 @@ import daos.CUSTOMER;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.json.JSONException;
@@ -21,6 +22,8 @@ public class CustomerPageController {
     @FXML private TableView<Customer> customerTable;
     @FXML private TableColumn<Customer, String> firstnameColumn;
     @FXML private TableColumn<Customer, String> surnameColumn;
+    @FXML private Label firstname;
+    @FXML private Label surname;
 
     private ObservableList<Customer> customerData = FXCollections.observableList(CUSTOMER.getCustomers());
 
@@ -31,6 +34,17 @@ public class CustomerPageController {
         mainApp.showHome();
     }
 
+    private void showCustomerDetails(Customer customer){
+        if(customer!=null){
+            firstname.setText(customer.getFirstname().get());
+            surname.setText(customer.getSurname().get());
+        }
+        else{
+            firstname.setText("");
+            surname.setText("");
+        }
+
+    }
 
     /**
      * Init method for controller
@@ -41,6 +55,13 @@ public class CustomerPageController {
         firstnameColumn.setCellValueFactory(cellData -> cellData.getValue().getFirstname());
         surnameColumn.setCellValueFactory(cellData -> cellData.getValue().getSurname());
         customerTable.setItems(customerData);
+
+        // Clear person details.
+        showCustomerDetails(null);
+
+        // Listen for selection changes and show the person details when changed.
+        customerTable.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> showCustomerDetails(newValue));
 
     }
 

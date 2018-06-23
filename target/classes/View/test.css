@@ -422,8 +422,10 @@
  * Label                                                                       *
  *                                                                             *
  ******************************************************************************/
+
 .label {
 	-fx-text-fill: -fx-text-base-color;
+	/*-fx-text-fill: white;*/
 }
 
 .label:disabled {
@@ -431,6 +433,25 @@
 }
 
 .label:show-mnemonics>.mnemonic-underline {
+	-fx-stroke: -fx-text-base-color;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Label                                                                       *
+ *                                                                             *
+ ******************************************************************************/
+
+.labelWhite {
+	/*-fx-text-fill: -fx-text-base-color;*/
+	-fx-text-fill: white;
+}
+
+.labelWhite:disabled {
+	-fx-opacity: -fx-disabled-opacity;
+}
+
+.labelWhite:show-mnemonics>.mnemonic-underline {
 	-fx-stroke: -fx-text-base-color;
 }
 
