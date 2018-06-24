@@ -9,12 +9,14 @@ public class Customer {
      * declare variables
      */
     private SimpleStringProperty firstname;
+    private SimpleStringProperty id;
     private SimpleStringProperty surname;
 
     /**
      * constructors
      */
     public Customer(){
+        this.id = new SimpleStringProperty();
         this.firstname = new SimpleStringProperty();
         this.surname = new SimpleStringProperty();
     }
@@ -28,6 +30,14 @@ public class Customer {
      * getters.setters
      * NOTE - getters return a stringproperty for the use of FX
      */
+
+    public void setId(String id){
+        this.id.set(id);
+    }
+
+    public StringProperty getId(){
+        return this.id;
+    }
 
     public void setFirstname(String firstname)
     {

@@ -20,7 +20,7 @@ public class CUSTOMER {
     private static String CREATECUSTOMER = "http://localhost:9001/createCustomerServlet";
     private static String GETCUSTOMERS = "http://localhost:9001/getCustomersServlet";
     private static String EDITCUSTOMER = "http://localhost:9001/editCustomersServlet";
-    private static String DELETECUSTOMER = "http://localhost:9001/deleteCustomersServlet";
+    private static String DELETECUSTOMER = "http://localhost:9001/deleteCustomerServlet";
 
     private static String authenticatedUser = "";
 
@@ -64,7 +64,7 @@ public class CUSTOMER {
 
         Map<String, String> parameters = new LinkedHashMap<>();
         parameters.put("requestUser" , authenticatedUser);
-        parameters.put("targetCustomer" , targetCustomer);
+        parameters.put("targetCustomerId" , targetCustomer);
 
         //send the parameters to the ParameterStringBuilder utility class for formatting
         String postData = ParameterStringBuilder.getParamsString(parameters);
@@ -97,6 +97,7 @@ public class CUSTOMER {
                 if(!json.equals("connection")) {
                     JSONObject userJson = (response.getJSONObject(json));
                     Customer customer = new Customer();
+                    customer.setId(userJson.getString("id"));
                     customer.setFirstname(userJson.getString("firstname"));
                     customer.setSurname(userJson.getString("surname"));
                     customerList.add(customer);

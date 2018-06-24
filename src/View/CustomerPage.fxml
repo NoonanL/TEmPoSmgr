@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CustomerPageController">
    <children>
-      <Button layoutX="734.0" layoutY="546.0" mnemonicParsing="false" onAction="#backClicked" text="Back" />
+      <Button layoutX="1134.0" layoutY="546.0" mnemonicParsing="false" onAction="#backClicked" text="Back" />
       <TableView fx:id="customerTable" layoutX="14.0" layoutY="14.0" prefHeight="520.0" prefWidth="770.0">
         <columns>
           <TableColumn fx:id="firstnameColumn" prefWidth="141.0" text="First Name" />
@@ -20,8 +20,11 @@
       <Button layoutX="14.0" layoutY="546.0" mnemonicParsing="false" onAction="#backClicked" text="Edit" />
       <Label layoutX="878.0" layoutY="79.0" styleClass="labelWhite" text="First Name:" />
       <Label layoutX="878.0" layoutY="109.0" styleClass="labelWhite" text="Surname:" />
-      <Label fx:id="firstname" layoutX="948.0" layoutY="81.0" prefHeight="20.0" prefWidth="113.0" styleClass="labelWhite" />
-      <Label fx:id="surname" layoutX="948.0" layoutY="109.0" prefHeight="20.0" prefWidth="113.0" styleClass="labelWhite" />
+      <Label fx:id="firstname" layoutX="960.0" layoutY="79.0" prefHeight="20.0" prefWidth="113.0" styleClass="labelWhite" />
+      <Label fx:id="surname" layoutX="960.0" layoutY="109.0" prefHeight="20.0" prefWidth="113.0" styleClass="labelWhite" />
+      <Button layoutX="734.0" layoutY="546.0" mnemonicParsing="false" onAction="#showCreateNewCustomer" text="New" />
+      <Label fx:id="error" layoutX="233.0" layoutY="558.0" prefHeight="20.0" prefWidth="397.0" />
+      <Button layoutX="796.0" layoutY="546.0" mnemonicParsing="false" onAction="#deleteCustomer" text="Delete" />
    </children>
    <stylesheets>
       <URL value="@test.css" />
