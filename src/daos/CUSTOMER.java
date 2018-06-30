@@ -19,7 +19,7 @@ public class CUSTOMER {
     //Declare URLS
     private static String CREATECUSTOMER = "http://localhost:9001/createCustomerServlet";
     private static String GETCUSTOMERS = "http://localhost:9001/getCustomersServlet";
-    private static String EDITCUSTOMER = "http://localhost:9001/editCustomersServlet";
+    private static String EDITCUSTOMER = "http://localhost:9001/editCustomerServlet";
     private static String DELETECUSTOMER = "http://localhost:9001/deleteCustomerServlet";
 
     private static String authenticatedUser = "";
@@ -46,7 +46,7 @@ public class CUSTOMER {
 
         Map<String, String> parameters = new LinkedHashMap<>();
         parameters.put("requestUser" , authenticatedUser);
-        parameters.put("targetCustomer" , targetCustomer);
+        parameters.put("targetCustomerId" , targetCustomer);
         parameters.put("firstname" , firstname);
         parameters.put("surname" , surname);
 

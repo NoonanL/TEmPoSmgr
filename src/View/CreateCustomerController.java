@@ -3,6 +3,7 @@ package View;
 import Model.Customer;
 import daos.CUSTOMER;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -16,6 +17,7 @@ public class CreateCustomerController {
 
 
     @FXML private Button back;
+    @FXML private Button submit;
     @FXML private TextField firstnameField;
     @FXML private TextField surnameField;
     @FXML private Label error;
@@ -53,6 +55,12 @@ public class CreateCustomerController {
             Customer customer = new Customer(firstname,surname);
             if(CUSTOMER.createCustomer(customer)){
                 returnString = "New Customer Created";
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText("New Customer Created");
+                alert.setContentText("New customer " + firstname + " " + surname + " created.");
+                alert.showAndWait();
+                dialogStage.close();
             }else{
                 returnString = "Error creating new Customer";
             }
@@ -66,6 +74,7 @@ public class CreateCustomerController {
      */
     @FXML
     private void initialize() {
+        submit.setDefaultButton(true);
     }
 
     /**

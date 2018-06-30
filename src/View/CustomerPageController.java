@@ -53,7 +53,25 @@ public class CustomerPageController {
 
     }
 
+    /**
+     * tests if a user has been selected in order to forward selected user to the EditUser page
+     * @throws IOException
+     * @throws JSONException
+     */
     @FXML
+    private void editClicked() throws IOException, JSONException {
+
+        error.setText("");
+        Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();
+
+        if(selectedCustomer == null){
+            error.setText("No user selected.");
+        }else {
+            error.setText(selectedCustomer.getId().get() + " selected.");
+            showEditCustomerDialog(selectedCustomer);
+        }
+    }
+
     private void showEditCustomerDialog(Customer customer){
         try {
             // Load the fxml file and create a new stage for the popup dialog.

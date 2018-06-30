@@ -17,7 +17,7 @@
         </columns>
       </TableView>
       <Button layoutX="72.0" layoutY="546.0" mnemonicParsing="false" onAction="#backClicked" text="View History" />
-      <Button layoutX="14.0" layoutY="546.0" mnemonicParsing="false" onAction="#backClicked" text="Edit" />
+      <Button layoutX="14.0" layoutY="546.0" mnemonicParsing="false" onAction="#editClicked" text="Edit" />
       <Label layoutX="878.0" layoutY="79.0" styleClass="labelWhite" text="First Name:" />
       <Label layoutX="878.0" layoutY="109.0" styleClass="labelWhite" text="Surname:" />
       <Label fx:id="firstname" layoutX="960.0" layoutY="79.0" prefHeight="20.0" prefWidth="113.0" styleClass="labelWhite" />

@@ -20,7 +20,7 @@ public class EditUserController {
      * constructor for the controller
      * @throws IOException
      */
-    public EditUserController() throws IOException{}
+    public EditUserController(){}
 
     @FXML private Button back;
     @FXML private TextField usernameField;
@@ -49,7 +49,7 @@ public class EditUserController {
      * @throws JSONException
      */
     @FXML
-    private void backClicked() throws IOException, JSONException {
+    private void backClicked() {
         // get a handle to the stage
         Stage stage = (Stage) back.getScene().getWindow();
         // do what you have to do
