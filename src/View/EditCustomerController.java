@@ -51,7 +51,8 @@ public class EditCustomerController {
             alert.setHeaderText("Changes Saved");
             alert.setContentText("Changes to customer " + firstname + " " + surname + " saved.");
             alert.showAndWait();
-            initialize();
+            alert.showAndWait();
+            dialogStage.close();
         }else{
             error.setText("Error saving changes.");
         }

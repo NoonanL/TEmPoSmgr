@@ -67,7 +67,7 @@ public class CustomerPageController {
         if(selectedCustomer == null){
             error.setText("No user selected.");
         }else {
-            error.setText(selectedCustomer.getId().get() + " selected.");
+            error.setText("Customer Id " + selectedCustomer.getId().get() + " selected.");
             showEditCustomerDialog(selectedCustomer);
         }
     }
