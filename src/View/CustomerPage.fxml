@@ -28,6 +28,7 @@
       <Label fx:id="error" layoutX="233.0" layoutY="558.0" prefHeight="20.0" prefWidth="397.0" />
       <Button layoutX="721.0" layoutY="546.0" mnemonicParsing="false" onAction="#deleteCustomer" text="Delete" />
       <Button fx:id="searchButton" layoutX="1042.0" layoutY="546.0" mnemonicParsing="false" onAction="#search" text="Search" />
+      <Button fx:id="searchButton1" layoutX="545.0" layoutY="546.0" mnemonicParsing="false" onAction="#refreshTable" text="Refresh Table" />
    </children>
    <stylesheets>
       <URL value="@test.css" />

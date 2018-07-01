@@ -1,12 +1,9 @@
 package View;
 
 import Model.Customer;
-import Model.User;
 import TEmPoSmgr.TEmPoSmgr;
 import daos.CUSTOMER;
-import daos.USER;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,7 +20,7 @@ public class CustomerPageController {
 
     private TEmPoSmgr mainApp;
 
-    public CustomerPageController() throws IOException, JSONException {}
+    public CustomerPageController() {}
 
     @FXML private TableView<Customer> customerTable;
     @FXML private TableColumn<Customer, String> firstnameColumn;
@@ -38,7 +35,7 @@ public class CustomerPageController {
 
 
     @FXML
-    private void backClicked() throws IOException, JSONException {
+    private void backClicked() {
         mainApp.showHome();
     }
 
@@ -62,11 +59,9 @@ public class CustomerPageController {
 
     /**
      * tests if a user has been selected in order to forward selected user to the EditUser page
-     * @throws IOException
-     * @throws JSONException
      */
     @FXML
-    private void editClicked() throws IOException, JSONException {
+    private void editClicked() {
 
         error.setText("");
         Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();
@@ -166,9 +161,11 @@ public class CustomerPageController {
      * @throws IOException
      * @throws JSONException
      */
+    @FXML
     private void refreshTable() throws IOException, JSONException {
+        search();
         customerTable.refresh();
-        //error.setText("");
+        error.setText("");
     }
 
     @FXML
