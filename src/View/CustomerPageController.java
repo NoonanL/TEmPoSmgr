@@ -34,6 +34,9 @@ public class CustomerPageController {
     private String searchString = "";
 
 
+    /**
+     * returns use to home page
+     */
     @FXML
     private void backClicked() {
         mainApp.showHome();
@@ -51,6 +54,11 @@ public class CustomerPageController {
 
     }
 
+    /**
+     * Checks the search box for user input and then initialises the table again to reflect any change
+     * @throws IOException
+     * @throws JSONException
+     */
     @FXML
     private void search() throws IOException, JSONException {
         searchString = search.getText();
@@ -74,6 +82,10 @@ public class CustomerPageController {
         }
     }
 
+    /**
+     * Shows the dialoge to edit customers - held open until closed and then refreshes the table
+     * @param customer
+     */
     private void showEditCustomerDialog(Customer customer){
         try {
             // Load the fxml file and create a new stage for the popup dialog.
@@ -103,6 +115,11 @@ public class CustomerPageController {
     }
 
 
+    /**
+     * Safely deletes a customer - with "Are your sure" prompt.
+     * @throws IOException
+     * @throws JSONException
+     */
     @FXML
     private void deleteCustomer() throws IOException, JSONException {
         error.setText("");
@@ -133,6 +150,7 @@ public class CustomerPageController {
     }
     /**
      * Init method for controller
+     * Sets the table data
      */
     @FXML
     private void initialize() throws IOException, JSONException {
@@ -168,6 +186,9 @@ public class CustomerPageController {
         error.setText("");
     }
 
+    /**
+     * shows a dialoge stage to create a new customer - waits for close and then refreshes table
+     */
     @FXML
     private void showCreateNewCustomer() {
         try {

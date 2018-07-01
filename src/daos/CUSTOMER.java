@@ -25,7 +25,13 @@ public class CUSTOMER {
 
     private static String authenticatedUser = "";
 
-    //create customer
+    /**
+     * Sends request to server to create a new customer.
+     * @param customer a customer object from which to create a new customer record on the server
+     * @return boolean true/false for success or failure
+     * @throws IOException
+     * @throws JSONException
+     */
     public static boolean createCustomer(Customer customer) throws IOException, JSONException {
         URLConnection connection = new URLConnection();
 
@@ -42,6 +48,15 @@ public class CUSTOMER {
                 && response.getString("response").equals("OK");
     }
 
+    /**
+     * Sends a request to the server to edit a customer
+     * @param targetCustomer the customer to edit
+     * @param firstname the updated customer firstname
+     * @param surname the updated customer surname
+     * @return boolean for success or failure
+     * @throws IOException
+     * @throws JSONException
+     */
     public static boolean editCustomer(String targetCustomer, String firstname, String surname) throws IOException, JSONException {
         URLConnection connection = new URLConnection();
 
@@ -60,6 +75,13 @@ public class CUSTOMER {
 
     }
 
+    /**
+     * Sends a request to the server to delete a customer
+     * @param targetCustomer the customer to attempt to delete
+     * @return boolean for success or failure of request
+     * @throws IOException
+     * @throws JSONException
+     */
     public static boolean deleteCustomer(String targetCustomer) throws IOException, JSONException {
         URLConnection connection = new URLConnection();
 
@@ -75,9 +97,12 @@ public class CUSTOMER {
 
     }
 
-
-
-    //get Customers
+    /**
+     * Get all customer data from the server
+     * @return an ArrayList of customer objects
+     * @throws IOException
+     * @throws JSONException
+     */
     public static ArrayList<Customer> getCustomers() throws IOException, JSONException {
         URLConnection connection = new URLConnection();
         ArrayList<Customer> customerList = new ArrayList<>();
@@ -88,27 +113,19 @@ public class CUSTOMER {
         String postData = ParameterStringBuilder.getParamsString(parameters);
         JSONObject response = connection.sendPOST(GETCUSTOMERS, postData);
 
-        /**
-         * This is inefficient, of order n^3 - REFACTOR ME
-         */
         if(response.getString("connection").equals("true")){
-            for (Iterator it = response.keys(); it.hasNext(); ) {
-                String json = it.next().toString();
-                //Skip connection response object.
-                if(!json.equals("connection")) {
-                    JSONObject userJson = (response.getJSONObject(json));
-                    Customer customer = new Customer();
-                    customer.setId(userJson.getString("id"));
-                    customer.setFirstname(userJson.getString("firstname"));
-                    customer.setSurname(userJson.getString("surname"));
-                    customerList.add(customer);
-                }
-            }
+            customerList = parseCustomerData(response);
         }
         return customerList;
     }
 
-    //search customers
+    /**
+     * Send request to server to search customer data
+     * @param searchString the user#s search string
+     * @return an ArrayList of customer objects which match the search criteria
+     * @throws IOException
+     * @throws JSONException
+     */
     public static ArrayList<Customer> searchCustomers(String searchString) throws IOException, JSONException {
         URLConnection connection = new URLConnection();
         ArrayList<Customer> customerList = new ArrayList<>();
@@ -124,23 +141,40 @@ public class CUSTOMER {
          * This is inefficient, of order n^3 - REFACTOR ME
          */
         if(response.getString("connection").equals("true")){
-            for (Iterator it = response.keys(); it.hasNext(); ) {
-                String json = it.next().toString();
-                //Skip connection response object.
-                if(!json.equals("connection")) {
-                    JSONObject userJson = (response.getJSONObject(json));
-                    Customer customer = new Customer();
-                    customer.setId(userJson.getString("id"));
-                    customer.setFirstname(userJson.getString("firstname"));
-                    customer.setSurname(userJson.getString("surname"));
-                    customerList.add(customer);
-                }
-            }
+            customerList = parseCustomerData(response);
         }
         return customerList;
     }
+
+    /**
+     * passes the currently authenticated user to the CUSTOMER dao to allow it to gain permission from the server
+     * @param authenticatedUser the currently authenticated user id
+     */
     public static void setAuthenticatedUser(String authenticatedUser) {
         CUSTOMER.authenticatedUser = authenticatedUser;
+    }
+
+    /**
+     * method to parse an ArrayList of customer objects from a json object recieved by the server.
+     * @param response the json object to parse
+     * @return an arraylist of customers
+     * @throws JSONException
+     */
+    private static ArrayList<Customer> parseCustomerData(JSONObject response) throws JSONException {
+        ArrayList<Customer> customerList = new ArrayList<>();
+        for (Iterator it = response.keys(); it.hasNext(); ) {
+            String json = it.next().toString();
+            //Skip connection response object.
+            if(!json.equals("connection")) {
+                JSONObject userJson = (response.getJSONObject(json));
+                Customer customer = new Customer();
+                customer.setId(userJson.getString("id"));
+                customer.setFirstname(userJson.getString("firstname"));
+                customer.setSurname(userJson.getString("surname"));
+                customerList.add(customer);
+            }
+        }
+        return customerList;
     }
 
 }

@@ -9,7 +9,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="importData" prefHeight="600.0" prefWidth="800.0" styleClass="card" stylesheets="@test.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CsvParserController">
+<AnchorPane fx:id="importData" prefHeight="600.0" prefWidth="800.0" styleClass="card" stylesheets="@CSS/DarkTheme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CsvParserController">
    <children>
       <TableView fx:id="headerTable" layoutX="48.0" layoutY="77.0" prefHeight="300.0" prefWidth="300.0">
         <columns>

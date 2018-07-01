@@ -41,17 +41,21 @@ public class CsvParserController {
 
     /**
      * Returns to Home page
-     * @throws IOException
-     * @throws JSONException
      */
     @FXML
-    private void backClicked() throws IOException, JSONException {
+    private void backClicked() {
         // get a handle to the stage
         Stage stage = (Stage) back.getScene().getWindow();
         // do what you have to do
         stage.close();
     }
 
+    /**
+     * Gets the headers provided by the user, the csv file location and the type of data to attempt to parse
+     * Then attempts to parse data.
+     * @throws IOException
+     * @throws JSONException
+     */
     @FXML
     private void importCsvClicked() throws IOException, JSONException {
 
@@ -151,11 +155,9 @@ public class CsvParserController {
 
     /**
      * Initialises the AdminSettings page - fills the table with data, colours cells according to the user admin status
-     * @throws IOException
-     * @throws JSONException
      */
     @FXML
-    private void initialize() throws IOException, JSONException {
+    private void initialize() {
         error.setText("");
         headerColumn.setCellValueFactory(cellData -> cellData.getValue().getStringValue());
         headerTable.setItems(headers);
@@ -163,10 +165,8 @@ public class CsvParserController {
 
     /**
      * Utility method to refresh the contents of the table
-     * @throws IOException
-     * @throws JSONException
      */
-    private void refreshTable() throws IOException, JSONException {
+    private void refreshTable() {
         headerTable.refresh();
         error.setText("");
         headerTable.setItems(headers);

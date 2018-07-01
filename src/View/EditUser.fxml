@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="295.0" prefWidth="426.0" styleClass="card" stylesheets="@test.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="View.EditUserController">
+<AnchorPane prefHeight="295.0" prefWidth="426.0" styleClass="card" stylesheets="@CSS/DarkTheme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.EditUserController">
    <children>
       <Button fx:id="back" layoutX="337.0" layoutY="247.0" mnemonicParsing="false" onAction="#backClicked" styleClass="button-raised" text="Back" />
       <Button fx:id="submit" layoutX="213.0" layoutY="247.0" mnemonicParsing="false" onAction="#submit" styleClass="button-raised" text="Save Changes" />
       <TextField fx:id="usernameField" layoutX="28.0" layoutY="124.0" styleClass="text-field" />
-      <Label fx:id="error" layoutX="27.0" layoutY="213.0" prefHeight="17.0" prefWidth="149.0" textFill="RED" />
+      <Label fx:id="error" layoutX="27.0" layoutY="213.0" prefHeight="17.0" prefWidth="149.0" styleClass="labelError" textFill="RED" />
       <CheckBox fx:id="isAdminField" layoutX="14.0" layoutY="173.0" mnemonicParsing="false" text="Admin Status" />
       <Label layoutX="29.0" layoutY="89.0" styleClass="card-subtitle" text="Username" />
       <Button layoutX="25.0" layoutY="247.0" mnemonicParsing="false" onAction="#deleteUser" styleClass="button-raised" text="Delete User" />

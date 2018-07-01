@@ -37,12 +37,10 @@ public class AdminSettingsController {
 
 
     /**
-     * Returns to Home page
-     * @throws IOException
-     * @throws JSONException
+     * Returns user to previous screen
      */
     @FXML
-    private void backClicked() throws IOException, JSONException {
+    private void backClicked() {
         // get a handle to the stage
         Stage stage = (Stage) back.getScene().getWindow();
         // do what you have to do
@@ -50,12 +48,10 @@ public class AdminSettingsController {
     }
 
     /**
-     * tests if a user has been selected in order to forward selected user to the EditUser page
-     * @throws IOException
-     * @throws JSONException
+     * Tests if a user has been selected in order to forward selected user to the EditUser page
      */
     @FXML
-    private void editClicked() throws IOException, JSONException {
+    private void editClicked() {
 
         error.setText("");
         User selectedUser = userTable.getSelectionModel().getSelectedItem();
@@ -190,11 +186,9 @@ public class AdminSettingsController {
 
     /**
      * Initialises the AdminSettings page - fills the table with data, colours cells according to the user admin status
-     * @throws IOException
-     * @throws JSONException
      */
     @FXML
-    private void initialize() throws IOException, JSONException {
+    private void initialize() {
         error.setText("");
         //Set columns to their appropriate value factory
         usernameColumn.setCellValueFactory(cellData -> cellData.getValue().getUsername());

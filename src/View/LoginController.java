@@ -27,7 +27,12 @@ public class LoginController {
     @FXML
     private Button loginButton;
 
-       //method to check if login has been clicked
+    /**
+     * Checks if login has been clicked, if authentication returns true, keeps current user credentials in memory
+     * then redirects to the home page
+     * @throws IOException
+     * @throws JSONException
+     */
     @FXML
         public void isLoginClicked() throws IOException, JSONException {
             error.setText("");
@@ -46,12 +51,16 @@ public class LoginController {
             }
         }
 
-        @FXML
-        public void handleQuit(){
+    /**
+     * Cleanly exits the program
+     */
+    @FXML public void handleQuit(){
         mainApp.handleQuit();
         }
 
-    //this MUST be here. Initializes the class. Ignore "not used" hint.
+    /**
+     * initialises the view - sets the login button as the default focus
+     */
     @FXML
     private void initialize(){
 

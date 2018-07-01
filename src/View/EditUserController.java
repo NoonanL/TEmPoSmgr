@@ -1,7 +1,6 @@
 package View;
 
 import Model.User;
-import TEmPoSmgr.TEmPoSmgr;
 import daos.USER;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -103,10 +102,15 @@ public class EditUserController {
 
         if(USER.editUser(targetUser,username,adminStatus)){
             error.setText("Changes saved.");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Changes Saved");
+            alert.setHeaderText("Changes Saved");
+            alert.setContentText("Changes to user " + username + " saved.");
+            alert.showAndWait();
+            dialogStage.close();
         }else{
             error.setText("Error saving changes.");
         }
-        //dialogStage.close();
     }
 
     /**

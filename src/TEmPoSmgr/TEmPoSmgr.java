@@ -42,6 +42,10 @@ public class TEmPoSmgr extends Application {
         showLoginStage();
     }
 
+    /**
+     * Sets the currently authenticated user in each DAO to allow them to pass this to the server when necessary
+     * @param authenticatedUser
+     */
     public void setAuthenticatedUser(String authenticatedUser) {
         this.authenticatedUser = authenticatedUser;
         USER.setAuthenticatedUser(authenticatedUser);
@@ -49,6 +53,9 @@ public class TEmPoSmgr extends Application {
         initRootLayout();
     }
 
+    /**
+     * logout cleanly
+     */
     public void logout(){
         this.authenticatedUser = "";
         initRootLayout();
@@ -176,6 +183,9 @@ public class TEmPoSmgr extends Application {
 
     }
 
+    /**
+     * Shows the customer management page
+     */
     public void showCustomerPage(){
         try{
 
@@ -228,6 +238,9 @@ public class TEmPoSmgr extends Application {
 
     }
 
+    /**
+     * show the csv parser page
+     */
     private void showCustomersCSV(){
 
         try {
@@ -272,11 +285,17 @@ public class TEmPoSmgr extends Application {
         launch(args);
     }
 
+    /**
+     * cleanly handle quit - logout then exit
+     */
     public void handleQuit(){
         this.logout();
         System.exit(0);
     }
 
+    /**
+     * cleanly exit the program
+     */
     @Override
     public void stop(){
         System.out.println("Exiting...");

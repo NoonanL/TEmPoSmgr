@@ -52,6 +52,9 @@ public class HomeController {
 
     }
 
+    /**
+     * Show the customer interface
+     */
     @FXML
     public void showCustomersPage(){
         mainApp.showCustomerPage();

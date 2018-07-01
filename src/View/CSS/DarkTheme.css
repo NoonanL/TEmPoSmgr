@@ -457,6 +457,24 @@
 
 /*******************************************************************************
  *                                                                             *
+ * Label   ERROR                                                                    *
+ *                                                                             *
+ ******************************************************************************/
+
+.labelError {
+	/*-fx-text-fill: -fx-text-base-color;*/
+	-fx-text-fill: #ff0000;
+}
+
+.labelWhite:disabled {
+	-fx-opacity: -fx-disabled-opacity;
+}
+
+.labelWhite:show-mnemonics>.mnemonic-underline {
+	-fx-stroke: -fx-text-base-color;
+}
+/*******************************************************************************
+ *                                                                             *
  * List, Tree, Table COMMON                                                    *
  *                                                                             *
  ******************************************************************************/

@@ -24,17 +24,20 @@ public class CreateCustomerController {
 
     /**
      * Returns to Home page
-     * @throws IOException
-     * @throws JSONException
      */
     @FXML
-    private void backClicked() throws IOException, JSONException {
+    private void backClicked() {
         // get a handle to the stage
         Stage stage = (Stage) back.getScene().getWindow();
         // do what you have to do
         stage.close();
     }
 
+    /**
+     * Attempts to create a new customer using the text data in the textfields
+     * @throws IOException
+     * @throws JSONException
+     */
     @FXML
     private void createNewCustomer() throws IOException, JSONException {
         error.setText("");
@@ -47,11 +50,18 @@ public class CreateCustomerController {
 
     }
 
+    /**
+     * Function for creating a new customer
+     * @param firstname the customer's first name
+     * @param surname the customer's surname - required
+     * @return a string which will be shown to the user, either success or an error message
+     * @throws IOException
+     * @throws JSONException
+     */
     private String createNewCustomer(String firstname, String surname) throws IOException, JSONException {
-
         String returnString = null;
 
-        if(!surname.equals("") || !firstname.equals("")){
+        if(!surname.equals("")){
             Customer customer = new Customer(firstname,surname);
             if(CUSTOMER.createCustomer(customer)){
                 returnString = "New Customer Created";
@@ -62,7 +72,7 @@ public class CreateCustomerController {
                 alert.showAndWait();
                 dialogStage.close();
             }else{
-                returnString = "Error creating new Customer";
+                returnString = "Error creating new Customer - please provide a surname.";
             }
         }
         return(returnString);

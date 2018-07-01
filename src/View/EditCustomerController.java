@@ -1,12 +1,13 @@
 package View;
 
 import Model.Customer;
-import Model.User;
 import daos.CUSTOMER;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.json.JSONException;
-import javafx.scene.control.*;
 
 import java.io.IOException;
 
@@ -25,6 +26,7 @@ public class EditCustomerController {
     @FXML private TextField firstnameField;
     @FXML private TextField surnameField;
     @FXML private javafx.scene.control.Label error;
+    @FXML private Button submitButton;
 
 
     /**
@@ -75,6 +77,7 @@ public class EditCustomerController {
      */
     @FXML
     private void initialize() {
+        submitButton.setDefaultButton(true);
     }
 
     /**
