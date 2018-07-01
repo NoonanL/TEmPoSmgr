@@ -21,6 +21,7 @@ public class CUSTOMER {
     private static String GETCUSTOMERS = "http://localhost:9001/getCustomersServlet";
     private static String EDITCUSTOMER = "http://localhost:9001/editCustomerServlet";
     private static String DELETECUSTOMER = "http://localhost:9001/deleteCustomerServlet";
+    private static String SEARCHCUSTOMERS = "http://localhost:9001/searchCustomerServlet";
 
     private static String authenticatedUser = "";
 
@@ -106,10 +107,38 @@ public class CUSTOMER {
         }
         return customerList;
     }
-    //edit customer
-    //delete customer
-    //search customers
 
+    //search customers
+    public static ArrayList<Customer> searchCustomers(String searchString) throws IOException, JSONException {
+        URLConnection connection = new URLConnection();
+        ArrayList<Customer> customerList = new ArrayList<>();
+        Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("requestUser", authenticatedUser);
+        parameters.put("searchString", searchString);
+
+        //send the parameters to the ParameterStringBuilder utility class for formatting
+        String postData = ParameterStringBuilder.getParamsString(parameters);
+        JSONObject response = connection.sendPOST(SEARCHCUSTOMERS, postData);
+
+        /**
+         * This is inefficient, of order n^3 - REFACTOR ME
+         */
+        if(response.getString("connection").equals("true")){
+            for (Iterator it = response.keys(); it.hasNext(); ) {
+                String json = it.next().toString();
+                //Skip connection response object.
+                if(!json.equals("connection")) {
+                    JSONObject userJson = (response.getJSONObject(json));
+                    Customer customer = new Customer();
+                    customer.setId(userJson.getString("id"));
+                    customer.setFirstname(userJson.getString("firstname"));
+                    customer.setSurname(userJson.getString("surname"));
+                    customerList.add(customer);
+                }
+            }
+        }
+        return customerList;
+    }
     public static void setAuthenticatedUser(String authenticatedUser) {
         CUSTOMER.authenticatedUser = authenticatedUser;
     }

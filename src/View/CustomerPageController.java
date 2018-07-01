@@ -31,9 +31,10 @@ public class CustomerPageController {
     @FXML private Label firstname;
     @FXML private Label surname;
     @FXML private Label error;
+    @FXML private TextField search;
+    @FXML private Button searchButton;
 
-    private ObservableList<Customer> customerData = FXCollections.observableList(CUSTOMER.getCustomers());
-
+    private String searchString = "";
 
 
     @FXML
@@ -51,6 +52,12 @@ public class CustomerPageController {
             surname.setText("");
         }
 
+    }
+
+    @FXML
+    private void search() throws IOException, JSONException {
+        searchString = search.getText();
+        initialize();
     }
 
     /**
@@ -133,11 +140,16 @@ public class CustomerPageController {
      * Init method for controller
      */
     @FXML
-    private void initialize(){
+    private void initialize() throws IOException, JSONException {
 
         firstnameColumn.setCellValueFactory(cellData -> cellData.getValue().getFirstname());
         surnameColumn.setCellValueFactory(cellData -> cellData.getValue().getSurname());
-        customerTable.setItems(customerData);
+
+        if(searchString.equals("")){
+            customerTable.setItems(FXCollections.observableList(CUSTOMER.getCustomers()));
+        }else{
+            customerTable.setItems(FXCollections.observableList(CUSTOMER.searchCustomers(searchString)));
+        }
 
         // Clear person details.
         showCustomerDetails(null);
@@ -146,6 +158,7 @@ public class CustomerPageController {
         customerTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showCustomerDetails(newValue));
 
+        searchButton.setDefaultButton(true);
     }
 
     /**
@@ -154,10 +167,8 @@ public class CustomerPageController {
      * @throws JSONException
      */
     private void refreshTable() throws IOException, JSONException {
-        customerData = FXCollections.observableList(CUSTOMER.getCustomers());
         customerTable.refresh();
         //error.setText("");
-        customerTable.setItems(customerData);
     }
 
     @FXML
