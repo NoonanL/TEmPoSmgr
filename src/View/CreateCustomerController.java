@@ -3,10 +3,7 @@ package View;
 import Model.Customer;
 import daos.CUSTOMER;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.json.JSONException;
 
@@ -18,8 +15,17 @@ public class CreateCustomerController {
 
     @FXML private Button back;
     @FXML private Button submit;
+    @FXML private ChoiceBox titleField;
     @FXML private TextField firstnameField;
     @FXML private TextField surnameField;
+    @FXML private TextField streetField;
+    @FXML private TextField townField;
+    @FXML private TextField postcodeField;
+    @FXML private TextField cityField;
+    @FXML private TextField countryField;
+    @FXML private TextField mobileField;
+    @FXML private TextField emailField;
+    @FXML private ChoiceBox marketingStatusField;
     @FXML private Label error;
 
     /**

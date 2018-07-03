@@ -36,8 +36,19 @@ public class CUSTOMER {
         URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
+
+        parameters.put("title" , customer.getTitle());
         parameters.put("firstname" , customer.getFirstname());
         parameters.put("surname" , customer.getSurname());
+        parameters.put("street" , customer.getStreet());
+        parameters.put("town" , customer.getTown());
+        parameters.put("postcode" , customer.getPostcode());
+        parameters.put("city" , customer.getCity());
+        parameters.put("country" , customer.getCountry());
+        parameters.put("mobile" , customer.getMobile());
+        parameters.put("email" , customer.getEmail());
+        parameters.put("marketingStatus" , customer.getMarketingStatus());
+
         parameters.put("requestUser", authenticatedUser);
 
         //send the parameters to the ParameterStringBuilder utility class for formatting
@@ -50,21 +61,27 @@ public class CUSTOMER {
 
     /**
      * Sends a request to the server to edit a customer
-     * @param targetCustomer the customer to edit
-     * @param firstname the updated customer firstname
-     * @param surname the updated customer surname
      * @return boolean for success or failure
      * @throws IOException
      * @throws JSONException
      */
-    public static boolean editCustomer(String targetCustomer, String firstname, String surname) throws IOException, JSONException {
+    public static boolean editCustomer(Customer customer, String targetCustomer) throws IOException, JSONException {
         URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
         parameters.put("requestUser" , authenticatedUser);
         parameters.put("targetCustomerId" , targetCustomer);
-        parameters.put("firstname" , firstname);
-        parameters.put("surname" , surname);
+        parameters.put("title" , customer.getTitle());
+        parameters.put("firstname" , customer.getFirstname());
+        parameters.put("surname" , customer.getSurname());
+        parameters.put("street" , customer.getStreet());
+        parameters.put("town" , customer.getTown());
+        parameters.put("postcode" , customer.getPostcode());
+        parameters.put("city" , customer.getCity());
+        parameters.put("country" , customer.getCountry());
+        parameters.put("mobile" , customer.getMobile());
+        parameters.put("email" , customer.getEmail());
+        parameters.put("marketingStatus" , customer.getMarketingStatus());
 
         //send the parameters to the ParameterStringBuilder utility class for formatting
         String postData = ParameterStringBuilder.getParamsString(parameters);

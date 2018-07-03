@@ -53,8 +53,12 @@ public class Customer {
 
 
 
-    public SimpleStringProperty getTitle() {
+    public SimpleStringProperty titleProperty() {
         return title;
+    }
+
+    public String getTitle(){
+        return this.title.get();
     }
 
 
