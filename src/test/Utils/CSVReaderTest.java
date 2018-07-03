@@ -28,8 +28,8 @@ public class CSVReaderTest {
         for(Customer c : customerList){
             System.out.println("List item - " + customerList.indexOf(c));
             System.out.println("---------------");
-            System.out.println("User's First Name  : " + c.getFirstname().get());
-            System.out.println("User's Second Name  : " + c.getSurname().get());
+            System.out.println("User's First Name  : " + c.getFirstname());
+            System.out.println("User's Second Name  : " + c.getSurname());
             System.out.println("---------------\n\n");
         }
 

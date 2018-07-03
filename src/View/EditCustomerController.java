@@ -36,13 +36,13 @@ public class EditCustomerController {
     public void setSelectedCustomer(Customer editCustomer) {
 
         this.selectedCustomer = editCustomer;
-        firstnameField.setText((selectedCustomer.getFirstname().get()));
-        surnameField.setText((selectedCustomer.getSurname().get()));
+        firstnameField.setText((selectedCustomer.getFirstname()));
+        surnameField.setText((selectedCustomer.getSurname()));
     }
 
     @FXML
     private void submit() throws IOException, JSONException {
-        String targetCustomer = this.selectedCustomer.getId().get();
+        String targetCustomer = this.selectedCustomer.getId();
         String firstname = firstnameField.getText();
         String surname = surnameField.getText();
 

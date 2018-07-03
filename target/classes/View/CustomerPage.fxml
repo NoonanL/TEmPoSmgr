@@ -15,7 +15,10 @@
       <TableView fx:id="customerTable" layoutX="14.0" layoutY="14.0" prefHeight="520.0" prefWidth="770.0">
         <columns>
           <TableColumn fx:id="firstnameColumn" prefWidth="141.0" text="First Name" />
-          <TableColumn fx:id="surnameColumn" prefWidth="174.0" text="Surname" />
+          <TableColumn fx:id="surnameColumn" prefWidth="134.0" text="Surname" />
+            <TableColumn fx:id="postcodeColumn" prefWidth="126.0" text="Postcode" />
+            <TableColumn fx:id="mobileColumn" prefWidth="142.0" text="Mobile No." />
+            <TableColumn fx:id="emailColumn" prefWidth="224.0" text="Email" />
         </columns>
       </TableView>
       <Button layoutX="948.0" layoutY="147.0" mnemonicParsing="false" onAction="#editClicked" prefHeight="40.0" prefWidth="87.0" text="Edit" />

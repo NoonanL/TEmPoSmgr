@@ -36,8 +36,8 @@ public class CUSTOMER {
         URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("firstname" , customer.getFirstname().get());
-        parameters.put("surname" , customer.getSurname().get());
+        parameters.put("firstname" , customer.getFirstname());
+        parameters.put("surname" , customer.getSurname());
         parameters.put("requestUser", authenticatedUser);
 
         //send the parameters to the ParameterStringBuilder utility class for formatting
@@ -169,8 +169,17 @@ public class CUSTOMER {
                 JSONObject userJson = (response.getJSONObject(json));
                 Customer customer = new Customer();
                 customer.setId(userJson.getString("id"));
+                customer.setTitle(userJson.getString("title"));
                 customer.setFirstname(userJson.getString("firstname"));
                 customer.setSurname(userJson.getString("surname"));
+                customer.setStreet(userJson.getString("street"));
+                customer.setTown(userJson.getString("town"));
+                customer.setPostcode(userJson.getString("postcode"));
+                customer.setCity(userJson.getString("city"));
+                customer.setCountry(userJson.getString("country"));
+                customer.setMobile(userJson.getString("mobile"));
+                customer.setEmail(userJson.getString("email"));
+                customer.setMarketingStatus(userJson.getString("marketingStatus"));
                 customerList.add(customer);
             }
         }

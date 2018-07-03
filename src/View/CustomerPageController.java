@@ -25,6 +25,9 @@ public class CustomerPageController {
     @FXML private TableView<Customer> customerTable;
     @FXML private TableColumn<Customer, String> firstnameColumn;
     @FXML private TableColumn<Customer, String> surnameColumn;
+    @FXML private TableColumn<Customer, String> postcodeColumn;
+    @FXML private TableColumn<Customer, String> mobileColumn;
+    @FXML private TableColumn<Customer, String> emailColumn;
     @FXML private Label firstname;
     @FXML private Label surname;
     @FXML private Label error;
@@ -44,8 +47,8 @@ public class CustomerPageController {
 
     private void showCustomerDetails(Customer customer){
         if(customer!=null){
-            firstname.setText(customer.getFirstname().get());
-            surname.setText(customer.getSurname().get());
+            firstname.setText(customer.getFirstname());
+            surname.setText(customer.getSurname());
         }
         else{
             firstname.setText("");
@@ -77,7 +80,7 @@ public class CustomerPageController {
         if(selectedCustomer == null){
             error.setText("No user selected.");
         }else {
-            error.setText("Customer Id " + selectedCustomer.getId().get() + " selected.");
+            error.setText("Customer Id " + selectedCustomer.getId() + " selected.");
             showEditCustomerDialog(selectedCustomer);
         }
     }
@@ -129,7 +132,7 @@ public class CustomerPageController {
         if(selectedCustomer == null){
             error.setText("No customer selected.");
         }else{
-            targetCustomer = selectedCustomer.getId().get();
+            targetCustomer = selectedCustomer.getId();
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirm Delete Customer");
@@ -155,8 +158,11 @@ public class CustomerPageController {
     @FXML
     private void initialize() throws IOException, JSONException {
 
-        firstnameColumn.setCellValueFactory(cellData -> cellData.getValue().getFirstname());
-        surnameColumn.setCellValueFactory(cellData -> cellData.getValue().getSurname());
+        firstnameColumn.setCellValueFactory(cellData -> cellData.getValue().firstnameProperty());
+        surnameColumn.setCellValueFactory(cellData -> cellData.getValue().surnameProperty());
+        postcodeColumn.setCellValueFactory(cellData -> cellData.getValue().postcodeProperty());
+        mobileColumn.setCellValueFactory(cellData -> cellData.getValue().mobileProperty());
+        emailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
 
         if(searchString.equals("")){
             customerTable.setItems(FXCollections.observableList(CUSTOMER.getCustomers()));
