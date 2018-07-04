@@ -57,6 +57,11 @@ public class EditCustomerController {
         marketingStatusField.setValue(selectedCustomer.getMarketingStatus());
     }
 
+    /**
+     * Creates a new customer object from the data in the text fields and then submits a request to the server to edit.
+     * @throws IOException
+     * @throws JSONException
+     */
     @FXML
     private void submit() throws IOException, JSONException {
         String targetCustomer = this.selectedCustomer.getId();

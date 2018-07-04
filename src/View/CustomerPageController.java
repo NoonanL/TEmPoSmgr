@@ -46,6 +46,10 @@ public class CustomerPageController {
         mainApp.showHome();
     }
 
+    /**
+     * Updates the customer details labels any time a different entry is selected
+     * @param customer
+     */
     private void showCustomerDetails(Customer customer){
         if(customer!=null){
 
