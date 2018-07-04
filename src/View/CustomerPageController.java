@@ -28,8 +28,9 @@ public class CustomerPageController {
     @FXML private TableColumn<Customer, String> postcodeColumn;
     @FXML private TableColumn<Customer, String> mobileColumn;
     @FXML private TableColumn<Customer, String> emailColumn;
-    @FXML private Label firstname;
-    @FXML private Label surname;
+    @FXML private Label name;
+    @FXML private Label address;
+    @FXML private Label contact;
     @FXML private Label error;
     @FXML private TextField search;
     @FXML private Button searchButton;
@@ -47,12 +48,22 @@ public class CustomerPageController {
 
     private void showCustomerDetails(Customer customer){
         if(customer!=null){
-            firstname.setText(customer.getFirstname());
-            surname.setText(customer.getSurname());
+
+            String nameString = customer.getTitle() + " " + customer.getFirstname() + " " + customer.getSurname();
+            String addressString = customer.getStreet() + "\n" +
+                    customer.getTown() + "\n" +
+                    customer.getCity() + "\n" +
+                    customer.getPostcode() + "\n" +
+                    customer.getCountry();
+            String contactString = customer.getMobile() + "\n" + customer.getEmail();
+            name.setText(nameString);
+            address.setText(addressString);
+            contact.setText(contactString);
         }
         else{
-            firstname.setText("");
-            surname.setText("");
+            name.setText("");
+            address.setText("");
+            contact.setText("");
         }
 
     }

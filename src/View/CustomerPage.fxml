@@ -21,14 +21,13 @@
             <TableColumn fx:id="emailColumn" prefWidth="224.0" text="Email" />
         </columns>
       </TableView>
-      <Button layoutX="948.0" layoutY="147.0" mnemonicParsing="false" onAction="#editClicked" prefHeight="40.0" prefWidth="87.0" text="Edit" />
-      <Label layoutX="878.0" layoutY="79.0" styleClass="labelWhite" text="First Name:" />
-      <Label layoutX="878.0" layoutY="109.0" styleClass="labelWhite" text="Surname:" />
-      <Label fx:id="firstname" layoutX="960.0" layoutY="79.0" prefHeight="20.0" prefWidth="113.0" styleClass="labelWhite" />
-      <Label fx:id="surname" layoutX="960.0" layoutY="109.0" prefHeight="20.0" prefWidth="113.0" styleClass="labelWhite" />
-      <Button layoutX="876.0" layoutY="196.0" mnemonicParsing="false" onAction="#showCreateNewCustomer" prefHeight="69.0" prefWidth="162.0" text="New Customer" />
-      <Label fx:id="error" layoutX="875.0" layoutY="280.0" prefHeight="69.0" prefWidth="309.0" styleClass="labelError" wrapText="true" />
-      <Button layoutX="876.0" layoutY="147.0" mnemonicParsing="false" onAction="#deleteCustomer" text="Delete" />
+      <Button layoutX="951.0" layoutY="363.0" mnemonicParsing="false" onAction="#editClicked" prefHeight="40.0" prefWidth="87.0" text="Edit" />
+      <Label fx:id="name" layoutX="879.0" layoutY="94.0" prefHeight="20.0" prefWidth="208.0" styleClass="labelWhite" wrapText="true" />
+      <Label fx:id="address" layoutX="879.0" layoutY="128.0" prefHeight="135.0" prefWidth="232.0" styleClass="labelWhite" wrapText="true" />
+      <Label fx:id="contact" layoutX="879.0" layoutY="274.0" prefHeight="59.0" prefWidth="208.0" styleClass="labelWhite" wrapText="true" />
+      <Button layoutX="879.0" layoutY="412.0" mnemonicParsing="false" onAction="#showCreateNewCustomer" prefHeight="69.0" prefWidth="162.0" text="New Customer" />
+      <Label fx:id="error" layoutX="806.0" layoutY="517.0" prefHeight="69.0" prefWidth="309.0" styleClass="labelError" wrapText="true" />
+      <Button layoutX="879.0" layoutY="363.0" mnemonicParsing="false" onAction="#deleteCustomer" text="Delete" />
       <Button fx:id="searchButton" layoutX="720.0" layoutY="546.0" mnemonicParsing="false" onAction="#search" text="Search" />
       <Button fx:id="searchButton1" layoutX="14.0" layoutY="546.0" mnemonicParsing="false" onAction="#refreshTable" text="Refresh Table" />
    </children>
