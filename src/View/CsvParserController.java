@@ -161,6 +161,7 @@ public class CsvParserController {
         error.setText("");
         headerColumn.setCellValueFactory(cellData -> cellData.getValue().getStringValue());
         headerTable.setItems(headers);
+        addHeader.setDefaultButton(true);
     }
 
     /**

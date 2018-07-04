@@ -45,8 +45,9 @@ public class EditCustomerController {
         String targetCustomer = this.selectedCustomer.getId();
         String firstname = firstnameField.getText();
         String surname = surnameField.getText();
+        Customer editCustomer = new Customer(firstname,surname);
 
-        if(CUSTOMER.editCustomer(targetCustomer,firstname,surname)){
+        if(CUSTOMER.editCustomer(editCustomer,targetCustomer)){
             error.setText("Changes saved.");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Changes Saved");

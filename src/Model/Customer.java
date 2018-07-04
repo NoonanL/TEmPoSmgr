@@ -29,7 +29,6 @@ public class Customer {
         this.title = new SimpleStringProperty();
         this.firstname = new SimpleStringProperty();
         this.surname = new SimpleStringProperty();
-        this.surname = new SimpleStringProperty();
         this.street = new SimpleStringProperty();
         this.town = new SimpleStringProperty();
         this.postcode = new SimpleStringProperty();

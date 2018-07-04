@@ -41,11 +41,38 @@ public class CSVReader {
                     //for each header, attempt to map the value to an object parameter
                     for(String s : headers){
                         switch(s){
-                            case "firstname" : String firstname = csvRecord.get(s);
-                                customer.setFirstname(firstname);
+                            case "title" :
+                                customer.setTitle(csvRecord.get(s));
                                 break;
-                            case "surname" : String surname = csvRecord.get(s);
-                                customer.setSurname(surname);
+                            case "firstname" :
+                                customer.setFirstname(csvRecord.get(s));
+                                break;
+                            case "surname" :
+                                customer.setSurname(csvRecord.get(s));
+                                break;
+                            case "street" :
+                                customer.setStreet(csvRecord.get(s));
+                                break;
+                            case "town" :
+                                customer.setTown(csvRecord.get(s));
+                                break;
+                            case "postcode" :
+                                customer.setPostcode(csvRecord.get(s));
+                                break;
+                            case "city" :
+                                customer.setCity(csvRecord.get(s));
+                                break;
+                            case "country" :
+                                customer.setCountry(csvRecord.get(s));
+                                break;
+                            case "mobile" :
+                                customer.setMobile(csvRecord.get(s));
+                                break;
+                            case "email" :
+                                customer.setEmail(csvRecord.get(s));
+                                break;
+                            case "marketingStatus" :
+                                customer.setMarketingStatus(csvRecord.get(s));
                                 break;
                         }
                     }
