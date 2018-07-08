@@ -1,6 +1,7 @@
 package Utils;
 
 import Model.Customer;
+import TEmPoSmgr.TEmPoSmgr;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -10,6 +11,7 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class CSVReader {
@@ -86,4 +88,40 @@ public class CSVReader {
             //return the customerList
             return customerList;
     }
+
+
+    public static HashMap parseConfigurationCSV(String filename){
+        HashMap<String, String> configuration = new HashMap<>();
+        ArrayList<String> headers = new ArrayList<>();
+        headers.add("branchId");
+
+        //Attempt to open file
+        try (
+                Reader reader = Files.newBufferedReader(Paths.get(filename));
+                CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT
+                        .withFirstRecordAsHeader()
+                        .withIgnoreHeaderCase()
+                        .withTrim());
+        ) {
+            //for each record
+            for (CSVRecord csvRecord : csvParser) {
+
+                //for each header, attempt to map the value to an object parameter
+                for(String s : headers){
+                    switch(s){
+                        case "branchId" :
+                            configuration.put("branchId", csvRecord.get(s));
+                            break;
+
+                    }
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return configuration;
+    }
+
+
 }

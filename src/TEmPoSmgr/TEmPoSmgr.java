@@ -1,5 +1,6 @@
 package TEmPoSmgr;
 
+import Utils.CSVReader;
 import View.CsvParserController;
 import View.CustomerPageController;
 import View.HomeController;
@@ -17,6 +18,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class TEmPoSmgr extends Application {
 
@@ -25,6 +27,7 @@ public class TEmPoSmgr extends Application {
 
     //Variable to hold the currently authenticated user in memory
     private String authenticatedUser;
+    private String branchId;
 
     /**
      * the main starting point for the program, sets and initialises the first page.
@@ -32,10 +35,10 @@ public class TEmPoSmgr extends Application {
      */
     @Override
     public void start(Stage primaryStage) {
+        startupConfiguration();
         TEmPoSmgr.primaryStage = primaryStage;
-        TEmPoSmgr.primaryStage.setTitle("TEmPoS Manager");
-        this.authenticatedUser = "";
-        //ArrayList<Stage> openStages;
+        TEmPoSmgr.primaryStage.setTitle("TEmPoS Manager (" + this.branchId + ")");
+       //ArrayList<Stage> openStages;
         //initialises the container page (RootLayout)
         initRootLayout();
         //shows the LoginPage
@@ -51,6 +54,14 @@ public class TEmPoSmgr extends Application {
         USER.setAuthenticatedUser(authenticatedUser);
         CUSTOMER.setAuthenticatedUser(authenticatedUser);
         initRootLayout();
+    }
+
+    /**
+     * Sets the selected Branch Id
+     * @param branchId the current branch id
+     */
+    public void setBranchId(String branchId){
+        this.branchId = branchId;
     }
 
     /**
@@ -301,5 +312,11 @@ public class TEmPoSmgr extends Application {
         System.out.println("Exiting...");
         this.handleQuit();
         // Save file
+    }
+
+    private void startupConfiguration(){
+        HashMap loadedConfiguration = CSVReader.parseConfigurationCSV("configuration.csv");
+        this.branchId = (String) loadedConfiguration.get("branchId");
+        this.authenticatedUser = "";
     }
 }
