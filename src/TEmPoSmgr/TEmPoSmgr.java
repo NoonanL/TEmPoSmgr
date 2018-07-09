@@ -35,9 +35,11 @@ public class TEmPoSmgr extends Application {
      */
     @Override
     public void start(Stage primaryStage) {
-        startupConfiguration();
+        this.authenticatedUser = "";
+        Configuration configuration = new Configuration();
+        configuration.loadConfiguration();
         TEmPoSmgr.primaryStage = primaryStage;
-        TEmPoSmgr.primaryStage.setTitle("TEmPoS Manager (" + this.branchId + ")");
+        TEmPoSmgr.primaryStage.setTitle("TEmPoS Manager (" + configuration.getBranchId() + ")");
        //ArrayList<Stage> openStages;
         //initialises the container page (RootLayout)
         initRootLayout();
@@ -314,9 +316,4 @@ public class TEmPoSmgr extends Application {
         // Save file
     }
 
-    private void startupConfiguration(){
-        HashMap loadedConfiguration = CSVReader.parseConfigurationCSV("configuration.csv");
-        this.branchId = (String) loadedConfiguration.get("branchId");
-        this.authenticatedUser = "";
-    }
 }
