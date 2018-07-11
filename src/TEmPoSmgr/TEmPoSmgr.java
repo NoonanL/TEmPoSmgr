@@ -62,13 +62,6 @@ public class TEmPoSmgr extends Application {
         initRootLayout();
     }
 
-    /**
-     * Sets the selected Branch Id
-     * @param branchId the current branch id
-     */
-    public void setBranchId(String branchId){
-        this.branchId = branchId;
-    }
 
     /**
      * logout cleanly
@@ -308,14 +301,18 @@ public class TEmPoSmgr extends Application {
 
             // Set the person into the controller.
             ConfigurationPageController controller = loader.getController();
+            controller.setConfiguration(configuration);
             controller.setDialogStage(dialogStage);
-            controller.setBranchField(configuration.getBranchId());
+
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+        configuration.loadConfiguration();
+        TEmPoSmgr.primaryStage.setTitle("TEmPoS Manager (" + configuration.getBranchId() + ")");
     }
 
 

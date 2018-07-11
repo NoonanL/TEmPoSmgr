@@ -5,6 +5,7 @@ import daos.CONFIGURATION;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
@@ -22,21 +23,27 @@ public class ConfigurationPageController {
     @FXML private Button back;
     @FXML private Button submit;
     @FXML private ChoiceBox branchField;
+    private Configuration configuration;
 
     private ObservableList<String> branches = FXCollections.observableArrayList(CONFIGURATION.getBranchList());
 
     /**
      * sets the current loaded branch configuration
      */
-    public void setBranchField(String branchId) {
-        System.out.println(branchId);
-        //branches.add(branchId);
-        branchField.setValue(branchId);
+    public void setConfiguration(Configuration configuration) {
+        this.configuration = configuration;
+        branchField.setValue(this.configuration.getBranchId());
     }
 
     @FXML
     private void submit(){
-
+        configuration.editConfiguration("branchId", branchField.getSelectionModel().getSelectedItem().toString());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Changes Saved");
+        alert.setHeaderText("Changes Saved");
+        alert.setContentText("Branch switched to " + branchField.getSelectionModel().getSelectedItem().toString());
+        alert.showAndWait();
+        dialogStage.close();
 
     }
 
