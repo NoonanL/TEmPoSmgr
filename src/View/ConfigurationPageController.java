@@ -30,7 +30,7 @@ public class ConfigurationPageController {
      */
     public void setBranchField(String branchId) {
         System.out.println(branchId);
-        branches.add(branchId);
+        //branches.add(branchId);
         branchField.setValue(branchId);
     }
 
