@@ -42,7 +42,7 @@ public class Configuration {
                         BufferedWriter writer = Files.newBufferedWriter(Paths.get(SAMPLE_CSV_FILE));
 
                         CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT
-                                .withHeader("branchId"))
+                                .withHeader(pair.getKey().toString()))
                 ) {
                     csvPrinter.printRecord(newVal);
 

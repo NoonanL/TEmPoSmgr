@@ -24,6 +24,7 @@ public class CUSTOMER {
     private static String SEARCHCUSTOMERS = "http://localhost:9001/searchCustomerServlet";
 
     private static String authenticatedUser = "";
+    private static String branchId = "";
 
     /**
      * Sends request to server to create a new customer.
@@ -36,7 +37,7 @@ public class CUSTOMER {
         URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
-
+        parameters.put("branchId", branchId);
         parameters.put("title" , customer.getTitle());
         parameters.put("firstname" , customer.getFirstname());
         parameters.put("surname" , customer.getSurname());
@@ -69,6 +70,7 @@ public class CUSTOMER {
         URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("branchId", branchId);
         parameters.put("requestUser" , authenticatedUser);
         parameters.put("targetCustomerId" , targetCustomer);
         parameters.put("title" , customer.getTitle());
@@ -103,6 +105,7 @@ public class CUSTOMER {
         URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("branchId", branchId);
         parameters.put("requestUser" , authenticatedUser);
         parameters.put("targetCustomerId" , targetCustomer);
 
@@ -124,6 +127,7 @@ public class CUSTOMER {
         URLConnection connection = new URLConnection();
         ArrayList<Customer> customerList = new ArrayList<>();
         Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("branchId", branchId);
         parameters.put("requestUser", authenticatedUser);
 
         //send the parameters to the ParameterStringBuilder utility class for formatting
@@ -147,6 +151,7 @@ public class CUSTOMER {
         URLConnection connection = new URLConnection();
         ArrayList<Customer> customerList = new ArrayList<>();
         Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("branchId", branchId);
         parameters.put("requestUser", authenticatedUser);
         parameters.put("searchString", searchString);
 
@@ -163,13 +168,7 @@ public class CUSTOMER {
         return customerList;
     }
 
-    /**
-     * passes the currently authenticated user to the CUSTOMER dao to allow it to gain permission from the server
-     * @param authenticatedUser the currently authenticated user id
-     */
-    public static void setAuthenticatedUser(String authenticatedUser) {
-        CUSTOMER.authenticatedUser = authenticatedUser;
-    }
+
 
     /**
      * method to parse an ArrayList of customer objects from a json object recieved by the server.
@@ -201,6 +200,18 @@ public class CUSTOMER {
             }
         }
         return customerList;
+    }
+
+    /**
+     * passes the currently authenticated user to the CUSTOMER dao to allow it to gain permission from the server
+     * @param authenticatedUser the currently authenticated user id
+     */
+    public static void setAuthenticatedUser(String authenticatedUser) {
+        CUSTOMER.authenticatedUser = authenticatedUser;
+    }
+
+    public static void setBranch(String branchId) {
+        CUSTOMER.branchId = branchId;
     }
 
 }

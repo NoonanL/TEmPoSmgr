@@ -22,6 +22,7 @@ public class USER {
     private static String DELETEUSER = "http://localhost:9001/deleteUserServlet";
     private static String EDITUSER = "http://localhost:9001/editUserServlet";
     private static String authenticatedUser = "";
+    private static String branchId = "";
 
 
     /**
@@ -37,6 +38,7 @@ public class USER {
         URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("branchId", branchId);
         parameters.put("username", username);
         parameters.put("password", password);
         String postData = ParameterStringBuilder.getParamsString(parameters);
@@ -58,6 +60,7 @@ public class USER {
         URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("branchId", branchId);
         parameters.put("username" , authenticatedUser);
         parameters.put("requestUser", authenticatedUser);
         String postData = ParameterStringBuilder.getParamsString(parameters);
@@ -82,6 +85,7 @@ public class USER {
         URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("branchId", branchId);
         parameters.put("username" , username);
         parameters.put("password" , password);
         parameters.put("isAdmin" , isAdmin);
@@ -110,6 +114,7 @@ public class USER {
         URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("branchId", branchId);
         parameters.put("requestUser" , authenticatedUser);
         parameters.put("targetUser" , targetUser);
         parameters.put("username" , username);
@@ -136,6 +141,7 @@ public class USER {
         URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("branchId", branchId);
         parameters.put("requestUser" , authenticatedUser);
         parameters.put("targetUser" , targetUser);
 
@@ -158,6 +164,7 @@ public class USER {
         URLConnection connection = new URLConnection();
         ArrayList<User> userList = new ArrayList<>();
         Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("branchId", branchId);
         parameters.put("requestUser", authenticatedUser);
 
         //send the parameters to the ParameterStringBuilder utility class for formatting
@@ -185,5 +192,9 @@ public class USER {
 
     public static void setAuthenticatedUser(String authenticatedUser) {
         USER.authenticatedUser = authenticatedUser;
+    }
+
+    public static void setBranch(String branchId) {
+        USER.branchId = branchId;
     }
 }

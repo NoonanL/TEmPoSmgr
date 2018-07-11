@@ -54,7 +54,9 @@ public class TEmPoSmgr extends Application {
     public void setAuthenticatedUser(String authenticatedUser) {
         this.authenticatedUser = authenticatedUser;
         USER.setAuthenticatedUser(authenticatedUser);
+        USER.setBranch(branchId);
         CUSTOMER.setAuthenticatedUser(authenticatedUser);
+        CUSTOMER.setBranch(branchId);
         initRootLayout();
     }
 

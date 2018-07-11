@@ -19,6 +19,6 @@ public class configurationTest {
     public void configureTest() {
         Configuration configuration = new Configuration();
         configuration.loadConfiguration();
-        configuration.editConfiguration("branchId","TESTBRANCH");
+        configuration.editConfiguration("branchId","TESTBRANCH2");
     }
 }
