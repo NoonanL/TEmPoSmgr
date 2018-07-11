@@ -1,6 +1,6 @@
 package Utils;
 
-import TEmPoSmgr.Configuration;
+import Model.Configuration;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

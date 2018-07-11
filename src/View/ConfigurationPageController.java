@@ -1,29 +1,37 @@
 package View;
 
-import Model.Customer;
-import TEmPoSmgr.TEmPoSmgr;
+import Model.Configuration;
+import daos.CONFIGURATION;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
+import org.json.JSONException;
+
+import java.io.IOException;
+
 
 public class ConfigurationPageController {
 
     private Stage dialogStage;
 
-    public ConfigurationPageController(){}
+    public ConfigurationPageController() throws IOException, JSONException {}
 
     @FXML private Button back;
     @FXML private Button submit;
     @FXML private ChoiceBox branchField;
 
+    private ObservableList<String> branches = FXCollections.observableArrayList(CONFIGURATION.getBranchList());
+
     /**
      * sets the current loaded branch configuration
      */
-    public void setBranchField() {
-
-        branchField.setValue("");
+    public void setBranchField(String branchId) {
+        System.out.println(branchId);
+        branches.add(branchId);
+        branchField.setValue(branchId);
     }
 
     @FXML
@@ -50,7 +58,7 @@ public class ConfigurationPageController {
     @FXML
     private void initialize() {
         submit.setDefaultButton(true);
-        branchField.setItems(FXCollections.observableArrayList());
+        branchField.setItems(branches);
     }
 
     /**

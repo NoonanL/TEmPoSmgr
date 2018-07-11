@@ -1,10 +1,8 @@
 package TEmPoSmgr;
 
-import Utils.CSVReader;
-import View.CsvParserController;
-import View.CustomerPageController;
-import View.HomeController;
-import View.LoginController;
+import Model.Configuration;
+import View.*;
+import daos.CONFIGURATION;
 import daos.CUSTOMER;
 import daos.USER;
 import javafx.application.Application;
@@ -18,7 +16,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 public class TEmPoSmgr extends Application {
 
@@ -27,7 +24,8 @@ public class TEmPoSmgr extends Application {
 
     //Variable to hold the currently authenticated user in memory
     private String authenticatedUser;
-    private String branchId;
+    private static String branchId;
+    private Configuration configuration;
 
     /**
      * the main starting point for the program, sets and initialises the first page.
@@ -36,8 +34,13 @@ public class TEmPoSmgr extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.authenticatedUser = "";
-        Configuration configuration = new Configuration();
+        configuration = new Configuration();
         configuration.loadConfiguration();
+
+        USER.setBranch(branchId);
+        CUSTOMER.setBranch(branchId);
+        CONFIGURATION.setBranch(branchId);
+
         TEmPoSmgr.primaryStage = primaryStage;
         TEmPoSmgr.primaryStage.setTitle("TEmPoS Manager (" + configuration.getBranchId() + ")");
        //ArrayList<Stage> openStages;
@@ -54,9 +57,8 @@ public class TEmPoSmgr extends Application {
     public void setAuthenticatedUser(String authenticatedUser) {
         this.authenticatedUser = authenticatedUser;
         USER.setAuthenticatedUser(authenticatedUser);
-        USER.setBranch(branchId);
         CUSTOMER.setAuthenticatedUser(authenticatedUser);
-        CUSTOMER.setBranch(branchId);
+        CONFIGURATION.setAuthenticatedUser(authenticatedUser);
         initRootLayout();
     }
 
@@ -109,8 +111,10 @@ public class TEmPoSmgr extends Application {
             Menu tools = new Menu("Tools");
             MenuItem customerCSV = new MenuItem("Import Customers by CSV");
             customerCSV.setOnAction(actionEcent -> showCustomersCSV());
+            MenuItem configuration = new MenuItem("Configure Till");
+            configuration.setOnAction(actionEcent -> showConfiguration());
 
-            tools.getItems().addAll(customerCSV);
+            tools.getItems().addAll(customerCSV, configuration);
 
             Menu aboutMenu = new Menu("Help");
             MenuItem about = new MenuItem("About");
@@ -283,6 +287,37 @@ public class TEmPoSmgr extends Application {
         }
     }
 
+    /**
+     * show the csv parser page
+     */
+    private void showConfiguration(){
+
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(TEmPoSmgr.class.getResource("/View/ConfigurationPage.fxml"));
+            AnchorPane page = loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Configure Till");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(rootLayout.getScene().getWindow());
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            ConfigurationPageController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setBranchField(configuration.getBranchId());
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * not entirely necessary as of yet but might be useful in future
@@ -317,5 +352,6 @@ public class TEmPoSmgr extends Application {
         this.handleQuit();
         // Save file
     }
+
 
 }

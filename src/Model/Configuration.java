@@ -1,7 +1,9 @@
-package TEmPoSmgr;
+package Model;
 
 
 import Utils.CSVReader;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
@@ -16,16 +18,16 @@ import java.util.Map;
 public class Configuration {
 
     private HashMap loadedConfiguration;
-    private String branchId;
+    private SimpleStringProperty branchId;
     private String SAMPLE_CSV_FILE = "configuration.csv";
+
+    public Configuration(){
+        this.branchId = new SimpleStringProperty();
+    }
 
     public void loadConfiguration(){
         this.loadedConfiguration = CSVReader.parseConfigurationCSV("configuration.csv");
-        branchId = (String) loadedConfiguration.get("branchId");
-    }
-
-    public String getBranchId(){
-        return branchId;
+        this.setBranchId((String) loadedConfiguration.get("branchId"));
     }
 
     /**
@@ -55,5 +57,15 @@ public class Configuration {
     }
 
 
+    public String getBranchId() {
+        return branchId.get();
+    }
 
+    public SimpleStringProperty branchIdProperty() {
+        return branchId;
+    }
+
+    public void setBranchId(String branchId) {
+        this.branchId.set(branchId);
+    }
 }
