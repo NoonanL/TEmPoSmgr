@@ -2,6 +2,9 @@ package Model;
 
 
 import Utils.CSVReader;
+import daos.CONFIGURATION;
+import daos.CUSTOMER;
+import daos.USER;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import org.apache.commons.csv.CSVFormat;
@@ -19,15 +22,28 @@ public class Configuration {
 
     private HashMap loadedConfiguration;
     private SimpleStringProperty branchId;
-    private String SAMPLE_CSV_FILE = "configuration.csv";
+    private SimpleStringProperty authenticatedUser;
+    private String CONFIG_CSV = "configuration.csv";
 
     public Configuration(){
         this.branchId = new SimpleStringProperty();
+        this.setBranchId("");
+        //Constructor for logged in user
+        this.authenticatedUser = new SimpleStringProperty();
+        this.setAuthenticatedUser("");
+        loadConfiguration();
     }
 
     public void loadConfiguration(){
-        this.loadedConfiguration = CSVReader.parseConfigurationCSV("configuration.csv");
+
+        //Load CSV
+        this.loadedConfiguration = CSVReader.parseConfigurationCSV(CONFIG_CSV);
+
+        //Get Branch ID and show it to URL builders
         this.setBranchId((String) loadedConfiguration.get("branchId"));
+        USER.setBranch(branchId.toString());
+        CUSTOMER.setBranch(branchId.toString());
+        CONFIGURATION.setBranch(branchId.toString());
     }
 
     /**
@@ -41,7 +57,7 @@ public class Configuration {
             Map.Entry pair = (Map.Entry)it.next();
             if(pair.getKey().equals(editField)){
                 try (
-                        BufferedWriter writer = Files.newBufferedWriter(Paths.get(SAMPLE_CSV_FILE));
+                        BufferedWriter writer = Files.newBufferedWriter(Paths.get(CONFIG_CSV));
 
                         CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT
                                 .withHeader(pair.getKey().toString()))
@@ -65,7 +81,22 @@ public class Configuration {
         return branchId;
     }
 
-    public void setBranchId(String branchId) {
+    private void setBranchId(String branchId) {
         this.branchId.set(branchId);
+    }
+
+    public String getAuthenticatedUser() {
+        return authenticatedUser.get();
+    }
+
+    public SimpleStringProperty authenticatedUserProperty() {
+        return authenticatedUser;
+    }
+
+    public void setAuthenticatedUser(String authenticatedUser) {
+        this.authenticatedUser.set(authenticatedUser);
+        USER.setAuthenticatedUser(authenticatedUser);
+        CUSTOMER.setAuthenticatedUser(authenticatedUser);
+        CONFIGURATION.setAuthenticatedUser(authenticatedUser);
     }
 }

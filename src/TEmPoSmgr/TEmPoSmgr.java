@@ -22,10 +22,8 @@ public class TEmPoSmgr extends Application {
     private static Stage primaryStage;
     private BorderPane rootLayout;
 
-    //Variable to hold the currently authenticated user in memory
-    private String authenticatedUser;
-    private static String branchId;
-    private Configuration configuration;
+    //Create configuration. This will hold important stuff in memory. Such as the logged in user, loaded branch config, etc.
+    public Configuration configuration;
 
     /**
      * the main starting point for the program, sets and initialises the first page.
@@ -33,33 +31,16 @@ public class TEmPoSmgr extends Application {
      */
     @Override
     public void start(Stage primaryStage) {
-        this.authenticatedUser = "";
-        configuration = new Configuration();
-        configuration.loadConfiguration();
 
-        USER.setBranch(branchId);
-        CUSTOMER.setBranch(branchId);
-        CONFIGURATION.setBranch(branchId);
+        configuration = new Configuration();
 
         TEmPoSmgr.primaryStage = primaryStage;
         TEmPoSmgr.primaryStage.setTitle("TEmPoS Manager (" + configuration.getBranchId() + ")");
-       //ArrayList<Stage> openStages;
+
         //initialises the container page (RootLayout)
         initRootLayout();
         //shows the LoginPage
         showLoginStage();
-    }
-
-    /**
-     * Sets the currently authenticated user in each DAO to allow them to pass this to the server when necessary
-     * @param authenticatedUser
-     */
-    public void setAuthenticatedUser(String authenticatedUser) {
-        this.authenticatedUser = authenticatedUser;
-        USER.setAuthenticatedUser(authenticatedUser);
-        CUSTOMER.setAuthenticatedUser(authenticatedUser);
-        CONFIGURATION.setAuthenticatedUser(authenticatedUser);
-        initRootLayout();
     }
 
 
@@ -67,7 +48,8 @@ public class TEmPoSmgr extends Application {
      * logout cleanly
      */
     public void logout(){
-        this.authenticatedUser = "";
+        configuration.setAuthenticatedUser("");
+        //this.authenticatedUser = "";
         initRootLayout();
         showLoginStage();
     }
@@ -112,41 +94,39 @@ public class TEmPoSmgr extends Application {
             Menu aboutMenu = new Menu("Help");
             MenuItem about = new MenuItem("About");
             aboutMenu.getItems().addAll(about);
-
-            //Menu with example for selectable menu items
-            Menu webMenu = new Menu("Test");
-            CheckMenuItem htmlMenuItem = new CheckMenuItem("HTML");
-            htmlMenuItem.setSelected(true);
-            webMenu.getItems().add(htmlMenuItem);
-
-            CheckMenuItem cssMenuItem = new CheckMenuItem("CSS");
-            cssMenuItem.setSelected(true);
-            webMenu.getItems().add(cssMenuItem);
-
-            //menu example with nested menu and toggleable group
-            Menu sqlMenu = new Menu("SQL");
-            ToggleGroup tGroup = new ToggleGroup();
-            RadioMenuItem mysqlItem = new RadioMenuItem("MySQL");
-            mysqlItem.setToggleGroup(tGroup);
-
-            RadioMenuItem oracleItem = new RadioMenuItem("Oracle");
-            oracleItem.setToggleGroup(tGroup);
-            oracleItem.setSelected(true);
-
-            sqlMenu.getItems().addAll(mysqlItem, oracleItem,
-                    new SeparatorMenuItem());
-
-            Menu tutorialMenu = new Menu("Tutorial");
-            tutorialMenu.getItems().addAll(
-                    new CheckMenuItem("Java"),
-                    new CheckMenuItem("JavaFX"),
-                    new CheckMenuItem("Swing"));
-
-            sqlMenu.getItems().add(tutorialMenu);
+//
+//            //Menu with example for selectable menu items
+//            Menu webMenu = new Menu("Test");
+//            CheckMenuItem htmlMenuItem = new CheckMenuItem("HTML");
+//            htmlMenuItem.setSelected(true);
+//            webMenu.getItems().add(htmlMenuItem);
+//
+//            CheckMenuItem cssMenuItem = new CheckMenuItem("CSS");
+//            cssMenuItem.setSelected(true);
+//            webMenu.getItems().add(cssMenuItem);
+//
+//            //menu example with nested menu and toggleable group
+//            Menu sqlMenu = new Menu("SQL");
+//            ToggleGroup tGroup = new ToggleGroup();
+//            RadioMenuItem mysqlItem = new RadioMenuItem("MySQL");
+//            mysqlItem.setToggleGroup(tGroup);
+//
+//            RadioMenuItem oracleItem = new RadioMenuItem("Oracle");
+//            oracleItem.setToggleGroup(tGroup);
+//            oracleItem.setSelected(true);
+//
+//            sqlMenu.getItems().addAll(mysqlItem, oracleItem,
+//                    new SeparatorMenuItem());
+//
+//            Menu tutorialMenu = new Menu("Tutorial");
+//            tutorialMenu.getItems().addAll(
+//                    new CheckMenuItem("Java"),
+//                    new CheckMenuItem("JavaFX"),
+//                    new CheckMenuItem("Swing"));
+//            sqlMenu.getItems().add(tutorialMenu);
 
             // if no user logged in, restrict menus, else give full menus
-            if(this.authenticatedUser.equals("")){
-
+            if(this.configuration.getAuthenticatedUser().equals("")){
                 menuBar.getMenus().addAll(fileMenu, aboutMenu);
             }else{
                 fileMenu.getItems().add(2, logoutMenuItem);
@@ -158,6 +138,7 @@ public class TEmPoSmgr extends Application {
             //Show the scene containing the root layout
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
+            updateTitle();
             primaryStage.show();
 
 
@@ -229,6 +210,7 @@ public class TEmPoSmgr extends Application {
 
         try{
 
+            initRootLayout();
             //load fxml page
             FXMLLoader loader = new FXMLLoader(TEmPoSmgr.class.getResource("/View/Home.fxml"));
             //load LoginPage of fxml type AnchorPane
@@ -312,7 +294,7 @@ public class TEmPoSmgr extends Application {
             e.printStackTrace();
         }
         configuration.loadConfiguration();
-        TEmPoSmgr.primaryStage.setTitle("TEmPoS Manager (" + configuration.getBranchId() + ")");
+        updateTitle();
     }
 
 
@@ -348,6 +330,10 @@ public class TEmPoSmgr extends Application {
         System.out.println("Exiting...");
         this.handleQuit();
         // Save file
+    }
+
+    private void updateTitle(){
+        TEmPoSmgr.primaryStage.setTitle("TEmPoS Manager (" + configuration.getBranchId() + ") - Welcome " + configuration.getAuthenticatedUser() + "!");
     }
 
 

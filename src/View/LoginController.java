@@ -43,7 +43,7 @@ public class LoginController {
 
             if(USER.authenticate(authenticateID, authenticatePassword)){
                 //System.out.println("LOGGED IN");
-                mainApp.setAuthenticatedUser(authenticateID);
+                mainApp.configuration.setAuthenticatedUser(authenticateID);
                 mainApp.showHome();
             }else{
                 //System.out.println("LOGIN FAILED");
