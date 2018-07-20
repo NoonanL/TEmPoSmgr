@@ -138,9 +138,6 @@ public class CUSTOMER {
         String postData = ParameterStringBuilder.getParamsString(parameters);
         JSONObject response = connection.sendPOST(SEARCHCUSTOMERS, postData);
 
-        /**
-         * This is inefficient, of order n^3 - REFACTOR ME
-         */
         if(response.getString("connection").equals("true")){
             customerList = parseCustomerData(response);
         }

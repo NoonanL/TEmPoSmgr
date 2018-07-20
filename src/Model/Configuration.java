@@ -4,6 +4,7 @@ package Model;
 import Utils.CSVReader;
 import daos.CONFIGURATION;
 import daos.CUSTOMER;
+import daos.PRODUCT;
 import daos.USER;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -44,6 +45,7 @@ public class Configuration {
         USER.setBranch(branchId.toString());
         CUSTOMER.setBranch(branchId.toString());
         CONFIGURATION.setBranch(branchId.toString());
+        PRODUCT.setBranch(branchId.toString());
     }
 
     /**
@@ -98,5 +100,6 @@ public class Configuration {
         USER.setAuthenticatedUser(authenticatedUser);
         CUSTOMER.setAuthenticatedUser(authenticatedUser);
         CONFIGURATION.setAuthenticatedUser(authenticatedUser);
+        PRODUCT.setAuthenticatedUser(authenticatedUser);
     }
 }

@@ -216,5 +216,5 @@ public class Customer {
         parameters.put("marketingStatus" , this.getMarketingStatus());
         return parameters;
     }
-    
+
 }
