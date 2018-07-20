@@ -3,6 +3,9 @@ package Model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class Customer {
 
     /**
@@ -196,4 +199,22 @@ public class Customer {
     public void setSurname(String surname) {
         this.surname.set(surname);
     }
+
+    public Map<String, String> getParameters(){
+        Map<String, String> parameters= new LinkedHashMap<>();
+        parameters.put("id", this.getId());
+        parameters.put("title" , this.getTitle());
+        parameters.put("firstname" , this.getFirstname());
+        parameters.put("surname" , this.getSurname());
+        parameters.put("street" , this.getStreet());
+        parameters.put("town" , this.getTown());
+        parameters.put("postcode" , this.getPostcode());
+        parameters.put("city" , this.getCity());
+        parameters.put("country" , this.getCountry());
+        parameters.put("mobile" , this.getMobile());
+        parameters.put("email" , this.getEmail());
+        parameters.put("marketingStatus" , this.getMarketingStatus());
+        return parameters;
+    }
+    
 }

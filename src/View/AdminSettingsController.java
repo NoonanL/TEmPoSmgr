@@ -59,7 +59,7 @@ public class AdminSettingsController {
         if(selectedUser == null){
             error.setText("No user selected.");
         }else {
-            error.setText(selectedUser.getUsername().get() + " selected.");
+            error.setText(selectedUser.getUsernameProperty().get() + " selected.");
             showEditUserDialogue(selectedUser);
         }
     }
@@ -94,7 +94,7 @@ public class AdminSettingsController {
         if(selectedUser == null){
             error.setText("No user selected.");
         }else{
-            targetUser = selectedUser.getUsername().get();
+            targetUser = selectedUser.getUsernameProperty().get();
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirm Delete User");
@@ -191,8 +191,8 @@ public class AdminSettingsController {
     private void initialize() {
         error.setText("");
         //Set columns to their appropriate value factory
-        usernameColumn.setCellValueFactory(cellData -> cellData.getValue().getUsername());
-        isAdminColumn.setCellValueFactory(cellData -> cellData.getValue().getIsAdmin());
+        usernameColumn.setCellValueFactory(cellData -> cellData.getValue().getUsernameProperty());
+        isAdminColumn.setCellValueFactory(cellData -> cellData.getValue().getIsAdminProperty());
 
         //Custom renderer for IsAdmin column to colour the cell depending on admin status
         isAdminColumn.setCellFactory((TableColumn<User, String> column) -> new TableCell<User, String>() {

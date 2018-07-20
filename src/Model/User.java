@@ -3,6 +3,9 @@ package Model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class User {
 
     /**
@@ -34,17 +37,31 @@ public class User {
         this.username.set(username);
     }
 
-    public StringProperty getUsername(){
+    public StringProperty getUsernameProperty(){
         return this.username;
+    }
+
+    public String getUsername(){
+        return this.username.get();
     }
 
     public void setIsAdmin(String isAdmin){
         this.isAdmin.set(isAdmin);
     }
 
-    public StringProperty getIsAdmin(){
+    public StringProperty getIsAdminProperty(){
         return this.isAdmin;
     }
 
+    public String getIsAdmin(){
+        return this.isAdmin.get();
+    }
+
+    public Map<String, String> getParameters(){
+        Map<String, String> parameters= new LinkedHashMap<>();
+        parameters.put("username" , this.getUsername());
+        parameters.put("isAdmin" , this.getIsAdmin());
+        return parameters;
+    }
 
 }

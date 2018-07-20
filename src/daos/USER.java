@@ -103,13 +103,11 @@ public class USER {
     /**
      * Edit a user
      * @param targetUser the target user to be edited
-     * @param username  the new username
-     * @param isAdmin the new admin status
      * @return true/false boolean
      * @throws IOException
      * @throws JSONException
      */
-    public static boolean editUser(String targetUser, String username, String isAdmin) throws IOException, JSONException {
+    public static boolean editUser(String targetUser, User user) throws IOException, JSONException {
 
         URLConnection connection = new URLConnection();
 
@@ -117,8 +115,7 @@ public class USER {
         parameters.put("branchId", branchId);
         parameters.put("requestUser" , authenticatedUser);
         parameters.put("targetUser" , targetUser);
-        parameters.put("username" , username);
-        parameters.put("isAdmin" , isAdmin);
+        parameters.putAll(user.getParameters());
 
         //send the parameters to the ParameterStringBuilder utility class for formatting
         String postData = ParameterStringBuilder.getParamsString(parameters);

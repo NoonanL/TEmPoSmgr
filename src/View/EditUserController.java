@@ -35,9 +35,9 @@ public class EditUserController {
 
         this.selectedUser = editUser;
         boolean adminStatus;
-        usernameField.setText((selectedUser.getUsername().get()));
+        usernameField.setText((selectedUser.getUsernameProperty().get()));
 
-        adminStatus = selectedUser.getIsAdmin().get().equals("Y");
+        adminStatus = selectedUser.getIsAdminProperty().get().equals("Y");
 
         isAdminField.setSelected(adminStatus);
     }
@@ -63,7 +63,7 @@ public class EditUserController {
     @FXML
     private void deleteUser() throws IOException, JSONException {
         error.setText("");
-        String targetUser = selectedUser.getUsername().get();
+        String targetUser = selectedUser.getUsernameProperty().get();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Delete User");
         alert.setHeaderText("Are you sure?");
@@ -90,7 +90,7 @@ public class EditUserController {
     @FXML
     private void submit() throws IOException, JSONException {
         //send update request here
-        String targetUser = this.selectedUser.getUsername().get();
+        String targetUser = this.selectedUser.getUsernameProperty().get();
         String username = usernameField.getText();
         String adminStatus;
         if(isAdminField.isSelected()){
@@ -100,7 +100,10 @@ public class EditUserController {
         }
         //boolean isAdmin = isAdminField.isSelected();
 
-        if(USER.editUser(targetUser,username,adminStatus)){
+        User editedUser = new User();
+        editedUser.setUsername(username);
+        editedUser.setIsAdmin(adminStatus);
+        if(USER.editUser(targetUser,editedUser)){
             error.setText("Changes saved.");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Changes Saved");

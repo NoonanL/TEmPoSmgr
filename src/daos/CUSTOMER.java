@@ -38,17 +38,7 @@ public class CUSTOMER {
 
         Map<String, String> parameters = new LinkedHashMap<>();
         parameters.put("branchId", branchId);
-        parameters.put("title" , customer.getTitle());
-        parameters.put("firstname" , customer.getFirstname());
-        parameters.put("surname" , customer.getSurname());
-        parameters.put("street" , customer.getStreet());
-        parameters.put("town" , customer.getTown());
-        parameters.put("postcode" , customer.getPostcode());
-        parameters.put("city" , customer.getCity());
-        parameters.put("country" , customer.getCountry());
-        parameters.put("mobile" , customer.getMobile());
-        parameters.put("email" , customer.getEmail());
-        parameters.put("marketingStatus" , customer.getMarketingStatus());
+        parameters.putAll(customer.getParameters());
 
         parameters.put("requestUser", authenticatedUser);
 
@@ -72,18 +62,7 @@ public class CUSTOMER {
         Map<String, String> parameters = new LinkedHashMap<>();
         parameters.put("branchId", branchId);
         parameters.put("requestUser" , authenticatedUser);
-        parameters.put("targetCustomerId" , targetCustomer);
-        parameters.put("title" , customer.getTitle());
-        parameters.put("firstname" , customer.getFirstname());
-        parameters.put("surname" , customer.getSurname());
-        parameters.put("street" , customer.getStreet());
-        parameters.put("town" , customer.getTown());
-        parameters.put("postcode" , customer.getPostcode());
-        parameters.put("city" , customer.getCity());
-        parameters.put("country" , customer.getCountry());
-        parameters.put("mobile" , customer.getMobile());
-        parameters.put("email" , customer.getEmail());
-        parameters.put("marketingStatus" , customer.getMarketingStatus());
+        parameters.putAll(customer.getParameters());
 
         //send the parameters to the ParameterStringBuilder utility class for formatting
         String postData = ParameterStringBuilder.getParamsString(parameters);
