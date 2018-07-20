@@ -60,6 +60,14 @@ public class HomeController {
         mainApp.showCustomerPage();
     }
 
+    /**
+     * Show the products interface
+     */
+    @FXML
+    public void showProductsPage(){
+        mainApp.showProductsPage();
+    }
+
 
     /**
      * Init method for controller

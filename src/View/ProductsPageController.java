@@ -1,9 +1,16 @@
 package View;
 
+import Model.Customer;
 import Model.Product;
 import TEmPoSmgr.TEmPoSmgr;
+import daos.CUSTOMER;
+import daos.PRODUCT;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import org.json.JSONException;
+
+import java.io.IOException;
 
 public class ProductsPageController {
 
@@ -11,6 +18,111 @@ public class ProductsPageController {
 
     public ProductsPageController(){}
 
+    @FXML private TableView<Product> productTable;
+    @FXML private TableColumn<Product, String> idColumn;
+    @FXML private TableColumn<Product, String> skuColumn;
+    @FXML private TableColumn<Product, String> nameColumn;
+    @FXML private TableColumn<Product, String> rrpColumn;
+    @FXML private TableColumn<Product, String> brandColumn;
+    @FXML private TableColumn<Product, String> departmentColumn;
+    @FXML private TableColumn<Product, String> costColumn;
+    @FXML private Label sku;
+    @FXML private Label name;
+    @FXML private Label description;
+    @FXML private Label rrp;
+    @FXML private Label department;
+    @FXML private Label brand;
+    @FXML private Label error;
+    @FXML private TextField search;
+    @FXML private Button searchButton;
+
+    private String searchString = "";
+
+
+    /**
+     * returns use to home page
+     */
     @FXML
-    private TableView<Product> productTable;
+    private void backClicked() {
+        mainApp.showHome();
+    }
+
+    private void showProductDetails(Product product){
+        if(product!=null){
+//            id.setText(product.getId());
+            name.setText(product.getName());
+            sku.setText(product.getSKU());
+            description.setText(product.getDescription());
+            rrp.setText("£" + product.getRRP());
+            //cost.setText(product.getCost());
+            department.setText(product.getDepartment());
+            brand.setText(product.getBrand());
+        }
+        else{
+            //id.setText("");
+            name.setText("");
+            sku.setText("");
+            description.setText("");
+            rrp.setText("");
+            //cost.setText("");
+            department.setText("");
+            brand.setText("");
+
+
+        }
+    }
+
+    /**
+     * Checks the search box for user input and then initialises the table again to reflect any change
+     * @throws IOException
+     * @throws JSONException
+     */
+    @FXML
+    private void search() throws IOException, JSONException {
+        searchString = search.getText();
+        initialize();
+    }
+
+    /**
+     * Init method for controller
+     * Sets the table data
+     */
+    @FXML
+    private void initialize() throws IOException, JSONException {
+
+        idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
+        skuColumn.setCellValueFactory(cellData -> cellData.getValue().SKUProperty());
+        nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        rrpColumn.setCellValueFactory(cellData -> cellData.getValue().RRPProperty());
+        departmentColumn.setCellValueFactory(cellData -> cellData.getValue().departmentProperty());
+        costColumn.setCellValueFactory(cellData -> cellData.getValue().costProperty());
+        brandColumn.setCellValueFactory(cellData -> cellData.getValue().brandProperty());
+
+
+        if(searchString.equals("")){
+            productTable.setItems(FXCollections.observableList(PRODUCT.getProducts()));
+        }else{
+            productTable.setItems(FXCollections.observableList(PRODUCT.searchProducts(searchString)));
+        }
+
+        // Clear person details.
+        showProductDetails(null);
+
+        // Listen for selection changes and show the person details when changed.
+        productTable.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> showProductDetails(newValue));
+
+        searchButton.setDefaultButton(true);
+    }
+
+    /**
+     * This is the method that the MainApp will call to set this as the main page the user sees
+     * and interacts with. Pretty much always follows this format, can be copy and pasted.
+     *
+     * @param mainApp
+     */
+    public void setMainApp(TEmPoSmgr mainApp) {
+        this.mainApp = mainApp;
+    }
+
 }

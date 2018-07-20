@@ -203,6 +203,31 @@ public class TEmPoSmgr extends Application {
     }
 
 
+    public void showProductsPage(){
+        try{
+
+            //load USER fxml page
+            FXMLLoader loader = new FXMLLoader(TEmPoSmgr.class.getResource("/View/ProductsPage.fxml"));
+            //load LoginPage of fxml type AnchorPane
+            AnchorPane ProductsPage = (AnchorPane) loader.load();
+
+            //Set login page to the centre of root layout
+            rootLayout.setCenter(ProductsPage);
+
+            //this is important. This loads the loginPageController so that the Main App can access its methods
+            ProductsPageController controller = loader.getController();
+            //calls the setMainApp method from loginPageController to make this the main app in the rootLayout
+            controller.setMainApp(this);
+
+
+            //required exception handling - don't worry about hint.
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+
+
     /**
      * loads and shows the home page
      */
