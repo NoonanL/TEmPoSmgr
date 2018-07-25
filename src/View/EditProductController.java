@@ -2,17 +2,23 @@ package View;
 
 import Model.Product;
 import TEmPoSmgr.TEmPoSmgr;
+import daos.CONFIGURATION;
+import daos.DISTRIBUTOR;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.json.JSONException;
+
+import java.io.IOException;
 
 public class EditProductController {
 
     private Stage dialogStage;
     private Product selectedProduct;
 
-    public EditProductController(){}
+    public EditProductController() throws IOException, JSONException {}
 
     @FXML private Button back;
     @FXML private Button submit;
