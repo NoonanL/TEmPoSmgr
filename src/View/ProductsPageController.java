@@ -7,7 +7,12 @@ import daos.CUSTOMER;
 import daos.PRODUCT;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.json.JSONException;
 
 import java.io.IOException;
@@ -72,6 +77,48 @@ public class ProductsPageController {
         }
     }
 
+    @FXML
+    private void editClicked() {
+
+        error.setText("");
+        Product selectedProduct = productTable.getSelectionModel().getSelectedItem();
+
+        if(selectedProduct == null){
+            error.setText("No product selected.");
+        }else {
+            error.setText("Product Id " + selectedProduct.getId() + " selected.");
+            showEditProductDialog(selectedProduct);
+        }
+    }
+
+    private void showEditProductDialog(Product product){
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(TEmPoSmgr.class.getResource("/View/EditProduct.fxml"));
+            AnchorPane page = loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Edit Product");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(error.getScene().getWindow());
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            EditProductController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setSelectedProduct(product);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+            refreshTable();
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Checks the search box for user input and then initialises the table again to reflect any change
      * @throws IOException
@@ -114,6 +161,19 @@ public class ProductsPageController {
 
         searchButton.setDefaultButton(true);
     }
+
+    /**
+     * Utility method to refresh the contents of the table
+     * @throws IOException
+     * @throws JSONException
+     */
+    @FXML
+    private void refreshTable() throws IOException, JSONException {
+        search();
+        productTable.refresh();
+        error.setText("");
+    }
+
 
     /**
      * This is the method that the MainApp will call to set this as the main page the user sees
