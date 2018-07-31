@@ -86,10 +86,14 @@ public class TEmPoSmgr extends Application {
             Menu tools = new Menu("Tools");
             MenuItem customerCSV = new MenuItem("Import Customers by CSV");
             customerCSV.setOnAction(actionEcent -> showCustomersCSV());
+
             MenuItem configuration = new MenuItem("Configure Till");
             configuration.setOnAction(actionEcent -> showConfiguration());
 
-            tools.getItems().addAll(customerCSV, configuration);
+            MenuItem departments = new MenuItem("Departments");
+            departments.setOnAction(actionEcent -> showDepartments());
+
+            tools.getItems().addAll(customerCSV, configuration, departments);
 
             Menu aboutMenu = new Menu("Help");
             MenuItem about = new MenuItem("About");
@@ -278,6 +282,33 @@ public class TEmPoSmgr extends Application {
 
             // Set the person into the controller.
             CsvParserController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showDepartments(){
+
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(TEmPoSmgr.class.getResource("/View/Departments.fxml"));
+            AnchorPane page = loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Departments");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(rootLayout.getScene().getWindow());
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            DepartmentsController controller = loader.getController();
             controller.setDialogStage(dialogStage);
 
             // Show the dialog and wait until the user closes it
