@@ -16,7 +16,7 @@
       <TextField fx:id="rrpField" layoutX="40.0" layoutY="300.0" />
       <TextField fx:id="costField" layoutX="230.0" layoutY="300.0" />
       <ChoiceBox fx:id="brandField" layoutX="40.0" layoutY="390.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="departmenttField" layoutX="230.0" layoutY="390.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="departmentField" layoutX="230.0" layoutY="390.0" prefWidth="150.0" />
       <Button fx:id="back" layoutX="615.0" layoutY="573.0" mnemonicParsing="false" onAction="#backClicked" styleClass="button-raised" text="Back" />
       <Button fx:id="submit" layoutX="676.0" layoutY="573.0" mnemonicParsing="false" onAction="#submit" styleClass="button-raised" text="Save Changes" />
       <Button fx:id="addDepartment" layoutX="383.0" layoutY="391.0" mnemonicParsing="false" styleClass="button-raised" text="+" />

@@ -1,9 +1,7 @@
 package View;
 
 import Model.Product;
-import TEmPoSmgr.TEmPoSmgr;
-import daos.CONFIGURATION;
-import daos.DISTRIBUTOR;
+import daos.BRAND;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -30,9 +28,12 @@ public class EditProductController {
     @FXML private TextField rrpField;
     @FXML private TextField costField;
 
-    @FXML private ChoiceBox departmenttField;
+    @FXML private ChoiceBox departmentField;
     @FXML private ChoiceBox brandField;
     @FXML private Label error;
+
+    private ObservableList<String> brands = FXCollections.observableArrayList(BRAND.getBrandList());
+
 
     public void setSelectedProduct(Product product) {
 
@@ -42,7 +43,7 @@ public class EditProductController {
         descriptionField.setText(selectedProduct.getDescription());
         rrpField.setText(selectedProduct.getRRP());
         costField.setText(selectedProduct.getCost());
-        departmenttField.setValue(selectedProduct.getDepartment());
+        departmentField.setValue(selectedProduct.getDepartment());
         brandField.setValue(selectedProduct.getBrand());
     }
 
@@ -64,10 +65,11 @@ public class EditProductController {
      * after the fxml file has been loaded.
      */
     @FXML
-    private void initialize() {
+    private void initialize() throws IOException, JSONException {
         submit.setDefaultButton(true);
-        //titleField.setItems(FXCollections.observableArrayList("-","Mr & Mrs","Mr","Mrs","Ms","Miss"));
-        //marketingStatusField.setItems(FXCollections.observableArrayList("True","False"));
+        //departmentField.setItems(FXCollections.observableArrayList());
+        System.out.println(brands.toString());
+        brandField.setItems(brands);
     }
 
     /**

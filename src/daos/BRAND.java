@@ -86,11 +86,19 @@ public class BRAND {
                 Brand brand = new Brand();
                 brand.setId(userJson.getString("id"));
                 brand.setBrand(userJson.getString("brand"));
-                brand.setBrand(userJson.getString("distributor"));
+                brand.setDistributor(userJson.getString("distributor"));
                 brandList.add(brand);
             }
         }
         return brandList;
+    }
+
+    public static ArrayList<String> getBrandList() throws IOException, JSONException {
+        ArrayList<String> brandList = new ArrayList<>();
+        for(Brand x : getBrands()){
+            brandList.add(x.getBrand());
+        }
+        return  brandList;
     }
 
     /**
