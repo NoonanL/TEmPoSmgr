@@ -7,7 +7,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="card" stylesheets="@CSS/DarkTheme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.EditProductController">
    <children>
       <TextField fx:id="nameField" layoutX="40.0" layoutY="40.0" prefHeight="38.0" prefWidth="445.0" styleClass="text-field" />
@@ -19,7 +18,7 @@
       <ChoiceBox fx:id="departmentField" layoutX="230.0" layoutY="390.0" prefWidth="150.0" />
       <Button fx:id="back" layoutX="615.0" layoutY="573.0" mnemonicParsing="false" onAction="#backClicked" styleClass="button-raised" text="Back" />
       <Button fx:id="submit" layoutX="676.0" layoutY="573.0" mnemonicParsing="false" onAction="#submit" styleClass="button-raised" text="Save Changes" />
-      <Button fx:id="addDepartment" layoutX="383.0" layoutY="391.0" mnemonicParsing="false" styleClass="button-raised" text="+" />
+      <Button fx:id="addDepartment" layoutX="383.0" layoutY="391.0" mnemonicParsing="false" onAction="#createDepartmentClicked" styleClass="button-raised" text="+" />
       <Button fx:id="addBrand" layoutX="195.0" layoutY="391.0" mnemonicParsing="false" styleClass="button-raised" text="+" />
       <Label fx:id="error" layoutX="40.0" layoutY="585.0" prefHeight="20.0" prefWidth="445.0" />
    </children>

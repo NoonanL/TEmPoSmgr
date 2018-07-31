@@ -1,12 +1,17 @@
 package View;
 
 import Model.Product;
+import TEmPoSmgr.TEmPoSmgr;
 import daos.BRAND;
 import daos.DEPARTMENT;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.json.JSONException;
 
@@ -53,6 +58,43 @@ public class EditProductController {
     private void submit() {
 
     }
+
+    @FXML
+    private void createDepartmentClicked(){
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(TEmPoSmgr.class.getResource("/View/Departments.fxml"));
+            AnchorPane page = loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Departments");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(error.getScene().getWindow());
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            DepartmentsController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+            departments = FXCollections.observableArrayList(DEPARTMENT.getDepartmentList());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void createBrand(){
+
+    }
+
 
     @FXML
     private void backClicked(){
