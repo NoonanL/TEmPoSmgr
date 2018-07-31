@@ -44,12 +44,11 @@ public class DepartmentsController {
 
     @FXML
     private void editClicked() throws IOException, JSONException {
-
         error.setText("");
         Department selectedDepartment = departmentTable.getSelectionModel().getSelectedItem();
 
         if(selectedDepartment == null){
-            error.setText("No user selected.");
+            error.setText("No department selected.");
         }else {
             error.setText(selectedDepartment.getDepartment() + " selected.");
             showEditDepartmentDialoge(selectedDepartment);
@@ -137,7 +136,7 @@ public class DepartmentsController {
     private void refreshTable() throws IOException, JSONException {
         departmentData = FXCollections.observableList(DEPARTMENT.getDepartments());
         departmentTable.refresh();
-        error.setText("");
+        //error.setText("");
         departmentTable.setItems(departmentData);
     }
 

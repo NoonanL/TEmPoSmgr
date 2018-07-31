@@ -67,6 +67,7 @@ public class EditCustomerController {
         String targetCustomer = this.selectedCustomer.getId();
 
         Customer editCustomer = new Customer();
+        editCustomer.setId(targetCustomer);
         editCustomer.setTitle(titleField.getSelectionModel().getSelectedItem().toString());
         editCustomer.setFirstname(firstnameField.getText());
         editCustomer.setSurname(surnameField.getText());
@@ -79,7 +80,7 @@ public class EditCustomerController {
         editCustomer.setEmail(emailField.getText());
         editCustomer.setMarketingStatus(marketingStatusField.getSelectionModel().getSelectedItem().toString());
 
-        if(CUSTOMER.editCustomer(editCustomer,targetCustomer)){
+        if(CUSTOMER.editCustomer(editCustomer)){
             error.setText("Changes saved.");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Changes Saved");
