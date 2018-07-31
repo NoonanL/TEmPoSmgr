@@ -1,6 +1,7 @@
 package daos;
 
 import Model.Brand;
+import Model.Department;
 import Model.Distributor;
 import Utils.ParameterStringBuilder;
 import org.json.JSONException;
@@ -82,11 +83,19 @@ public class DISTRIBUTOR  {
                 JSONObject userJson = (response.getJSONObject(json));
                 Distributor distributor = new Distributor();
                 distributor.setId(userJson.getString("id"));
-                distributor.setName(userJson.getString("distributor"));
+                distributor.setName(userJson.getString("name"));
                 distributorList.add(distributor);
             }
         }
         return distributorList;
+    }
+
+    public static ArrayList<String> getDistributorList() throws IOException, JSONException {
+        ArrayList<String> distributorList = new ArrayList<>();
+        for(Distributor x : getDistributors()){
+            distributorList.add(x.getName());
+        }
+        return  distributorList;
     }
 
     /**

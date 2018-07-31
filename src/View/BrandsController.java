@@ -1,8 +1,12 @@
 package View;
 
+import Model.Brand;
 import Model.Department;
+import Model.Distributor;
 import TEmPoSmgr.TEmPoSmgr;
+import daos.BRAND;
 import daos.DEPARTMENT;
+import daos.DISTRIBUTOR;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,85 +20,89 @@ import org.json.JSONException;
 
 import java.io.IOException;
 
-public class DepartmentsController {
+public class BrandsController {
 
     private Stage dialogStage;
 
-    public DepartmentsController() throws IOException, JSONException {}
+    public BrandsController() throws IOException, JSONException {}
 
     @FXML private Button back;
-    @FXML private TextField departmentField;
+    @FXML private TextField brandField;
+    @FXML private ChoiceBox distributorField;
     @FXML private Label error;
-    @FXML private TableView<Department> departmentTable;
-    @FXML private TableColumn<Department, String> departmentColumn;
+    @FXML private TableView<Brand> brandTable;
+    @FXML private TableColumn<Brand, String> brandColumn;
+    @FXML private TableColumn<Brand, String> distributorColumn;
 
-    private ObservableList<Department> departmentData = FXCollections.observableList(DEPARTMENT.getDepartments());
+    private ObservableList<Brand> brandsData = FXCollections.observableList(BRAND.getBrands());
+    private ObservableList<String> distributors = FXCollections.observableArrayList(DISTRIBUTOR.getDistributorList());
 
     @FXML
     private void createNewClicked() throws IOException, JSONException {
         error.setText("");
-        //assign the text currently in the username and password text boxes to variables
-        String department = departmentField.getText();
 
-        error.setText(createDepartment(department));
-        refreshTable();
+        if(brandField.getText().equals("") || distributorField.getSelectionModel() == null){
+            error.setText("Please enter values for all required fields.");
+        }else{
+            String brand = brandField.getText();
+            String distributor = distributorField.getSelectionModel().getSelectedItem().toString();
+
+            Brand newBrand = new Brand();
+            newBrand.setBrand(brand);
+            newBrand.setDistributor(distributor);
+
+            error.setText(createBrand(newBrand));
+        }
     }
 
     @FXML
     private void editClicked() throws IOException, JSONException {
         error.setText("");
-        Department selectedDepartment = departmentTable.getSelectionModel().getSelectedItem();
+        Brand selectedBrand = brandTable.getSelectionModel().getSelectedItem();
 
-        if(selectedDepartment == null){
-            error.setText("No department selected.");
-        }else {
-            error.setText(selectedDepartment.getDepartment() + " selected.");
-            showEditDepartmentDialog(selectedDepartment);
+        if (selectedBrand == null) {
+            error.setText("No Brand selected.");
+        } else {
+            error.setText(selectedBrand.getBrand() + " selected.");
+            showEditBrandDialog(selectedBrand);
         }
         refreshTable();
     }
 
-
-    private String createDepartment(String department) throws IOException, JSONException {
+    private String createBrand(Brand newBrand) throws IOException, JSONException {
 
         String returnString;
 
-        if(!department.equals("")){
-
-            Department newDepartment = new Department();
-            newDepartment.setDepartment(department);
-
-            if(DEPARTMENT.createDepartment(newDepartment)){
-                //System.out.println("New user created");
-                returnString = "New department created";
-            }else{
-                returnString = "Error creating new Department.";
-            }
-        }else {
-            returnString = "Please complete all marked fields.";
+        if(BRAND.createBrand(newBrand)){
+            returnString = "New Brand created";
         }
+        else{
+            returnString = "Error creating new Brand.";
+        }
+
+        refreshTable();
         return(returnString);
     }
 
-    private void showEditDepartmentDialog(Department department) {
+    private void showEditBrandDialog(Brand brand) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(TEmPoSmgr.class.getResource("/View/EditDepartment.fxml"));
+            loader.setLocation(TEmPoSmgr.class.getResource("/View/EditBrand.fxml"));
             AnchorPane page = loader.load();
 
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Edit Department");
+            dialogStage.setTitle("Edit Brand");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(error.getScene().getWindow());
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
             // Set the person into the controller.
-            EditDepartmentController controller = loader.getController();
+            EditBrandController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            controller.setSelectedDepartment(department);
+            controller.setSelectedBrand(brand);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -103,7 +111,6 @@ public class DepartmentsController {
             e.printStackTrace();
         }
     }
-
 
     @FXML
     private void backClicked() {
@@ -121,8 +128,10 @@ public class DepartmentsController {
     private void initialize() {
         error.setText("");
         //Set columns to their appropriate value factory
-        departmentColumn.setCellValueFactory(cellData -> cellData.getValue().departmentProperty());
-        departmentTable.setItems(departmentData);
+        brandColumn.setCellValueFactory(cellData -> cellData.getValue().brandProperty());
+        distributorColumn.setCellValueFactory(cellData -> cellData.getValue().distributorProperty());
+        brandTable.setItems(brandsData);
+        distributorField.setItems(distributors);
 
     }
 
@@ -132,10 +141,10 @@ public class DepartmentsController {
      * @throws JSONException
      */
     private void refreshTable() throws IOException, JSONException {
-        departmentData = FXCollections.observableList(DEPARTMENT.getDepartments());
-        departmentTable.refresh();
+        brandsData = FXCollections.observableList(BRAND.getBrands());
+        brandTable.refresh();
         //error.setText("");
-        departmentTable.setItems(departmentData);
+        brandTable.setItems(brandsData);
     }
 
 
@@ -147,5 +156,6 @@ public class DepartmentsController {
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
+
 
 }

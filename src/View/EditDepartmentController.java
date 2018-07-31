@@ -18,8 +18,7 @@ public class EditDepartmentController {
 
     public EditDepartmentController(){}
 
-    @FXML
-    private Button back;
+    @FXML private Button back;
     @FXML Button submit;
     @FXML private TextField departmentField;
     @FXML private Label error;

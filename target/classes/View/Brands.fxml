@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="620.0" prefWidth="720.0" styleClass="card" stylesheets="@CSS/DarkTheme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.BrandsController">
+   <children>
+      <Label layoutX="59.0" layoutY="49.0" styleClass="card-title" text="Manage Brands" />
+      <TableView fx:id="brandTable" layoutX="58.0" layoutY="87.0" prefHeight="453.0" prefWidth="408.0">
+        <columns>
+          <TableColumn fx:id="brandColumn" prefWidth="187.0" text="Brand" />
+            <TableColumn fx:id="distributorColumn" prefWidth="220.0" text="Distributor" />
+        </columns>
+      </TableView>
+      <Button layoutX="410.0" layoutY="545.0" mnemonicParsing="false" onAction="#editClicked" prefHeight="40.0" prefWidth="52.0" styleClass="button-raised" text="Edit" />
+      <Button layoutX="486.0" layoutY="296.0" mnemonicParsing="false" onAction="#createNewClicked" styleClass="button-raised" text="Create New Brand" />
+      <Button fx:id="back" layoutX="635.0" layoutY="545.0" mnemonicParsing="false" onAction="#backClicked" styleClass="button-raised" text="Back" />
+      <Label layoutX="486.0" layoutY="153.0" text="Brand" />
+      <Label fx:id="error" layoutX="488.0" layoutY="364.0" prefHeight="106.0" prefWidth="185.0" wrapText="true" />
+      <ChoiceBox fx:id="distributorField" layoutX="491.0" layoutY="235.0" prefWidth="150.0" />
+      <TextField fx:id="brandField" layoutX="491.0" layoutY="181.0" />
+   </children>
+</AnchorPane>

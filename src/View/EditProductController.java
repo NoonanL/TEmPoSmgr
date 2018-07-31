@@ -83,16 +83,38 @@ public class EditProductController {
             dialogStage.showAndWait();
 
             departments = FXCollections.observableArrayList(DEPARTMENT.getDepartmentList());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    private void createBrand(){
+    private void createBrandClicked(){
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(TEmPoSmgr.class.getResource("/View/Brands.fxml"));
+            AnchorPane page = loader.load();
 
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Brands");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(error.getScene().getWindow());
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            BrandsController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+            brands = FXCollections.observableArrayList(BRAND.getBrandList());
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 

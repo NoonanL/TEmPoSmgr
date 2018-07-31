@@ -93,7 +93,10 @@ public class TEmPoSmgr extends Application {
             MenuItem departments = new MenuItem("Departments");
             departments.setOnAction(actionEcent -> showDepartments());
 
-            tools.getItems().addAll(customerCSV, configuration, departments);
+            MenuItem brands = new MenuItem("Brands");
+            brands.setOnAction(actionEcent -> showBrands());
+
+            tools.getItems().addAll(customerCSV, configuration, departments, brands);
 
             Menu aboutMenu = new Menu("Help");
             MenuItem about = new MenuItem("About");
@@ -309,6 +312,33 @@ public class TEmPoSmgr extends Application {
 
             // Set the person into the controller.
             DepartmentsController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showBrands(){
+
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(TEmPoSmgr.class.getResource("/View/Brands.fxml"));
+            AnchorPane page = loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Brands");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(rootLayout.getScene().getWindow());
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            BrandsController controller = loader.getController();
             controller.setDialogStage(dialogStage);
 
             // Show the dialog and wait until the user closes it
