@@ -89,7 +89,7 @@ public class DEPARTMENT {
         return departmentList;
     }
 
-    public static ArrayList<String> getBrandList() throws IOException, JSONException {
+    public static ArrayList<String> getDepartmentList() throws IOException, JSONException {
         ArrayList<String> brandList = new ArrayList<>();
         for(Department x : getDepartments()){
             brandList.add(x.getDepartment());

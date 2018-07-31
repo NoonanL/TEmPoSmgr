@@ -2,6 +2,7 @@ package View;
 
 import Model.Product;
 import daos.BRAND;
+import daos.DEPARTMENT;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -33,6 +34,7 @@ public class EditProductController {
     @FXML private Label error;
 
     private ObservableList<String> brands = FXCollections.observableArrayList(BRAND.getBrandList());
+    private ObservableList<String> departments = FXCollections.observableArrayList(DEPARTMENT.getDepartmentList());
 
 
     public void setSelectedProduct(Product product) {
@@ -67,8 +69,7 @@ public class EditProductController {
     @FXML
     private void initialize() throws IOException, JSONException {
         submit.setDefaultButton(true);
-        //departmentField.setItems(FXCollections.observableArrayList());
-        System.out.println(brands.toString());
+        departmentField.setItems(departments);
         brandField.setItems(brands);
     }
 
