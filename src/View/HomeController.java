@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.json.JSONException;
@@ -38,7 +37,7 @@ public class HomeController {
     public void adminSettings() throws IOException, JSONException {
 
         if(USER.isAdmin()){
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/AdminSettings.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Admin/AdminSettings.fxml"));
             Parent adminSettings = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(adminSettings));

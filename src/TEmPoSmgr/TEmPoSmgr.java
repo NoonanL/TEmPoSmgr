@@ -2,9 +2,12 @@ package TEmPoSmgr;
 
 import Model.Configuration;
 import View.*;
-import daos.CONFIGURATION;
-import daos.CUSTOMER;
-import daos.USER;
+import View.Customer.CustomerPageController;
+import View.Product.BrandsController;
+import View.Product.DepartmentsController;
+import View.Product.ProductsPageController;
+import View.Util.ConfigurationPageController;
+import View.Util.CsvParserController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -190,7 +193,7 @@ public class TEmPoSmgr extends Application {
         try{
 
             //load USER fxml page
-            FXMLLoader loader = new FXMLLoader(TEmPoSmgr.class.getResource("/View/CustomerPage.fxml"));
+            FXMLLoader loader = new FXMLLoader(TEmPoSmgr.class.getResource("/View/Customer/CustomerPage.fxml"));
             //load LoginPage of fxml type AnchorPane
             AnchorPane CustomerPage = (AnchorPane) loader.load();
 
@@ -214,7 +217,7 @@ public class TEmPoSmgr extends Application {
         try{
 
             //load USER fxml page
-            FXMLLoader loader = new FXMLLoader(TEmPoSmgr.class.getResource("/View/ProductsPage.fxml"));
+            FXMLLoader loader = new FXMLLoader(TEmPoSmgr.class.getResource("/View/Product/ProductsPage.fxml"));
             //load LoginPage of fxml type AnchorPane
             AnchorPane ProductsPage = (AnchorPane) loader.load();
 
@@ -272,7 +275,7 @@ public class TEmPoSmgr extends Application {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(TEmPoSmgr.class.getResource("/View/CsvParser.fxml"));
+            loader.setLocation(TEmPoSmgr.class.getResource("/View/Util/CsvParser.fxml"));
             AnchorPane page = loader.load();
 
             // Create the dialog Stage.
@@ -299,7 +302,7 @@ public class TEmPoSmgr extends Application {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(TEmPoSmgr.class.getResource("/View/Departments.fxml"));
+            loader.setLocation(TEmPoSmgr.class.getResource("/View/Product/Departments.fxml"));
             AnchorPane page = loader.load();
 
             // Create the dialog Stage.
@@ -326,7 +329,7 @@ public class TEmPoSmgr extends Application {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(TEmPoSmgr.class.getResource("/View/Brands.fxml"));
+            loader.setLocation(TEmPoSmgr.class.getResource("/View/Product/Brands.fxml"));
             AnchorPane page = loader.load();
 
             // Create the dialog Stage.
@@ -356,7 +359,7 @@ public class TEmPoSmgr extends Application {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(TEmPoSmgr.class.getResource("/View/ConfigurationPage.fxml"));
+            loader.setLocation(TEmPoSmgr.class.getResource("/View/Util/ConfigurationPage.fxml"));
             AnchorPane page = loader.load();
 
             // Create the dialog Stage.

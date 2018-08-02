@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1200.0" stylesheets="@../CSS/DarkTheme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Product.ProductsPageController">
+   <children>
+      <TableView fx:id="productTable" layoutX="14.0" layoutY="14.0" prefHeight="520.0" prefWidth="730.0" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="456.0" AnchorPane.topAnchor="14.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="87.0" text="Product Id" />
+          <TableColumn fx:id="skuColumn" prefWidth="63.0" text="SKU" />
+            <TableColumn fx:id="nameColumn" prefWidth="209.0" text="Name" />
+            <TableColumn fx:id="departmentColumn" prefWidth="98.0" text="Department" />
+            <TableColumn fx:id="brandColumn" prefWidth="118.0" text="Brand" />
+            <TableColumn fx:id="rrpColumn" minWidth="6.0" prefWidth="89.0" text="RRP" />
+            <TableColumn fx:id="costColumn" prefWidth="65.0" text="Cost" />
+        </columns>
+      </TableView>
+      <TextField fx:id="search" layoutX="515.0" layoutY="550.0" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="515.0" />
+      <Button fx:id="searchButton" layoutX="688.0" layoutY="549.0" mnemonicParsing="false" onAction="#search" text="Search" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="448.0" />
+      <Button layoutX="14.0" layoutY="549.0" mnemonicParsing="false" text="Refresh" AnchorPane.bottomAnchor="11.0" />
+      <Label fx:id="name" layoutX="772.0" layoutY="80.0" prefHeight="20.0" prefWidth="127.0" styleClass="labelWhite" text="Name" AnchorPane.rightAnchor="301.0" />
+      <Label fx:id="sku" layoutX="772.0" layoutY="119.0" prefHeight="20.0" prefWidth="127.0" styleClass="labelWhite" text="SKU" AnchorPane.rightAnchor="301.0" />
+      <Label fx:id="rrp" layoutX="772.0" layoutY="159.0" prefHeight="20.0" prefWidth="127.0" styleClass="labelWhite" text="RRP" AnchorPane.rightAnchor="301.0" />
+      <Label fx:id="brand" layoutX="772.0" layoutY="196.0" prefHeight="20.0" prefWidth="127.0" styleClass="labelWhite" text="Brand" AnchorPane.rightAnchor="301.0" />
+      <Label fx:id="department" layoutX="772.0" layoutY="232.0" prefHeight="20.0" prefWidth="127.0" styleClass="labelWhite" text="Department" AnchorPane.rightAnchor="301.0" />
+      <Label fx:id="description" layoutX="772.0" layoutY="260.0" prefHeight="115.0" prefWidth="263.0" styleClass="labelWhite" text="Description" wrapText="true" AnchorPane.rightAnchor="165.0" />
+      <Button layoutX="842.0" layoutY="383.0" mnemonicParsing="false" onAction="#editClicked" prefHeight="40.0" prefWidth="115.0" text="Edit" AnchorPane.rightAnchor="243.0" />
+      <Button layoutX="1134.0" layoutY="549.0" mnemonicParsing="false" onAction="#backClicked" text="Back" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="14.0" />
+      <Button layoutX="772.0" layoutY="383.0" mnemonicParsing="false" text="Delete" AnchorPane.rightAnchor="365.0" />
+      <Label fx:id="error" layoutX="772.0" layoutY="438.0" prefHeight="20.0" prefWidth="406.0" text="Label" />
+   </children>
+</AnchorPane>
