@@ -8,6 +8,7 @@ import View.Product.DepartmentsController;
 import View.Product.ProductsPageController;
 import View.Util.ConfigurationPageController;
 import View.Util.CsvParserController;
+import View.Util.DistributorPageController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -99,7 +100,10 @@ public class TEmPoSmgr extends Application {
             MenuItem brands = new MenuItem("Brands");
             brands.setOnAction(actionEcent -> showBrands());
 
-            tools.getItems().addAll(customerCSV, configuration, departments, brands);
+            MenuItem distributors = new MenuItem("Distributors");
+            distributors.setOnAction(actionEcent -> showDistributor());
+
+            tools.getItems().addAll(customerCSV, configuration, departments, brands, distributors);
 
             Menu aboutMenu = new Menu("Help");
             MenuItem about = new MenuItem("About");
@@ -342,6 +346,33 @@ public class TEmPoSmgr extends Application {
 
             // Set the person into the controller.
             BrandsController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showDistributor(){
+
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(TEmPoSmgr.class.getResource("/View/Util/DistributorPage.fxml"));
+            AnchorPane page = loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Distributors");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(rootLayout.getScene().getWindow());
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            DistributorPageController controller = loader.getController();
             controller.setDialogStage(dialogStage);
 
             // Show the dialog and wait until the user closes it

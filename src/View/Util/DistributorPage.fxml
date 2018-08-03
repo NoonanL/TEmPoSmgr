@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="View.Util.DistributorPageController"
+            prefHeight="620.0" prefWidth="720.0"
+            styleClass="card" stylesheets="@../CSS/DarkTheme.css">
+    <children>
+        <TableView fx:id="distributorTable" layoutX="41.0" layoutY="81.0" prefHeight="409.0" prefWidth="455.0">
+            <columns>
+                <TableColumn fx:id="nameColumn" prefWidth="454.0" text="Distributor" />
+            </columns>
+        </TableView>
+        <Label layoutX="41.0" layoutY="38.0" styleClass="title-label" text="Manage Distributors">
+            <font>
+                <Font size="29.0" />
+            </font>
+        </Label>
+        <Button layoutX="522.0" layoutY="160.0" mnemonicParsing="false" onAction="#editClicked" prefHeight="43.0" prefWidth="100.0" styleClass="button-raised" text="Edit" />
+        <Button layoutX="302.0" layoutY="505.0" mnemonicParsing="false" onAction="#createNewClicked" styleClass="button-raised" text="Create New Distributor" />
+        <Button fx:id="back" layoutX="645.0" layoutY="566.0" mnemonicParsing="false" onAction="#backClicked" styleClass="button-raised" text="Back" />
+        <TextField fx:id="distributorField" layoutX="123.0" layoutY="506.0" styleClass="text" />
+        <Label layoutX="41.0" layoutY="515.0" text="Department" />
+        <Label fx:id="error" layoutX="522.0" layoutY="212.0" prefHeight="74.0" prefWidth="149.0" styleClass="labelError" wrapText="true" />
+    </children>
+
+</AnchorPane>

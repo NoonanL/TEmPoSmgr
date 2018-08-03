@@ -42,7 +42,7 @@ public class Distributor {
     public Map<String, String> getParameters(){
         Map<String, String> parameters= new LinkedHashMap<>();
         parameters.put("id", this.getId());
-        parameters.put("name" , this.getName());
+        parameters.put("distributor" , this.getName());
         return parameters;
     }
 }
