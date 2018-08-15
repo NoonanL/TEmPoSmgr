@@ -32,6 +32,6 @@
       <Button layoutX="842.0" layoutY="383.0" mnemonicParsing="false" onAction="#editClicked" prefHeight="40.0" prefWidth="115.0" text="Edit" AnchorPane.rightAnchor="243.0" />
       <Button layoutX="1134.0" layoutY="549.0" mnemonicParsing="false" onAction="#backClicked" text="Back" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="14.0" />
       <Button layoutX="772.0" layoutY="383.0" mnemonicParsing="false" text="Delete" AnchorPane.rightAnchor="365.0" />
-      <Label fx:id="error" layoutX="772.0" layoutY="438.0" prefHeight="20.0" prefWidth="406.0" text="Label" />
+      <Label fx:id="error" layoutX="772.0" layoutY="438.0" prefHeight="20.0" prefWidth="406.0" text="" />
    </children>
 </AnchorPane>
