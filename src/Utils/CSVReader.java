@@ -1,6 +1,7 @@
 package Utils;
 
 import Model.Customer;
+import Model.Product;
 import TEmPoSmgr.TEmPoSmgr;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -32,7 +33,7 @@ public class CSVReader {
                     CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT
                             .withFirstRecordAsHeader()
                             .withIgnoreHeaderCase()
-                            .withTrim());
+                            .withTrim())
             ) {
                 //for each record
                 for (CSVRecord csvRecord : csvParser) {
@@ -87,6 +88,60 @@ public class CSVReader {
             }
             //return the customerList
             return customerList;
+    }
+
+    public static ArrayList<Product> parseProductCSV(String filename, ArrayList<String> headers){
+        ArrayList<Product> productList = new ArrayList<>();
+
+        //Attempt to open file
+        try (
+                Reader reader = Files.newBufferedReader(Paths.get(filename));
+                CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT
+                        .withFirstRecordAsHeader()
+                        .withIgnoreHeaderCase()
+                        .withTrim())
+        ) {
+            //for each record
+            for (CSVRecord csvRecord : csvParser) {
+
+                //create a new empty customer object
+                Product product = new Product();
+
+                //for each header, attempt to map the value to an object parameter
+                for(String s : headers){
+                    switch(s){
+                        case "name" :
+                            product.setName(csvRecord.get(s));
+                            break;
+                        case "sku" :
+                            product.setSKU(csvRecord.get(s));
+                            break;
+                        case "rrp" :
+                            product.setRRP(csvRecord.get(s));
+                            break;
+                        case "cost" :
+                            product.setCost(csvRecord.get(s));
+                            break;
+                        case "department" :
+                            product.setDepartment(csvRecord.get(s));
+                            break;
+                        case "brand" :
+                            product.setBrand(csvRecord.get(s));
+                            break;
+                        case "description" :
+                            product.setDescription(csvRecord.get(s));
+                            break;
+                    }
+                }
+                //add the parsed customer to the list
+                productList.add(product);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //return the customerList
+        return productList;
     }
 
 

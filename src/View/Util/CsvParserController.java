@@ -1,8 +1,10 @@
 package View.Util;
 
 import Model.Customer;
+import Model.Product;
 import Utils.CSVReader;
 import daos.CUSTOMER;
+import daos.PRODUCT;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -80,6 +82,14 @@ public class CsvParserController {
                 }
             }else if(rdoProduct.isSelected()){
                 System.out.println("Trying to parse product data from " + file + ".");
+                ArrayList<Product> productList = CSVReader.parseProductCSV(file, headerList);
+                for(Product p : productList) {
+                    if (PRODUCT.createProduct(p)) {
+                        error.setText("Product data successfuly uploaded.");
+                    } else {
+                        error.setText("Problem uploading product data.");
+                    }
+                }
             }else{
                 error.setText("Please select a data type.");
             }
