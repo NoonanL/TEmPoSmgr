@@ -18,14 +18,14 @@ import org.json.JSONException;
 
 import java.io.IOException;
 
-public class EditProductController {
+public class CreateProductController {
 
     private Stage dialogStage;
-    private Product selectedProduct;
 
-    public EditProductController() throws IOException, JSONException {}
+    public CreateProductController() throws IOException, JSONException {}
 
-    @FXML private Button back;
+    @FXML
+    private Button back;
     @FXML private Button submit;
     @FXML private Button addBrand;
     @FXML private Button addDepartment;
@@ -43,24 +43,13 @@ public class EditProductController {
     private ObservableList<String> departments = FXCollections.observableArrayList(DEPARTMENT.getDepartmentList());
 
 
-    public void setSelectedProduct(Product product) {
-
-        this.selectedProduct = product;
-        nameField.setText(selectedProduct.getName());
-        skuField.setText(selectedProduct.getSKU());
-        descriptionField.setText(selectedProduct.getDescription());
-        rrpField.setText(selectedProduct.getRRP());
-        costField.setText(selectedProduct.getCost());
-        departmentField.setValue(selectedProduct.getDepartment());
-        brandField.setValue(selectedProduct.getBrand());
-    }
-
     @FXML
     private void submit() throws IOException, JSONException {
 
-        editProduct();
+        createProduct();
 
     }
+
 
     @FXML
     private void createDepartmentClicked(){
@@ -87,7 +76,6 @@ public class EditProductController {
 
             departments = FXCollections.observableArrayList(DEPARTMENT.getDepartmentList());
             departmentField.setItems(departments);
-            departmentField.setValue(selectedProduct.getDepartment());
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
@@ -118,71 +106,72 @@ public class EditProductController {
 
             brands = FXCollections.observableArrayList(BRAND.getBrandList());
             brandField.setItems(brands);
-            brandField.setValue(selectedProduct.getBrand());
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
     }
 
-    private void editProduct() throws IOException, JSONException {
+
+    private void createProduct() throws IOException, JSONException {
 
         //Added input validation for pound symbols here - NOT good enough. Will be fixed serverside in next scrum.
-        if(skuField.getText().equals("") ||
+        if (skuField.getText().equals("") ||
                 costField.getText().equals("") ||
                 costField.getText().contains("£") ||
                 rrpField.getText().equals("") ||
-                rrpField.getText().contains("£")){
+                rrpField.getText().contains("£")) {
             error.setText("Please enter values for all required fields.");
-        }else{
-            Product editProduct = new Product();
-            editProduct.setId(selectedProduct.getId());
-            editProduct.setName(nameField.getText());
-            editProduct.setBrand(brandField.getSelectionModel().getSelectedItem().toString());
-            editProduct.setDepartment(departmentField.getSelectionModel().getSelectedItem().toString());
-            editProduct.setDescription(descriptionField.getText());
-            editProduct.setCost(costField.getText());
-            editProduct.setRRP(rrpField.getText());
-            editProduct.setSKU(skuField.getText());
+        } else {
+            Product newProduct = new Product();
+            newProduct.setName(nameField.getText());
+            newProduct.setBrand(brandField.getSelectionModel().getSelectedItem().toString());
+            newProduct.setDepartment(departmentField.getSelectionModel().getSelectedItem().toString());
+            newProduct.setDescription(descriptionField.getText());
+            newProduct.setCost(costField.getText());
+            newProduct.setRRP(rrpField.getText());
+            newProduct.setSKU(skuField.getText());
 
 
-            if(PRODUCT.editProduct(editProduct)){
+            if (PRODUCT.createProduct(newProduct)) {
 
-                error.setText("Product " + editProduct.getId() + " successfully edited");
-            }else{
-                error.setText("Failed to edit product!");
+                error.setText("Product successfully created.");
+            } else {
+                error.setText("Failed to create product!");
             }
 
         }
-
     }
 
-    @FXML
-    private void backClicked(){
-        // get a handle to the stage
-        Stage stage = (Stage) back.getScene().getWindow();
-        // do what you have to do
-        stage.close();
-    }
 
-    /**
-     * Initializes the controller class. This method is automatically called
-     * after the fxml file has been loaded.
-     */
-    @FXML
-    private void initialize() throws IOException, JSONException {
-        submit.setDefaultButton(true);
-        departmentField.setItems(departments);
-        brandField.setItems(brands);
-    }
 
-    /**
-     * Sets the stage of this dialog.
-     *
-     * @param dialogStage
-     */
-    public void setDialogStage(Stage dialogStage) {
-        this.dialogStage = dialogStage;
-    }
+        @FXML
+        private void backClicked(){
+            // get a handle to the stage
+            Stage stage = (Stage) back.getScene().getWindow();
+            // do what you have to do
+            stage.close();
+        }
+
+        /**
+         * Initializes the controller class. This method is automatically called
+         * after the fxml file has been loaded.
+         */
+        @FXML
+        private void initialize() throws IOException, JSONException {
+            submit.setDefaultButton(true);
+            departmentField.setItems(departments);
+            brandField.setItems(brands);
+        }
+
+        /**
+         * Sets the stage of this dialog.
+         *
+         * @param dialogStage
+         */
+        public void setDialogStage(Stage dialogStage) {
+            this.dialogStage = dialogStage;
+        }
+
+
 
 }
-

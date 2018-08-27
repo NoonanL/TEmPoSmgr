@@ -88,7 +88,7 @@ public class TEmPoSmgr extends Application {
 
             // Tools Menu
             Menu tools = new Menu("Tools");
-            MenuItem customerCSV = new MenuItem("Import Customers by CSV");
+            MenuItem customerCSV = new MenuItem("CSV Data Importer");
             customerCSV.setOnAction(actionEcent -> showCustomersCSV());
 
             MenuItem configuration = new MenuItem("Configure Till");
@@ -284,7 +284,7 @@ public class TEmPoSmgr extends Application {
 
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Upload Customer CSV");
+            dialogStage.setTitle("Import from CSV");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(rootLayout.getScene().getWindow());
             Scene scene = new Scene(page);

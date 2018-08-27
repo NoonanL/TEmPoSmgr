@@ -70,7 +70,7 @@ public class CsvParserController {
          */
         if(checkValidInput()){
             if(rdoCustomer.isSelected()){
-                System.out.println("Trying to parse customer data from " + file + ".");
+                //System.out.println("Trying to parse customer data from " + file + ".");
                 ArrayList<Customer> customerList = CSVReader.parseCustomerCSV(file, headerList);
                 for(Customer c : customerList){
                     if(CUSTOMER.createCustomer(c)){
@@ -81,7 +81,7 @@ public class CsvParserController {
 
                 }
             }else if(rdoProduct.isSelected()){
-                System.out.println("Trying to parse product data from " + file + ".");
+                //System.out.println("Trying to parse product data from " + file + ".");
                 ArrayList<Product> productList = CSVReader.parseProductCSV(file, headerList);
                 for(Product p : productList) {
                     if (PRODUCT.createProduct(p)) {

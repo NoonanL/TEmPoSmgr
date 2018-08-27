@@ -1,11 +1,16 @@
 package Utils;
 
+import Model.Brand;
 import Model.Customer;
+import Model.Department;
 import Model.Product;
 import TEmPoSmgr.TEmPoSmgr;
+import daos.BRAND;
+import daos.DEPARTMENT;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.json.JSONException;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -90,8 +95,11 @@ public class CSVReader {
             return customerList;
     }
 
-    public static ArrayList<Product> parseProductCSV(String filename, ArrayList<String> headers){
+    public static ArrayList<Product> parseProductCSV(String filename, ArrayList<String> headers) throws IOException, JSONException {
         ArrayList<Product> productList = new ArrayList<>();
+
+        ArrayList<String> departments = DEPARTMENT.getDepartmentList();
+        ArrayList<String> brands = BRAND.getBrandList();
 
         //Attempt to open file
         try (
@@ -123,11 +131,30 @@ public class CSVReader {
                             product.setCost(csvRecord.get(s));
                             break;
                         case "department" :
-                            product.setDepartment(csvRecord.get(s));
-                            break;
+                            if(departments.contains(csvRecord.get(s))){
+                                product.setDepartment(csvRecord.get(s));
+                                break;
+                            }
+                            else{
+                                Department department = new Department();
+                                department.setDepartment(csvRecord.get(s));
+                                DEPARTMENT.createDepartment(department);
+                                product.setDepartment(csvRecord.get(s));
+                                break;
+                            }
                         case "brand" :
-                            product.setBrand(csvRecord.get(s));
-                            break;
+                            if(brands.contains(csvRecord.get(s))){
+                                product.setBrand(csvRecord.get(s));
+                                break;
+                            }
+                            else{
+                                Brand brand = new Brand();
+                                brand.setBrand(csvRecord.get(s));
+                                BRAND.createBrand(brand);
+                                product.setBrand(csvRecord.get(s));
+                                break;
+                            }
+
                         case "description" :
                             product.setDescription(csvRecord.get(s));
                             break;

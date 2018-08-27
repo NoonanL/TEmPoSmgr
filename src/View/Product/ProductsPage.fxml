@@ -33,5 +33,6 @@
       <Button layoutX="1134.0" layoutY="549.0" mnemonicParsing="false" onAction="#backClicked" text="Back" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="14.0" />
       <Button layoutX="772.0" layoutY="383.0" mnemonicParsing="false" text="Delete" AnchorPane.rightAnchor="365.0" />
       <Label fx:id="error" layoutX="772.0" layoutY="438.0" prefHeight="20.0" prefWidth="406.0" text="" />
+      <Button layoutX="772.0" layoutY="428.0" mnemonicParsing="false" onAction="#newClicked" prefHeight="78.0" prefWidth="184.0" text="New" />
    </children>
 </AnchorPane>
