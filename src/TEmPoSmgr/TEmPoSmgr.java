@@ -301,7 +301,7 @@ public class TEmPoSmgr extends Application {
         }
     }
 
-    private void showDepartments(){
+    public void showDepartments(){
 
         try {
             // Load the fxml file and create a new stage for the popup dialog.
@@ -328,7 +328,7 @@ public class TEmPoSmgr extends Application {
         }
     }
 
-    private void showBrands(){
+    public void showBrands(){
 
         try {
             // Load the fxml file and create a new stage for the popup dialog.
