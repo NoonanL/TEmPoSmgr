@@ -143,77 +143,77 @@
 	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
 	1);
 	-fx-background-color: rgb(250, 250, 250);
-	-fx-graphic: url("exit.png");
+	-fx-graphic: url("images/exit.png");
 }
 
 .button-raised-back {
 	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
 	1);
 	-fx-background-color: rgb(250, 250, 250);
-	-fx-graphic: url("back.png");
+	-fx-graphic: url("images/back.png");
 }
 
 .button-raised-edit {
 	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
 	1);
 	-fx-background-color: rgb(250, 250, 250);
-	-fx-graphic: url("edit.png");
+	-fx-graphic: url("images/edit.png");
 }
 
 .button-raised-new {
 	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
 	1);
 	-fx-background-color: rgb(250, 250, 250);
-	-fx-graphic: url("new.png");
+	-fx-graphic: url("images/new.png");
 }
 
 .button-raised-delete {
 	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
 	1);
 	-fx-background-color: rgb(250, 250, 250);
-	-fx-graphic: url("delete.png");
+	-fx-graphic: url("images/delete.png");
 }
 
 .button-raised-search {
 	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
 	1);
 	-fx-background-color: rgb(250, 250, 250);
-	-fx-graphic: url("search.png");
+	-fx-graphic: url("images/search.png");
 }
 
 .button-raised-save {
 	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
 	1);
 	-fx-background-color: rgb(250, 250, 250);
-	-fx-graphic: url("save.png");
+	-fx-graphic: url("images/save.png");
 }
 
 .button-raised-refresh {
 	 -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
 	 1);
 	 -fx-background-color: rgb(250, 250, 250);
-	 -fx-graphic: url("refresh.png");
+	 -fx-graphic: url("images/refresh.png");
  }
 
 .button-raised-chooseFile {
 	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
 	1);
 	-fx-background-color: rgb(250, 250, 250);
-	-fx-graphic: url("file.png");
+	-fx-graphic: url("images/file.png");
 }
 
 .button-raised-import {
 	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
 	1);
 	-fx-background-color: rgb(250, 250, 250);
-	-fx-graphic: url("file.png");
+	-fx-graphic: url("images/file.png");
 }
 
 .button-raised-login {
 	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
 	1);
 	-fx-background-color: rgb(250, 250, 250);
-	-fx-graphic: url("login.png");
+	-fx-graphic: url("images/login.png");
 }
 
 .toggle-button, .button {
