@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="View.Util.DistributorPageController"
-            prefHeight="620.0" prefWidth="720.0"
-            styleClass="card" stylesheets="@../CSS/DarkTheme.css">
+
+<AnchorPane prefHeight="620.0" prefWidth="720.0" styleClass="card" stylesheets="@../CSS/DarkTheme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Util.DistributorPageController">
     <children>
         <TableView fx:id="distributorTable" layoutX="41.0" layoutY="81.0" prefHeight="409.0" prefWidth="455.0">
             <columns>
@@ -23,11 +20,11 @@
                 <Font size="29.0" />
             </font>
         </Label>
-        <Button layoutX="522.0" layoutY="160.0" mnemonicParsing="false" onAction="#editClicked" prefHeight="43.0" prefWidth="100.0" styleClass="button-raised" text="Edit" />
-        <Button layoutX="302.0" layoutY="505.0" mnemonicParsing="false" onAction="#createNewClicked" styleClass="button-raised" text="Create New Distributor" />
-        <Button fx:id="back" layoutX="645.0" layoutY="566.0" mnemonicParsing="false" onAction="#backClicked" styleClass="button-raised" text="Back" />
-        <TextField fx:id="distributorField" layoutX="123.0" layoutY="506.0" styleClass="text" />
-        <Label layoutX="41.0" layoutY="515.0" text="Department" />
+        <Button layoutX="522.0" layoutY="160.0" mnemonicParsing="false" onAction="#editClicked" prefHeight="43.0" prefWidth="100.0" styleClass="button-raised-edit" text="Edit" />
+        <Button layoutX="302.0" layoutY="505.0" mnemonicParsing="false" onAction="#createNewClicked" styleClass="button-raised-new" text="Create New Distributor" />
+        <Button fx:id="back" layoutX="645.0" layoutY="566.0" mnemonicParsing="false" onAction="#backClicked" styleClass="button-raised-back" text="Back" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="32.0" />
+        <TextField fx:id="distributorField" layoutX="128.0" layoutY="512.0" styleClass="text" />
+        <Label layoutX="46.0" layoutY="521.0" text="Department" />
         <Label fx:id="error" layoutX="522.0" layoutY="212.0" prefHeight="74.0" prefWidth="149.0" styleClass="labelError" wrapText="true" />
     </children>
 

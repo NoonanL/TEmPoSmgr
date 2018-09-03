@@ -16,8 +16,8 @@
         <TextField fx:id="costField" layoutX="230.0" layoutY="427.0" />
         <ChoiceBox fx:id="brandField" layoutX="40.0" layoutY="552.0" prefWidth="150.0" />
         <ChoiceBox fx:id="departmentField" layoutX="230.0" layoutY="552.0" prefWidth="150.0" />
-        <Button fx:id="back" layoutX="615.0" layoutY="573.0" mnemonicParsing="false" onAction="#backClicked" styleClass="button-raised" text="Back" />
-        <Button fx:id="submit" layoutX="676.0" layoutY="573.0" mnemonicParsing="false" onAction="#submit" prefHeight="40.0" prefWidth="90.0" styleClass="button-raised" text="Create" />
+        <Button fx:id="back" layoutX="532.0" layoutY="537.0" mnemonicParsing="false" onAction="#backClicked" styleClass="button-raised-back" text="Back" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="160.0" />
+        <Button fx:id="submit" layoutX="650.0" layoutY="573.0" mnemonicParsing="false" onAction="#submit" prefHeight="52.0" prefWidth="116.0" styleClass="button-raised-new" text="Create" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="34.0" />
         <Button fx:id="addDepartment" layoutX="383.0" layoutY="553.0" mnemonicParsing="false" onAction="#createDepartmentClicked" styleClass="button-raised" text="+" />
         <Button fx:id="addBrand" layoutX="195.0" layoutY="553.0" mnemonicParsing="false" onAction="#createBrandClicked" styleClass="button-raised" text="+" />
         <Label fx:id="error" layoutX="40.0" layoutY="585.0" prefHeight="20.0" prefWidth="445.0" styleClass="labelError" />
