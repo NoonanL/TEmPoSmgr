@@ -6,10 +6,11 @@
 <AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="card" stylesheets="@CSS/DarkTheme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.HomeController">
    <children>
       <Button fx:id="Customers" layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onAction="#showCustomersPage" prefHeight="130.0" prefWidth="142.0" styleClass="button-raised" text="Customers" />
-      <Button fx:id="adminSettings" layoutX="325.0" layoutY="28.0" mnemonicParsing="false" onAction="#adminSettings" prefHeight="130.0" prefWidth="142.0" styleClass="button-raised" text="Admin Settings" />
+      <Button fx:id="adminSettings" layoutX="486.0" layoutY="28.0" mnemonicParsing="false" onAction="#adminSettings" prefHeight="130.0" prefWidth="142.0" styleClass="button-raised" text="Admin Settings" />
       <Button fx:id="logoutClicked" layoutX="695.0" layoutY="537.0" mnemonicParsing="false" onAction="#logoutClicked" prefHeight="70.0" prefWidth="217.0" styleClass="button-raised-exit" text="Logout" AnchorPane.bottomAnchor="48.0" AnchorPane.rightAnchor="48.0" />
       <Button layoutX="170.0" layoutY="28.0" mnemonicParsing="false" onAction="#showProductsPage" prefHeight="130.0" prefWidth="142.0" styleClass="button-raised" text="Products" />
       <Button layoutX="170.0" layoutY="170.0" mnemonicParsing="false" onAction="#showDepartmentsPage" prefHeight="130.0" prefWidth="142.0" styleClass="button-raised" text="Departments" />
       <Button layoutX="170.0" layoutY="308.0" mnemonicParsing="false" onAction="#showBrandsPage" prefHeight="130.0" prefWidth="142.0" styleClass="button-raised" text="Brands" />
+      <Button fx:id="goodsIn" layoutX="329.0" layoutY="28.0" mnemonicParsing="false" onAction="#showGoodsIn" prefHeight="130.0" prefWidth="142.0" styleClass="button-raised" text="Goods In" />
    </children>
 </AnchorPane>
