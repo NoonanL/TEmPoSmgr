@@ -7,6 +7,7 @@ import View.Product.BrandsController;
 import View.Product.DepartmentsController;
 import View.Product.ProductsPageController;
 import View.Stock.GoodsInPageController;
+import View.Stock.StockPageController;
 import View.Util.ConfigurationPageController;
 import View.Util.CsvParserController;
 import View.Util.DistributorPageController;
@@ -254,6 +255,29 @@ public class TEmPoSmgr extends Application {
 
             //this is important. This loads the loginPageController so that the Main App can access its methods
             GoodsInPageController controller = loader.getController();
+            //calls the setMainApp method from loginPageController to make this the main app in the rootLayout
+            controller.setMainApp(this);
+
+
+            //required exception handling - don't worry about hint.
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void showStockPage(){
+        try{
+
+            //load USER fxml page
+            FXMLLoader loader = new FXMLLoader(TEmPoSmgr.class.getResource("/View/Stock/StockPage.fxml"));
+            //load LoginPage of fxml type AnchorPane
+            AnchorPane StockPage = (AnchorPane) loader.load();
+
+            //Set login page to the centre of root layout
+            rootLayout.setCenter(StockPage);
+
+            //this is important. This loads the loginPageController so that the Main App can access its methods
+            StockPageController controller = loader.getController();
             //calls the setMainApp method from loginPageController to make this the main app in the rootLayout
             controller.setMainApp(this);
 

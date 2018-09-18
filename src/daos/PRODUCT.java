@@ -20,6 +20,7 @@ public class PRODUCT {
     private static String DELETEPRODUCT = "http://localhost:9001/deleteProductServlet";
     private static String GETPRODUCTS = "http://localhost:9001/getProductsServlet";
     private static String SEARCHPRODUCTS = "http://localhost:9001/searchProductsServlet";
+    private static String GETPRODUCTBYID = "http://localhost:9001/getProductByIdServlet";
 
     private static String authenticatedUser = "";
     private static String branchId = "";
@@ -90,6 +91,38 @@ public class PRODUCT {
         }
         return productList;
     }
+
+    public static Product getProductById(String id) throws IOException, JSONException {
+        URLConnection connection = new URLConnection();
+        Product product = new Product();
+        Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("branchId", branchId);
+        parameters.put("requestUser", authenticatedUser);
+        parameters.put("id", id);
+
+        //send the parameters to the ParameterStringBuilder utility class for formatting
+        String postData = ParameterStringBuilder.getParamsString(parameters);
+        JSONObject response = connection.sendPOST(GETPRODUCTBYID, postData);
+        if(response.getString("connection").equals("true")){
+            for (Iterator it = response.keys(); it.hasNext(); ) {
+                String json = it.next().toString();
+                //Skip connection response object.
+                if(!json.equals("connection") && !json.equals("error") && !json.equals("response")) {
+                    JSONObject userJson = (response.getJSONObject(json));
+                    product.setId(userJson.getString("id"));
+                    product.setSKU(userJson.getString("SKU"));
+                    product.setName(userJson.getString("name"));
+                    product.setRRP(userJson.getString("RRP"));
+                    product.setCost(userJson.getString("cost"));
+                    product.setDepartment(userJson.getString("department"));
+                    product.setBrand(userJson.getString("brand"));
+                    product.setDescription(userJson.getString("description"));
+                }
+            }
+        }
+        return product;
+    }
+
 
     public static ArrayList<Product> searchProducts(String searchString) throws IOException, JSONException {
         URLConnection connection = new URLConnection();

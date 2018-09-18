@@ -1,11 +1,14 @@
 package daos;
 
+import Model.GoodsIn;
 import Model.Product;
 import Utils.ParameterStringBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -59,9 +62,10 @@ public class STOCK {
 
     }
 
-    public static boolean getStockByBranch() throws IOException, JSONException {
+    public static ArrayList<GoodsIn> getStockByBranch() throws IOException, JSONException {
         URLConnection connection = new URLConnection();
 
+        ArrayList<GoodsIn> stockLevels = new ArrayList<>();
         Map<String, String> parameters = new LinkedHashMap<>();
         parameters.put("branchId", branchId);
         parameters.put("requestUser" , authenticatedUser);
@@ -70,8 +74,23 @@ public class STOCK {
         String postData = ParameterStringBuilder.getParamsString(parameters);
         JSONObject response = connection.sendPOST(GETSTOCKBYBRANCH, postData);
 
-        return response.getString("connection").equals("true")
-                && response.getString("response").equals("OK");
+        for (Iterator it = response.keys(); it.hasNext(); ) {
+            String json = it.next().toString();
+            //Skip connection response object.
+            if(!json.equals("connection") && !json.equals("error") && !json.equals("response")) {
+                //JSONObject userJson = (response.getJSONObject(json));
+                GoodsIn e = new GoodsIn();
+                Product product = PRODUCT.getProductById(json);
+                //System.out.println(product.getSKU());
+                e.setProduct(product);
+                e.setQuantity(response.getInt(json));
+                //System.out.println(json);
+               // System.out.println(response.getInt(json));
+                stockLevels.add(e);
+
+            }
+        }
+        return stockLevels;
 
     }
 

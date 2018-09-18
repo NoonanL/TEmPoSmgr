@@ -68,6 +68,11 @@ public class HomeController {
     }
 
     @FXML
+    public void showStockPage(){
+        mainApp.showStockPage();
+    }
+
+    @FXML
     private void showGoodsIn() throws IOException, JSONException {
         if(USER.isAdmin()){
             mainApp.showGoodsInPage();
