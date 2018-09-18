@@ -46,6 +46,7 @@ public class Configuration {
         CONFIGURATION.setBranch(branchId.toString());
         PRODUCT.setBranch(branchId.toString());
         DEPARTMENT.setBranch(branchId.toString());
+        STOCK.setBranch(branchId.get());
     }
 
     /**
@@ -104,5 +105,6 @@ public class Configuration {
         BRAND.setAuthenticatedUser(authenticatedUser);
         DISTRIBUTOR.setAuthenticatedUser(authenticatedUser);
         DEPARTMENT.setAuthenticatedUser(authenticatedUser);
+        STOCK.setAuthenticatedUser(authenticatedUser);
     }
 }

@@ -4,6 +4,7 @@ import Model.GoodsIn;
 import Model.Product;
 import TEmPoSmgr.TEmPoSmgr;
 import daos.PRODUCT;
+import daos.STOCK;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
@@ -48,6 +49,10 @@ public class GoodsInPageController {
         mainApp.showHome();
     }
 
+    @FXML
+    private void SubmitClicked() throws IOException, JSONException {
+        processGoodsIn();
+    }
     /**
      * Checks the search box for user input and then initialises the table again to reflect any change
      * @throws IOException
@@ -139,6 +144,17 @@ public class GoodsInPageController {
         );
 
     }
+
+    private void processGoodsIn() throws IOException, JSONException {
+        for(GoodsIn i : goodsInArray){
+            Product product = i.getProduct();
+            STOCK.createStock(product);
+            for(int e = 0; e < i.getQuantity(); e++){
+                STOCK.incrementStock(product);
+            }
+        }
+    }
+
 
     /**
      * This is the method that the MainApp will call to set this as the main page the user sees
