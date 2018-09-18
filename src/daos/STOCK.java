@@ -17,6 +17,7 @@ public class STOCK {
     private static String INCREMENTSTOCK = "http://localhost:9001/incrementStockServlet";
     private static String DECREMENTSTOCK = "http://localhost:9001/decrementStockServlet";
     private static String GETSTOCK = "http://localhost:9001/getStockServlet";
+    private static String GETSTOCKBYBRANCH = "http://localhost:9001/getStockByBranchServlet";
 
     private static String authenticatedUser = "";
     private static String branchId = "";
@@ -52,6 +53,22 @@ public class STOCK {
         //send the parameters to the ParameterStringBuilder utility class for formatting
         String postData = ParameterStringBuilder.getParamsString(parameters);
         JSONObject response = connection.sendPOST(INCREMENTSTOCK, postData);
+
+        return response.getString("connection").equals("true")
+                && response.getString("response").equals("OK");
+
+    }
+
+    public static boolean getStockByBranch() throws IOException, JSONException {
+        URLConnection connection = new URLConnection();
+
+        Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("branchId", branchId);
+        parameters.put("requestUser" , authenticatedUser);
+
+        //send the parameters to the ParameterStringBuilder utility class for formatting
+        String postData = ParameterStringBuilder.getParamsString(parameters);
+        JSONObject response = connection.sendPOST(GETSTOCKBYBRANCH, postData);
 
         return response.getString("connection").equals("true")
                 && response.getString("response").equals("OK");
