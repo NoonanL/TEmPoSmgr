@@ -31,7 +31,6 @@ public class EditDepartmentController {
     @FXML
     private void submit() throws IOException, JSONException {
         //send update request here
-
         String department = departmentField.getText();
 
         Department editedDepartment = new Department();

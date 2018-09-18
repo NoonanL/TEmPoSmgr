@@ -38,6 +38,7 @@ public class GoodsInPageController {
 
     @FXML private TextField search;
     @FXML private Button searchButton;
+    @FXML private Label error;
 
     private ArrayList<GoodsIn> goodsInArray = new ArrayList<>();
 
@@ -51,7 +52,19 @@ public class GoodsInPageController {
 
     @FXML
     private void SubmitClicked() throws IOException, JSONException {
-        processGoodsIn();
+        if(processGoodsIn()){
+            error.setText("Changes saved.");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Changes Saved");
+            alert.setHeaderText("Changes Saved");
+            alert.setContentText("Goods In Completed.");
+            alert.showAndWait();
+            goodsInArray = new ArrayList<>();
+            initialize();
+        }else{
+            error.setText("Error saving changes.");
+        }
+
     }
     /**
      * Checks the search box for user input and then initialises the table again to reflect any change
@@ -145,7 +158,7 @@ public class GoodsInPageController {
 
     }
 
-    private void processGoodsIn() throws IOException, JSONException {
+    private boolean processGoodsIn() throws IOException, JSONException {
         for(GoodsIn i : goodsInArray){
             Product product = i.getProduct();
             STOCK.createStock(product);
@@ -153,6 +166,7 @@ public class GoodsInPageController {
                 STOCK.incrementStock(product);
             }
         }
+        return true;
     }
 
 
