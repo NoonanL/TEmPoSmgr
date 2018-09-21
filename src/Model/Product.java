@@ -1,5 +1,6 @@
 package Model;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.util.LinkedHashMap;
@@ -15,6 +16,7 @@ public class Product {
     private SimpleStringProperty department;
     private SimpleStringProperty brand;
     private SimpleStringProperty description;
+    private SimpleIntegerProperty quantity;
 
     public Product() {
         this.id = new SimpleStringProperty();
@@ -25,6 +27,7 @@ public class Product {
         this.department = new SimpleStringProperty();
         this.brand = new SimpleStringProperty();
         this.description = new SimpleStringProperty();
+        this.quantity = new SimpleIntegerProperty(0);
     }
 
 
@@ -124,6 +127,30 @@ public class Product {
         this.description.set(description);
     }
 
+    public int getQuantity() {
+        return quantity.get();
+    }
+
+    public String getQuantityString() {
+        return quantity.toString();
+    }
+
+    public SimpleIntegerProperty quantityProperty() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity.set(quantity);
+    }
+
+    public void incrementQuantity(){
+        this.setQuantity(this.quantity.get() + 1);
+    }
+
+    public void decrementQuantity(){
+        this.setQuantity(this.quantity.get() - 1);
+    }
+
     public Map<String, String> getParameters(){
         Map<String, String> parameters= new LinkedHashMap<>();
         parameters.put("id", this.getId());
@@ -134,6 +161,9 @@ public class Product {
         parameters.put("department" , this.getDepartment());
         parameters.put("brand" , this.getBrand());
         parameters.put("description" , this.getDescription());
+        parameters.put("quantity", this.getQuantityString());
         return parameters;
     }
+
+
 }

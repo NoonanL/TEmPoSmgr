@@ -30,17 +30,17 @@ public class GoodsInPageController {
     @FXML private TableColumn<Product, String> skuSearchColumn;
     @FXML private TableColumn<Product, String> nameSearchColumn;
 
-    @FXML private TableView<GoodsIn> goodsInTable;
-    @FXML private TableColumn<GoodsIn, String> skuColumn;
-    @FXML private TableColumn<GoodsIn, String> nameColumn;
-    @FXML private TableColumn<GoodsIn, String> quantityColumn;
+    @FXML private TableView<Product> goodsInTable;
+    @FXML private TableColumn<Product, String> skuColumn;
+    @FXML private TableColumn<Product, String> nameColumn;
+    @FXML private TableColumn<Product, String> quantityColumn;
 
 
     @FXML private TextField search;
     @FXML private Button searchButton;
     @FXML private Label error;
 
-    private ArrayList<GoodsIn> goodsInArray = new ArrayList<>();
+    private ArrayList<Product> goodsInArray = new ArrayList<>();
 
     /**
      * returns use to home page
@@ -82,7 +82,7 @@ public class GoodsInPageController {
     private void decrement() throws IOException, JSONException {
 
         if(goodsInTable.getSelectionModel().getSelectedItem() !=null){
-            goodsInTable.getSelectionModel().getSelectedItem().setQuantity(goodsInTable.getSelectionModel().getSelectedItem().getQuantity()-1);
+            goodsInTable.getSelectionModel().getSelectedItem().decrementQuantity();
             if(goodsInTable.getSelectionModel().getSelectedItem().getQuantity()>0){
                 initialize();
             }else{
@@ -96,7 +96,7 @@ public class GoodsInPageController {
     @FXML
     private void increment() throws IOException, JSONException {
         if(goodsInTable.getSelectionModel().getSelectedItem() !=null) {
-            goodsInTable.getSelectionModel().getSelectedItem().setQuantity(goodsInTable.getSelectionModel().getSelectedItem().getQuantity() + 1);
+            goodsInTable.getSelectionModel().getSelectedItem().incrementQuantity();
             if (goodsInTable.getSelectionModel().getSelectedItem().getQuantity() > 0) {
                 initialize();
             } else {
@@ -130,9 +130,10 @@ public class GoodsInPageController {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                     Product rowData = row.getItem();
-                    GoodsIn e = new GoodsIn();
-                    e.setProduct(rowData);
-                    goodsInArray.add(e);
+                    rowData.incrementQuantity();
+                    //GoodsIn e = new GoodsIn();
+                    //e.setProduct(rowData);
+                    goodsInArray.add(rowData);
 //                    System.out.println(rowData.toString());
                     try {
                         initialize();
@@ -147,8 +148,8 @@ public class GoodsInPageController {
 
 
 
-        skuColumn.setCellValueFactory(cellData -> cellData.getValue().getProduct().SKUProperty());
-        nameColumn.setCellValueFactory(cellData -> cellData.getValue().getProduct().nameProperty());
+        skuColumn.setCellValueFactory(cellData -> cellData.getValue().SKUProperty());
+        nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         quantityColumn.setCellValueFactory(cellData -> cellData.getValue().quantityProperty().asString());
         quantityColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         quantityColumn.setOnEditCommit(
@@ -159,11 +160,10 @@ public class GoodsInPageController {
     }
 
     private boolean processGoodsIn() throws IOException, JSONException {
-        for(GoodsIn i : goodsInArray){
-            Product product = i.getProduct();
-            STOCK.createStock(product);
+        for(Product i : goodsInArray){
+            STOCK.createStock(i);
             for(int e = 0; e < i.getQuantity(); e++){
-                STOCK.incrementStock(product);
+                STOCK.incrementStock(i);
             }
         }
         return true;
