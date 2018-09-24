@@ -62,10 +62,10 @@ public class STOCK {
 
     }
 
-    public static ArrayList<GoodsIn> getStockByBranch() throws IOException, JSONException {
+    public static ArrayList<Product> getStockByBranch() throws IOException, JSONException {
         URLConnection connection = new URLConnection();
 
-        ArrayList<GoodsIn> stockLevels = new ArrayList<>();
+        ArrayList<Product> stockLevels = new ArrayList<>();
         Map<String, String> parameters = new LinkedHashMap<>();
         parameters.put("branchId", branchId);
         parameters.put("requestUser" , authenticatedUser);
@@ -74,24 +74,34 @@ public class STOCK {
         String postData = ParameterStringBuilder.getParamsString(parameters);
         JSONObject response = connection.sendPOST(GETSTOCKBYBRANCH, postData);
 
+        if(response.getString("connection").equals("true")){
+            stockLevels = parseProductData(response);
+        }
+        return stockLevels;
+
+    }
+
+    private static ArrayList<Product> parseProductData(JSONObject response) throws JSONException {
+        ArrayList<Product> productList = new ArrayList<>();
         for (Iterator it = response.keys(); it.hasNext(); ) {
             String json = it.next().toString();
             //Skip connection response object.
             if(!json.equals("connection") && !json.equals("error") && !json.equals("response")) {
-                //JSONObject userJson = (response.getJSONObject(json));
-                GoodsIn e = new GoodsIn();
-                Product product = PRODUCT.getProductById(json);
-                //System.out.println(product.getSKU());
-                e.setProduct(product);
-                e.setQuantity(response.getInt(json));
-                //System.out.println(json);
-               // System.out.println(response.getInt(json));
-                stockLevels.add(e);
-
+                JSONObject userJson = (response.getJSONObject(json));
+                Product product = new Product();
+                product.setId(userJson.getString("id"));
+                product.setSKU(userJson.getString("SKU"));
+                product.setName(userJson.getString("name"));
+                product.setRRP(userJson.getString("RRP"));
+                product.setCost(userJson.getString("cost"));
+                product.setDepartment(userJson.getString("department"));
+                product.setBrand(userJson.getString("brand"));
+                product.setDescription(userJson.getString("description"));
+                product.setQuantity(userJson.getInt("quantity"));
+                productList.add(product);
             }
         }
-        return stockLevels;
-
+        return productList;
     }
 
     /**

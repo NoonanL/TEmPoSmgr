@@ -19,15 +19,15 @@ public class StockPageController {
     public StockPageController(){}
 
     @FXML
-    private TableView<GoodsIn> productTable;
-    @FXML private TableColumn<GoodsIn, String> idColumn;
-    @FXML private TableColumn<GoodsIn, String> skuColumn;
-    @FXML private TableColumn<GoodsIn, String> nameColumn;
-    @FXML private TableColumn<GoodsIn, String> rrpColumn;
-    @FXML private TableColumn<GoodsIn, String> brandColumn;
-    @FXML private TableColumn<GoodsIn, String> departmentColumn;
-    @FXML private TableColumn<GoodsIn, String> costColumn;
-    @FXML private TableColumn<GoodsIn, String> quantityColumn;
+    private TableView<Product> productTable;
+    @FXML private TableColumn<Product, String> idColumn;
+    @FXML private TableColumn<Product, String> skuColumn;
+    @FXML private TableColumn<Product, String> nameColumn;
+    @FXML private TableColumn<Product, String> rrpColumn;
+    @FXML private TableColumn<Product, String> brandColumn;
+    @FXML private TableColumn<Product, String> departmentColumn;
+    @FXML private TableColumn<Product, String> costColumn;
+    @FXML private TableColumn<Product, String> quantityColumn;
     @FXML private Label error;
     @FXML private TextField search;
     @FXML private Button searchButton;
@@ -42,10 +42,6 @@ public class StockPageController {
         mainApp.showHome();
     }
 
-    @FXML
-    private void test() throws IOException, JSONException {
-        STOCK.getStockByBranch();
-    }
 
     /**
      * Checks the search box for user input and then initialises the table again to reflect any change
@@ -65,13 +61,13 @@ public class StockPageController {
     @FXML
     private void initialize() throws IOException, JSONException {
 
-        idColumn.setCellValueFactory(cellData -> cellData.getValue().getProduct().idProperty());
-        skuColumn.setCellValueFactory(cellData -> cellData.getValue().getProduct().SKUProperty());
-        nameColumn.setCellValueFactory(cellData -> cellData.getValue().getProduct().nameProperty());
-        rrpColumn.setCellValueFactory(cellData -> cellData.getValue().getProduct().RRPProperty());
-        departmentColumn.setCellValueFactory(cellData -> cellData.getValue().getProduct().departmentProperty());
-        costColumn.setCellValueFactory(cellData -> cellData.getValue().getProduct().costProperty());
-        brandColumn.setCellValueFactory(cellData -> cellData.getValue().getProduct().brandProperty());
+        idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
+        skuColumn.setCellValueFactory(cellData -> cellData.getValue().SKUProperty());
+        nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        rrpColumn.setCellValueFactory(cellData -> cellData.getValue().RRPProperty());
+        departmentColumn.setCellValueFactory(cellData -> cellData.getValue().departmentProperty());
+        costColumn.setCellValueFactory(cellData -> cellData.getValue().costProperty());
+        brandColumn.setCellValueFactory(cellData -> cellData.getValue().brandProperty());
         quantityColumn.setCellValueFactory(cellData -> cellData.getValue().quantityProperty().asString());
 
 
