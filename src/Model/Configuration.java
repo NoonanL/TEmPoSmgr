@@ -40,13 +40,13 @@ public class Configuration {
 
         //Get Branch ID and show it to URL builders
         this.setBranchId((String) loadedConfiguration.get("branchId"));
-        USER.setBranch(branchId.get().toString());
-        CUSTOMER.setBranch(branchId.toString());
-        BRAND.setBranch(branchId.toString());
-        DISTRIBUTOR.setBranch(branchId.toString());
-        CONFIGURATION.setBranch(branchId.toString());
-        PRODUCT.setBranch(branchId.toString());
-        DEPARTMENT.setBranch(branchId.toString());
+        USER.setBranch(branchId.get());
+        CUSTOMER.setBranch(branchId.get());
+        BRAND.setBranch(branchId.get());
+        DISTRIBUTOR.setBranch(branchId.get());
+        CONFIGURATION.setBranch(branchId.get());
+        PRODUCT.setBranch(branchId.get());
+        DEPARTMENT.setBranch(branchId.get());
         STOCK.setBranch(branchId.get());
     }
 
