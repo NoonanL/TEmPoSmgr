@@ -10,6 +10,7 @@ import org.apache.commons.csv.CSVPrinter;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.net.HttpCookie;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -39,7 +40,7 @@ public class Configuration {
 
         //Get Branch ID and show it to URL builders
         this.setBranchId((String) loadedConfiguration.get("branchId"));
-        USER.setBranch(branchId.toString());
+        USER.setBranch(branchId.get().toString());
         CUSTOMER.setBranch(branchId.toString());
         BRAND.setBranch(branchId.toString());
         DISTRIBUTOR.setBranch(branchId.toString());
@@ -77,6 +78,7 @@ public class Configuration {
 
 
     public String getBranchId() {
+        //System.out.println(branchId.get());
         return branchId.get();
     }
 
@@ -107,4 +109,5 @@ public class Configuration {
         DEPARTMENT.setAuthenticatedUser(authenticatedUser);
         STOCK.setAuthenticatedUser(authenticatedUser);
     }
+
 }

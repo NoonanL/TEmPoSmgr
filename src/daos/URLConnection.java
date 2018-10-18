@@ -30,7 +30,7 @@ public class URLConnection {
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
             con.setRequestMethod("POST");
-            //con.setRequestProperty("User-Agent", USER_AGENT);
+            con.setRequestProperty("secret", "I am the server's secret!");
 
             con.setDoOutput(true);
             OutputStream os = con.getOutputStream();
