@@ -20,54 +20,31 @@ public class BRAND {
     private static String CREATEBRAND = "http://localhost:9001/createBrandServlet";
     private static String EDITBRAND = "http://localhost:9001/editBrandServlet";
 
-    private static String authenticatedUser = "";
-    private static String branchId = "";
 
     public static boolean createBrand(Brand brand) throws IOException, JSONException {
-        URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("branchId", branchId);
         parameters.putAll(brand.getParameters());
 
-        parameters.put("requestUser", authenticatedUser);
-
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(CREATEBRAND, postData);
-
-        return response.getString("connection").equals("true")
-                && response.getString("response").equals("OK");
+        return CRUD.create(CREATEBRAND, parameters);
     }
 
     public static boolean editBrand(Brand brand) throws IOException, JSONException {
-        URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("branchId", branchId);
-        parameters.put("requestUser" , authenticatedUser);
         parameters.putAll(brand.getParameters());
 
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(EDITBRAND, postData);
-
-        return response.getString("connection").equals("true")
-                && response.getString("response").equals("OK");
+        return CRUD.update(EDITBRAND, parameters);
 
     }
 
 
     public static ArrayList<Brand> getBrands() throws IOException, JSONException {
-        URLConnection connection = new URLConnection();
+
         ArrayList<Brand> brandList = new ArrayList<>();
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("branchId", branchId);
-        parameters.put("requestUser", authenticatedUser);
 
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(GETBRANDS, postData);
+        JSONObject response = CRUD.retrieve(GETBRANDS, parameters);
 
         if(response.getString("connection").equals("true")){
             brandList = parseBrandData(response);
@@ -101,15 +78,4 @@ public class BRAND {
         return  brandList;
     }
 
-    /**
-     * passes the currently authenticated user to the CUSTOMER dao to allow it to gain permission from the server
-     * @param authenticatedUser the currently authenticated user id
-     */
-    public static void setAuthenticatedUser(String authenticatedUser) {
-        BRAND.authenticatedUser = authenticatedUser;
-    }
-
-    public static void setBranch(String branchId) {
-        BRAND.branchId = branchId;
-    }
 }

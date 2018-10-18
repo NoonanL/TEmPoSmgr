@@ -15,58 +15,31 @@ import java.util.Map;
 
 public class DISTRIBUTOR  {
 
-    private static String GETDISTRIBUTORS = "http://localhost:9001/getDistributorsServlet";
     private static String CREATEDISTRIBUTOR = "http://localhost:9001/createDistributorServlet";
+    private static String GETDISTRIBUTORS = "http://localhost:9001/getDistributorsServlet";
     private static String EDITDISTRIBUTOR = "http://localhost:9001/editDistributorServlet";
 
-    private static String authenticatedUser = "";
-    private static String branchId = "";
-
-
     public static boolean createDistributor(Distributor distributor) throws IOException, JSONException {
-        URLConnection connection = new URLConnection();
 
-        Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("branchId", branchId);
-        parameters.putAll(distributor.getParameters());
+        Map<String, String> parameters = new LinkedHashMap<>(distributor.getParameters());
+        return CRUD.create(CREATEDISTRIBUTOR, parameters);
 
-        parameters.put("requestUser", authenticatedUser);
-
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(CREATEDISTRIBUTOR, postData);
-
-        return response.getString("connection").equals("true")
-                && response.getString("response").equals("OK");
     }
 
     public static boolean editDistributor(Distributor distributor) throws IOException, JSONException {
-        URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("branchId", branchId);
-        parameters.put("requestUser" , authenticatedUser);
         parameters.putAll(distributor.getParameters());
 
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(EDITDISTRIBUTOR, postData);
-
-        return response.getString("connection").equals("true")
-                && response.getString("response").equals("OK");
-
+        return CRUD.update(EDITDISTRIBUTOR, parameters);
     }
 
     public static ArrayList<Distributor> getDistributors() throws IOException, JSONException {
-        URLConnection connection = new URLConnection();
+
         ArrayList<Distributor> distributorList = new ArrayList<>();
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("branchId", branchId);
-        parameters.put("requestUser", authenticatedUser);
 
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(GETDISTRIBUTORS, postData);
+        JSONObject response = CRUD.retrieve(GETDISTRIBUTORS, parameters);
 
         if(response.getString("connection").equals("true")){
             distributorList = parseDistributorData(response);
@@ -98,16 +71,5 @@ public class DISTRIBUTOR  {
         return  distributorList;
     }
 
-    /**
-     * passes the currently authenticated user to the CUSTOMER dao to allow it to gain permission from the server
-     * @param authenticatedUser the currently authenticated user id
-     */
-    public static void setAuthenticatedUser(String authenticatedUser) {
-        DISTRIBUTOR.authenticatedUser = authenticatedUser;
-    }
-
-    public static void setBranch(String branchId) {
-        DISTRIBUTOR.branchId = branchId;
-    }
 
 }

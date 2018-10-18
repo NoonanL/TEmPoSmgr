@@ -16,20 +16,13 @@ public class CONFIGURATION {
     //Declare URLS
     private static String GETBRANCHLIST = "http://localhost:9001/branchesServlet";
 
-    private static String authenticatedUser = "";
-    private static String branchId = "";
 
     public static ArrayList<String> getBranchList() throws IOException, JSONException {
-        URLConnection connection = new URLConnection();
+
         ArrayList<String> branchList = new ArrayList<>();
-
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("branchId", branchId);
-        parameters.put("requestUser", authenticatedUser);
 
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(GETBRANCHLIST, postData);
+        JSONObject response = CRUD.retrieve(GETBRANCHLIST, parameters);
 
         if (response.getString("connection").equals("true")) {
             branchList = parseBranchList(response);
@@ -51,15 +44,4 @@ public class CONFIGURATION {
     }
 
 
-    /**
-     * passes the currently authenticated user to the CUSTOMER dao to allow it to gain permission from the server
-     * @param authenticatedUser the currently authenticated user id
-     */
-    public static void setAuthenticatedUser(String authenticatedUser) {
-        CONFIGURATION.authenticatedUser = authenticatedUser;
-    }
-
-    public static void setBranch(String branchId) {
-        CONFIGURATION.branchId = branchId;
-    }
 }

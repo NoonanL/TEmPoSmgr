@@ -23,9 +23,6 @@ public class CUSTOMER {
     private static String DELETECUSTOMER = "http://localhost:9001/deleteCustomerServlet";
     private static String SEARCHCUSTOMERS = "http://localhost:9001/searchCustomerServlet";
 
-    private static String authenticatedUser = "";
-    private static String branchId = "";
-
     /**
      * Sends request to server to create a new customer.
      * @param customer a customer object from which to create a new customer record on the server
@@ -34,20 +31,11 @@ public class CUSTOMER {
      * @throws JSONException
      */
     public static boolean createCustomer(Customer customer) throws IOException, JSONException {
-        URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("branchId", branchId);
         parameters.putAll(customer.getParameters());
 
-        parameters.put("requestUser", authenticatedUser);
-
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(CREATECUSTOMER, postData);
-
-        return response.getString("connection").equals("true")
-                && response.getString("response").equals("OK");
+        return CRUD.create(CREATECUSTOMER, parameters);
     }
 
     /**
@@ -57,19 +45,11 @@ public class CUSTOMER {
      * @throws JSONException
      */
     public static boolean editCustomer(Customer customer) throws IOException, JSONException {
-        URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("branchId", branchId);
-        parameters.put("requestUser" , authenticatedUser);
         parameters.putAll(customer.getParameters());
 
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(EDITCUSTOMER, postData);
-
-        return response.getString("connection").equals("true")
-                && response.getString("response").equals("OK");
+        return CRUD.update(EDITCUSTOMER, parameters);
 
     }
 
@@ -81,18 +61,11 @@ public class CUSTOMER {
      * @throws JSONException
      */
     public static boolean deleteCustomer(String targetCustomer) throws IOException, JSONException {
-        URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("branchId", branchId);
-        parameters.put("requestUser" , authenticatedUser);
         parameters.put("targetCustomerId" , targetCustomer);
 
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(DELETECUSTOMER, postData);
-        return response.getString("connection").equals("true")
-                && response.getString("response").equals("OK");
+        return CRUD.delete(DELETECUSTOMER, parameters);
 
     }
 
@@ -106,12 +79,8 @@ public class CUSTOMER {
         URLConnection connection = new URLConnection();
         ArrayList<Customer> customerList = new ArrayList<>();
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("branchId", branchId);
-        parameters.put("requestUser", authenticatedUser);
 
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(GETCUSTOMERS, postData);
+        JSONObject response = CRUD.retrieve(GETCUSTOMERS, parameters);
 
         if(response.getString("connection").equals("true")){
             customerList = parseCustomerData(response);
@@ -127,16 +96,12 @@ public class CUSTOMER {
      * @throws JSONException
      */
     public static ArrayList<Customer> searchCustomers(String searchString) throws IOException, JSONException {
-        URLConnection connection = new URLConnection();
+
         ArrayList<Customer> customerList = new ArrayList<>();
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("branchId", branchId);
-        parameters.put("requestUser", authenticatedUser);
         parameters.put("searchString", searchString);
 
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(SEARCHCUSTOMERS, postData);
+        JSONObject response = CRUD.retrieve(SEARCHCUSTOMERS, parameters);
 
         if(response.getString("connection").equals("true")){
             customerList = parseCustomerData(response);
@@ -178,16 +143,5 @@ public class CUSTOMER {
         return customerList;
     }
 
-    /**
-     * passes the currently authenticated user to the CUSTOMER dao to allow it to gain permission from the server
-     * @param authenticatedUser the currently authenticated user id
-     */
-    public static void setAuthenticatedUser(String authenticatedUser) {
-        CUSTOMER.authenticatedUser = authenticatedUser;
-    }
-
-    public static void setBranch(String branchId) {
-        CUSTOMER.branchId = branchId;
-    }
 
 }

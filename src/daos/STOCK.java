@@ -13,8 +13,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class STOCK {
-
-    //Declare URLS
     private static String CREATESTOCK = "http://localhost:9001/createStockServlet";
     private static String EDITSTOCK = "http://localhost:9001/editStockServlet";
     private static String INCREMENTSTOCK = "http://localhost:9001/incrementStockServlet";
@@ -22,57 +20,32 @@ public class STOCK {
     private static String GETSTOCK = "http://localhost:9001/getStockServlet";
     private static String GETSTOCKBYBRANCH = "http://localhost:9001/getStockByBranchServlet";
 
-    private static String authenticatedUser = "";
-    private static String branchId = "";
-
 
     public static boolean createStock(Product product) throws IOException, JSONException {
-        URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
-        //System.out.println(branchId);
-        parameters.put("branchId", branchId);
-        parameters.put("requestUser" , authenticatedUser);
-        //System.out.println(product.getId());
         parameters.put("productId", product.getId());
 
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(CREATESTOCK, postData);
 
-        return response.getString("connection").equals("true")
-                && response.getString("response").equals("OK");
+        return CRUD.create(CREATESTOCK, parameters);
 
     }
 
     public static boolean incrementStock(Product product) throws IOException, JSONException {
-        URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("branchId", branchId);
-        parameters.put("requestUser" , authenticatedUser);
         parameters.put("productId", product.getId());
 
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(INCREMENTSTOCK, postData);
-
-        return response.getString("connection").equals("true")
-                && response.getString("response").equals("OK");
+        return CRUD.update(INCREMENTSTOCK, parameters);
 
     }
 
     public static ArrayList<Product> getStockByBranch() throws IOException, JSONException {
-        URLConnection connection = new URLConnection();
 
         ArrayList<Product> stockLevels = new ArrayList<>();
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("branchId", branchId);
-        parameters.put("requestUser" , authenticatedUser);
 
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(GETSTOCKBYBRANCH, postData);
+        JSONObject response = CRUD.retrieve(GETSTOCKBYBRANCH, parameters);
 
         if(response.getString("connection").equals("true")){
             stockLevels = parseProductData(response);
@@ -104,15 +77,4 @@ public class STOCK {
         return productList;
     }
 
-    /**
-     * passes the currently authenticated user to the CUSTOMER dao to allow it to gain permission from the server
-     * @param authenticatedUser the currently authenticated user id
-     */
-    public static void setAuthenticatedUser(String authenticatedUser) {
-        STOCK.authenticatedUser = authenticatedUser;
-    }
-
-    public static void setBranch(String branchId) {
-        STOCK.branchId = branchId;
-    }
 }

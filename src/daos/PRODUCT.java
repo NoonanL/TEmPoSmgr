@@ -22,69 +22,40 @@ public class PRODUCT {
     private static String SEARCHPRODUCTS = "http://localhost:9001/searchProductsServlet";
     private static String GETPRODUCTBYID = "http://localhost:9001/getProductByIdServlet";
 
-    private static String authenticatedUser = "";
-    private static String branchId = "";
-
     public static boolean createProduct(Product product) throws IOException, JSONException {
-        URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("branchId", branchId);
         parameters.putAll(product.getParameters());
 
-        parameters.put("requestUser", authenticatedUser);
 
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(CREATEPRODUCT, postData);
-
-        return response.getString("connection").equals("true")
-                && response.getString("response").equals("OK");
+        return CRUD.create(CREATEPRODUCT, parameters);
     }
 
     public static boolean editProduct(Product product) throws IOException, JSONException {
-        URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("branchId", branchId);
-        parameters.put("requestUser" , authenticatedUser);
         parameters.putAll(product.getParameters());
 
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(EDITPRODUCT, postData);
 
-        return response.getString("connection").equals("true")
-                && response.getString("response").equals("OK");
+        return CRUD.update(EDITPRODUCT, parameters);
 
     }
 
     public static boolean deleteProduct(String targetProduct) throws IOException, JSONException {
-        URLConnection connection = new URLConnection();
 
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("branchId", branchId);
-        parameters.put("requestUser" , authenticatedUser);
         parameters.put("id" , targetProduct);
 
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(DELETEPRODUCT, postData);
-        return response.getString("connection").equals("true")
-                && response.getString("response").equals("OK");
+        return CRUD.delete(DELETEPRODUCT, parameters);
 
     }
 
     public static ArrayList<Product> getProducts() throws IOException, JSONException {
-        URLConnection connection = new URLConnection();
+
         ArrayList<Product> productList = new ArrayList<>();
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("branchId", branchId);
-        parameters.put("requestUser", authenticatedUser);
 
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(GETPRODUCTS, postData);
+        JSONObject response = CRUD.retrieve(GETPRODUCTS, parameters);
 
         if(response.getString("connection").equals("true")){
             productList = parseProductData(response);
@@ -93,16 +64,12 @@ public class PRODUCT {
     }
 
     public static Product getProductById(String id) throws IOException, JSONException {
-        URLConnection connection = new URLConnection();
+
         Product product = new Product();
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("branchId", branchId);
-        parameters.put("requestUser", authenticatedUser);
         parameters.put("id", id);
 
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(GETPRODUCTBYID, postData);
+        JSONObject response = CRUD.retrieve(GETPRODUCTBYID, parameters);
         if(response.getString("connection").equals("true")){
             for (Iterator it = response.keys(); it.hasNext(); ) {
                 String json = it.next().toString();
@@ -125,16 +92,13 @@ public class PRODUCT {
 
 
     public static ArrayList<Product> searchProducts(String searchString) throws IOException, JSONException {
-        URLConnection connection = new URLConnection();
+
         ArrayList<Product> productList = new ArrayList<>();
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("branchId", branchId);
-        parameters.put("requestUser", authenticatedUser);
         parameters.put("searchString", searchString);
 
-        //send the parameters to the ParameterStringBuilder utility class for formatting
-        String postData = ParameterStringBuilder.getParamsString(parameters);
-        JSONObject response = connection.sendPOST(SEARCHPRODUCTS, postData);
+
+        JSONObject response = CRUD.retrieve(SEARCHPRODUCTS, parameters);
 
         if(response.getString("connection").equals("true")){
             productList = parseProductData(response);
@@ -166,18 +130,6 @@ public class PRODUCT {
         return productList;
     }
 
-
-    /**
-     * passes the currently authenticated user to the CUSTOMER dao to allow it to gain permission from the server
-     * @param authenticatedUser the currently authenticated user id
-     */
-    public static void setAuthenticatedUser(String authenticatedUser) {
-        PRODUCT.authenticatedUser = authenticatedUser;
-    }
-
-    public static void setBranch(String branchId) {
-        PRODUCT.branchId = branchId;
-    }
 
 
 }

@@ -41,13 +41,7 @@ public class Configuration {
         //Get Branch ID and show it to URL builders
         this.setBranchId((String) loadedConfiguration.get("branchId"));
         USER.setBranch(branchId.get());
-        CUSTOMER.setBranch(branchId.get());
-        BRAND.setBranch(branchId.get());
-        DISTRIBUTOR.setBranch(branchId.get());
-        CONFIGURATION.setBranch(branchId.get());
-        PRODUCT.setBranch(branchId.get());
-        DEPARTMENT.setBranch(branchId.get());
-        STOCK.setBranch(branchId.get());
+        CRUD.setBranch(branchId.get());
     }
 
     /**
@@ -101,13 +95,7 @@ public class Configuration {
     public void setAuthenticatedUser(String authenticatedUser) {
         this.authenticatedUser.set(authenticatedUser);
         USER.setAuthenticatedUser(authenticatedUser);
-        CUSTOMER.setAuthenticatedUser(authenticatedUser);
-        CONFIGURATION.setAuthenticatedUser(authenticatedUser);
-        PRODUCT.setAuthenticatedUser(authenticatedUser);
-        BRAND.setAuthenticatedUser(authenticatedUser);
-        DISTRIBUTOR.setAuthenticatedUser(authenticatedUser);
-        DEPARTMENT.setAuthenticatedUser(authenticatedUser);
-        STOCK.setAuthenticatedUser(authenticatedUser);
+        CRUD.setAuthenticatedUser(authenticatedUser);
     }
 
 }
