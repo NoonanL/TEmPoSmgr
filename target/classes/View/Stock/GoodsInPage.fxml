@@ -31,5 +31,6 @@
       <Button fx:id="incrementButton" layoutX="716.0" layoutY="475.0" mnemonicParsing="false" onAction="#increment" prefHeight="40.0" prefWidth="53.0" styleClass="button-raised-new" />
       <Button fx:id="decrementButton" layoutX="647.0" layoutY="475.0" mnemonicParsing="false" onAction="#decrement" prefHeight="39.0" prefWidth="62.0" styleClass="button-raised-minus" />
       <Button layoutX="647.0" layoutY="533.0" mnemonicParsing="false" onAction="#SubmitClicked" prefHeight="52.0" prefWidth="121.0" styleClass="button-raised-save" />
+      <Button layoutX="46.0" layoutY="533.0" mnemonicParsing="false" onAction="#purchaseOrderSaveClicked" prefHeight="52.0" prefWidth="295.0" styleClass="button-raised-save" text="Save Purchase Order" />
     </children>
 </AnchorPane>

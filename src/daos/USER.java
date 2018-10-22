@@ -3,6 +3,7 @@ package daos;
 import Model.User;
 import TEmPoSmgr.TEmPoSmgr;
 import Utils.ParameterStringBuilder;
+import View.LoginController;
 import javafx.stage.Stage;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,9 +43,8 @@ public class USER {
         parameters.put("username", username);
         parameters.put("password", password);
         String postData = ParameterStringBuilder.getParamsString(parameters);
-
         JSONObject response = connection.sendPOST(LOGIN, postData);
-
+        //System.out.println(response.getString("sessionId"));
         return response.getString("connection").equals("true")
                 && response.getString("auth").equals("OK");
     }

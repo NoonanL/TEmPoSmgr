@@ -43,7 +43,7 @@ public class LoginController {
 
             if(USER.authenticate(authenticateID, authenticatePassword)){
                 //System.out.println("LOGGED IN");
-                mainApp.configuration.setAuthenticatedUser(authenticateID);
+                TEmPoSmgr.configuration.setAuthenticatedUser(authenticateID);
                 mainApp.showHome();
             }else{
                 //System.out.println("LOGIN FAILED");

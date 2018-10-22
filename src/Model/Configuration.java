@@ -22,6 +22,7 @@ public class Configuration {
     private HashMap loadedConfiguration;
     private SimpleStringProperty branchId;
     private SimpleStringProperty authenticatedUser;
+    private String sessionId;
     private String CONFIG_CSV = "configuration.csv";
 
     public Configuration(){
@@ -30,6 +31,7 @@ public class Configuration {
         //Constructor for logged in user
         this.authenticatedUser = new SimpleStringProperty();
         this.setAuthenticatedUser("");
+        this.sessionId = "";
         loadConfiguration();
     }
 
@@ -98,4 +100,11 @@ public class Configuration {
         CRUD.setAuthenticatedUser(authenticatedUser);
     }
 
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
 }

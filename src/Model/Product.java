@@ -132,7 +132,7 @@ public class Product {
     }
 
     public String getQuantityString() {
-        return quantity.toString();
+        return String.valueOf(quantity.get());
     }
 
     public SimpleIntegerProperty quantityProperty() {

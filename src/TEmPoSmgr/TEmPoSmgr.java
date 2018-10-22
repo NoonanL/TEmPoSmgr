@@ -29,7 +29,7 @@ public class TEmPoSmgr extends Application {
     private BorderPane rootLayout;
 
     //Create configuration. This will hold important stuff in memory. Such as the logged in user, loaded branch config, etc.
-    public Configuration configuration;
+    public static Configuration configuration;
 
     /**
      * the main starting point for the program, sets and initialises the first page.
@@ -503,6 +503,7 @@ public class TEmPoSmgr extends Application {
     private void updateTitle(){
         TEmPoSmgr.primaryStage.setTitle("TEmPoS Manager (" + configuration.getBranchId() + ") - Welcome " + configuration.getAuthenticatedUser() + "!");
     }
+
 
 
 }

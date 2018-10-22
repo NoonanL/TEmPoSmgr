@@ -122,7 +122,7 @@ public class CUSTOMER {
         for (Iterator it = response.keys(); it.hasNext(); ) {
             String json = it.next().toString();
             //Skip connection response object.
-            if(!json.equals("connection") && !json.equals("error") && !json.equals("response")) {
+            if(!json.equals("connection") && !json.equals("error") && !json.equals("response") && !json.equals("sessionId")) {
                 JSONObject userJson = (response.getJSONObject(json));
                 Customer customer = new Customer();
                 customer.setId(userJson.getString("id"));

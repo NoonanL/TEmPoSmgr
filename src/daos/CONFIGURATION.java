@@ -36,7 +36,7 @@ public class CONFIGURATION {
             String json = it.next().toString();
             //System.out.println(json);
             //Skip connection response object.
-            if(!json.equals("connection") && !json.equals("error") && !json.equals("response")) {
+            if(!json.equals("connection") && !json.equals("error") && !json.equals("response") && !json.equals("sessionId")) {
                 branchList.add(response.getString(json));
             }
         }

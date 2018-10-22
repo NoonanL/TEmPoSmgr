@@ -19,6 +19,7 @@ public class STOCK {
     private static String DECREMENTSTOCK = "http://localhost:9001/decrementStockServlet";
     private static String GETSTOCK = "http://localhost:9001/getStockServlet";
     private static String GETSTOCKBYBRANCH = "http://localhost:9001/getStockByBranchServlet";
+    private static String CREATEPURCHASEORDER = "http://localhost:9001/createPurchaseOrderServlet";
 
 
     public static boolean createStock(Product product) throws IOException, JSONException {
@@ -54,12 +55,21 @@ public class STOCK {
 
     }
 
+    public static boolean createPurchaseOrder(GoodsIn goodsIn) throws IOException, JSONException {
+
+        Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.putAll(goodsIn.getParameters());
+
+
+        return CRUD.create(CREATEPURCHASEORDER, parameters);
+    }
+
     private static ArrayList<Product> parseProductData(JSONObject response) throws JSONException {
         ArrayList<Product> productList = new ArrayList<>();
         for (Iterator it = response.keys(); it.hasNext(); ) {
             String json = it.next().toString();
             //Skip connection response object.
-            if(!json.equals("connection") && !json.equals("error") && !json.equals("response")) {
+            if(!json.equals("connection") && !json.equals("error") && !json.equals("response") && !json.equals("sessionId")) {
                 JSONObject userJson = (response.getJSONObject(json));
                 Product product = new Product();
                 product.setId(userJson.getString("id"));

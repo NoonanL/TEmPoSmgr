@@ -5,26 +5,26 @@ import Model.Product;
 import TEmPoSmgr.TEmPoSmgr;
 import daos.PRODUCT;
 import daos.STOCK;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import org.json.JSONException;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Optional;
 
-public class GoodsInPageController {
+public class PurchaseOrderPageController {
 
     private TEmPoSmgr mainApp;
 
-    public GoodsInPageController(){}
+    public PurchaseOrderPageController(){}
 
     private String searchString = "";
 
-    @FXML private TableView<Product> searchTable;
+    @FXML
+    private TableView<Product> searchTable;
     @FXML private TableColumn<Product, String> skuSearchColumn;
     @FXML private TableColumn<Product, String> nameSearchColumn;
 
@@ -51,61 +51,20 @@ public class GoodsInPageController {
     @FXML
     private void SubmitClicked() throws IOException, JSONException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirm Goods In");
-        alert.setHeaderText("Confirm Goods In");
-        alert.setContentText("Are you sure you want to book these items into stock?");
+        alert.setTitle("Save Purchase Order?");
+        alert.setHeaderText("Save Purchase Order?");
+        alert.setContentText("Save Purchase Order?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
             // ... user chose OK
-            if(processGoodsIn()){
-                error.setText("Changes saved.");
-                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-                alert2.setTitle("Changes Saved");
-                alert2.setHeaderText("Changes Saved");
-                alert2.setContentText("Goods In Completed.");
-                alert2.showAndWait();
-                goodsInArray = new ArrayList<>();
-                initialize();
-            }else{
-                error.setText("Error saving changes.");
-            }
+
         } else {
             // ... user chose CANCEL or closed the dialog
         }
 
 
     }
-
-    @FXML
-    private void purchaseOrderSaveClicked() throws IOException, JSONException {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Save Purchase Order");
-        alert.setHeaderText("Save Purchase Order");
-        alert.setContentText("Are you sure you want to save this as a purchase order?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            // ... user chose OK
-            if(processPurchaseOrder()){
-                error.setText("Purchase Order Saved.");
-                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-                alert2.setTitle("Saved");
-                alert2.setHeaderText("Purchase Order Saved");
-                alert2.setContentText("Purchase Order Saved.");
-                alert2.showAndWait();
-                goodsInArray = new ArrayList<>();
-                initialize();
-            }else{
-                error.setText("Error saving changes.");
-            }
-        } else {
-            // ... user chose CANCEL or closed the dialog
-        }
-
-
-    }
-
     /**
      * Checks the search box for user input and then initialises the table again to reflect any change
      * @throws IOException
@@ -179,7 +138,7 @@ public class GoodsInPageController {
                         initialize();
                     } catch (IOException | JSONException e1) {
                         e1.printStackTrace();
-                   }
+                    }
                 }
             });
             return row ;
@@ -199,22 +158,10 @@ public class GoodsInPageController {
 
     }
 
-    private boolean processGoodsIn() throws IOException, JSONException {
-        for(Product i : goodsInArray){
-            STOCK.createStock(i);
-            for(int e = 0; e < i.getQuantity(); e++){
-                STOCK.incrementStock(i);
-            }
-        }
-        return true;
-    }
-
     private boolean processPurchaseOrder() throws IOException, JSONException {
-        UUID uuid = UUID.randomUUID();
         for(Product i : goodsInArray){
             GoodsIn goodsIn = new GoodsIn();
             goodsIn.setProduct(i);
-            goodsIn.setUID(uuid.toString());
             //STOCK.createStock(i);
             STOCK.createPurchaseOrder(goodsIn);
 
