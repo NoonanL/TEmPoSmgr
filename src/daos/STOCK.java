@@ -1,6 +1,7 @@
 package daos;
 
 import Model.Product;
+import Model.PurchaseOrder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -54,48 +55,47 @@ public class STOCK {
 
     }
 
- //   public static boolean createPurchaseOrder(GoodsOrder goodsIn) throws IOException, JSONException {
+    public static boolean createPurchaseOrder(PurchaseOrder purchaseOrder) throws IOException, JSONException {
 
-//        Map<String, String> parameters = new LinkedHashMap<>();
-//        parameters.putAll(goodsIn.getParameters());
-//
-//
-//        return CRUD.create(CREATEPURCHASEORDER, parameters);
-//    }
+        Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.putAll(purchaseOrder.getParameters());
+        System.out.println(purchaseOrder.getParameters().toString());
 
- //   public static ArrayList<GoodsOrder> getPurchaseOrders() throws IOException, JSONException {
+        return CRUD.create(CREATEPURCHASEORDER, parameters);
+    }
 
-//        ArrayList<GoodsOrder> purchaseOrders = new ArrayList<>();
-//        Map<String, String> parameters = new LinkedHashMap<>();
-//
-//        JSONObject response = CRUD.retrieve(GETPURCHASEORDERS, parameters);
-//
-//        if(response.getString("connection").equals("true")){
-//            purchaseOrders = parsePurchaseOrders(response);
-//        }
-//        return purchaseOrders;
-//    }
+    public static ArrayList<PurchaseOrder> getPurchaseOrders() throws IOException, JSONException {
 
-//    private static ArrayList<GoodsOrder> parsePurchaseOrders(JSONObject response) throws JSONException {
-//        ArrayList<GoodsOrder> goodsIn = new ArrayList<>();
-//        for (Iterator it = response.keys(); it.hasNext(); ) {
-//            String json = it.next().toString();
-//            //Skip connection response object.
-//            if(!json.equals("connection") && !json.equals("error") && !json.equals("response") && !json.equals("sessionId")) {
-//                JSONObject userJson = (response.getJSONObject(json));
-//                Product goodsInProduct = new Product();
-//                GoodsOrder newGoodsIn = new GoodsOrder();
-//                newGoodsIn.setId(userJson.getString("id"));
-//                goodsInProduct.setSKU(userJson.getString("SKU"));
-//                newGoodsIn.setUID(userJson.getString("UID"));
-//                goodsInProduct.setQuantity(Integer.parseInt(userJson.getString("quantity")));
-//                newGoodsIn.setProduct(goodsInProduct);
-//                newGoodsIn.setQuantity(userJson.getInt("quantity"));
-//                goodsIn.add(newGoodsIn);
-//            }
-//        }
-//        return goodsIn;
-//    }
+        ArrayList<PurchaseOrder> purchaseOrders = new ArrayList<>();
+        Map<String, String> parameters = new LinkedHashMap<>();
+
+        JSONObject response = CRUD.retrieve(GETPURCHASEORDERS, parameters);
+        //System.out.println(response);
+        if(response.getString("connection").equals("true")){
+            purchaseOrders = parsePurchaseOrders(response);
+        }
+        return purchaseOrders;
+    }
+
+    private static ArrayList<PurchaseOrder> parsePurchaseOrders(JSONObject response) throws JSONException {
+        ArrayList<PurchaseOrder> purchaseOrders = new ArrayList<>();
+        for (Iterator it = response.keys(); it.hasNext(); ) {
+            String json = it.next().toString();
+            //Skip connection response object.
+            if(!json.equals("connection") && !json.equals("error") && !json.equals("response") && !json.equals("sessionId")) {
+                JSONObject userJson = (response.getJSONObject(json));
+                //Product goodsInProduct = new Product();
+                //System.out.println(userJson);
+                PurchaseOrder newPurchaseOrder = new PurchaseOrder();
+                newPurchaseOrder.setId(userJson.getString("id"));
+                newPurchaseOrder.setUID(userJson.getString("UID"));
+                newPurchaseOrder.setStatus(userJson.getString("status"));
+                newPurchaseOrder.setBranchId(userJson.getString("branchId"));
+                purchaseOrders.add(newPurchaseOrder);
+            }
+        }
+        return purchaseOrders;
+    }
 
 
     private static ArrayList<Product> parseProductData(JSONObject response) throws JSONException {

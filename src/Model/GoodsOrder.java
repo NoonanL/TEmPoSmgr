@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class GoodsOrder {
 
@@ -15,6 +16,17 @@ public class GoodsOrder {
     private SimpleStringProperty UID;
     private SimpleStringProperty status;
 
+    public GoodsOrder(){
+        this.id = "";
+        this.productId = new SimpleStringProperty();
+        this.quantity = new SimpleIntegerProperty();
+        //this.UID = new SimpleStringProperty();
+//        UUID uuid = UUID.randomUUID();
+//        String uidString = uuid.toString();
+        this.UID = new SimpleStringProperty();
+        this.status = new SimpleStringProperty();
+
+    }
 
     public String getId() {
         return id;
@@ -77,7 +89,7 @@ public class GoodsOrder {
         parameters.put("id" , this.getId());
         parameters.put("productId" , this.getProductId());
         parameters.put("quantity" , Integer.toString(this.getQuantity()));
-        parameters.put("branchId" , TEmPoSmgr.configuration.getBranchId());
+        parameters.put("UID" , this.getUID());
         parameters.put("status" , this.getStatus());
         return parameters;
     }

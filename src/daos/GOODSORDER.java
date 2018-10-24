@@ -16,6 +16,7 @@ public class GOODSORDER {
     private static String CREATEGOODSORDER = "http://localhost:9001/createGoodsOrderServlet";
     private static String GETGOODSORDERS = "http://localhost:9001/getGoodsOrderServlet";
     private static String EDITGOODSORDER = "http://localhost:9001/editGoodsOrderServlet";
+    private static String DELETEGOODSORDER = "http://localhost:9001/deleteGoodsOrderServlet";
 
     public static boolean createGoodsOrder(GoodsOrder goodsOrder) throws IOException, JSONException {
 
@@ -29,13 +30,19 @@ public class GOODSORDER {
         return CRUD.create(EDITGOODSORDER, parameters);
     }
 
+    public static boolean deleteGoodsOrder(int targetId) throws IOException, JSONException {
+        Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("goodsOrderId", Integer.toString(targetId));
+        return CRUD.delete(DELETEGOODSORDER, parameters);
+    }
+
     public static ArrayList<GoodsOrder> getGoodsOrdersByUID(String UID) throws IOException, JSONException {
 
         ArrayList<GoodsOrder> goodsOrderList = new ArrayList<>();
         Map<String, String> parameters = new LinkedHashMap<>();
         parameters.put("UID", UID);
         JSONObject response = CRUD.retrieve(GETGOODSORDERS, parameters);
-
+        //System.out.println(response);
         if(response.getString("connection").equals("true")){
             goodsOrderList = parseGoodsOrderData(response);
         }
@@ -53,7 +60,7 @@ public class GOODSORDER {
                 GoodsOrder goods = new GoodsOrder();
                 goods.setId(userJson.getString("id"));
                 goods.setProductId(userJson.getString("productId"));
-                goods.setQuantity(userJson.getInt("quantity"));
+                goods.setQuantity(Integer.parseInt(userJson.getString("quantity")));
                 goods.setStatus(userJson.getString("status"));
                 goods.setUID(userJson.getString("UID"));
                 goodsOrderList.add(goods);

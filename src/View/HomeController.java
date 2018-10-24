@@ -90,6 +90,23 @@ public class HomeController {
     }
 
     @FXML
+    private void showPurchaseOrder() throws IOException, JSONException {
+        if(USER.isAdmin()){
+            mainApp.showPurchaseOrderPage();
+//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/Stock/GoodsInPage.fxml"));
+//            Parent adminSettings = fxmlLoader.load();
+//            Stage stage = new Stage();
+//            stage.setScene(new Scene(adminSettings));
+//            stage.initModality(Modality.APPLICATION_MODAL);
+//            stage.show();
+
+        }else{
+            System.out.println("NOT AN ADMIN");
+            //error.setText("Incorrect Username or Password");
+        }
+    }
+
+    @FXML
     public void showDepartmentsPage(){
         mainApp.showDepartments();
     }
