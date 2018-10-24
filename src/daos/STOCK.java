@@ -1,8 +1,6 @@
 package daos;
 
-import Model.GoodsIn;
 import Model.Product;
-import Utils.ParameterStringBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,6 +18,7 @@ public class STOCK {
     private static String GETSTOCK = "http://localhost:9001/getStockServlet";
     private static String GETSTOCKBYBRANCH = "http://localhost:9001/getStockByBranchServlet";
     private static String CREATEPURCHASEORDER = "http://localhost:9001/createPurchaseOrderServlet";
+    private static String GETPURCHASEORDERS = "http://localhost:9001/getPurchaseOrdersServlet";
 
 
     public static boolean createStock(Product product) throws IOException, JSONException {
@@ -55,14 +54,49 @@ public class STOCK {
 
     }
 
-    public static boolean createPurchaseOrder(GoodsIn goodsIn) throws IOException, JSONException {
+ //   public static boolean createPurchaseOrder(GoodsOrder goodsIn) throws IOException, JSONException {
 
-        Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.putAll(goodsIn.getParameters());
+//        Map<String, String> parameters = new LinkedHashMap<>();
+//        parameters.putAll(goodsIn.getParameters());
+//
+//
+//        return CRUD.create(CREATEPURCHASEORDER, parameters);
+//    }
 
+ //   public static ArrayList<GoodsOrder> getPurchaseOrders() throws IOException, JSONException {
 
-        return CRUD.create(CREATEPURCHASEORDER, parameters);
-    }
+//        ArrayList<GoodsOrder> purchaseOrders = new ArrayList<>();
+//        Map<String, String> parameters = new LinkedHashMap<>();
+//
+//        JSONObject response = CRUD.retrieve(GETPURCHASEORDERS, parameters);
+//
+//        if(response.getString("connection").equals("true")){
+//            purchaseOrders = parsePurchaseOrders(response);
+//        }
+//        return purchaseOrders;
+//    }
+
+//    private static ArrayList<GoodsOrder> parsePurchaseOrders(JSONObject response) throws JSONException {
+//        ArrayList<GoodsOrder> goodsIn = new ArrayList<>();
+//        for (Iterator it = response.keys(); it.hasNext(); ) {
+//            String json = it.next().toString();
+//            //Skip connection response object.
+//            if(!json.equals("connection") && !json.equals("error") && !json.equals("response") && !json.equals("sessionId")) {
+//                JSONObject userJson = (response.getJSONObject(json));
+//                Product goodsInProduct = new Product();
+//                GoodsOrder newGoodsIn = new GoodsOrder();
+//                newGoodsIn.setId(userJson.getString("id"));
+//                goodsInProduct.setSKU(userJson.getString("SKU"));
+//                newGoodsIn.setUID(userJson.getString("UID"));
+//                goodsInProduct.setQuantity(Integer.parseInt(userJson.getString("quantity")));
+//                newGoodsIn.setProduct(goodsInProduct);
+//                newGoodsIn.setQuantity(userJson.getInt("quantity"));
+//                goodsIn.add(newGoodsIn);
+//            }
+//        }
+//        return goodsIn;
+//    }
+
 
     private static ArrayList<Product> parseProductData(JSONObject response) throws JSONException {
         ArrayList<Product> productList = new ArrayList<>();

@@ -1,9 +1,7 @@
 package View.Stock;
 
-import Model.GoodsIn;
 import Model.Product;
 import TEmPoSmgr.TEmPoSmgr;
-import daos.PRODUCT;
 import daos.STOCK;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;

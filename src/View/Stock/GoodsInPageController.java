@@ -1,13 +1,10 @@
 package View.Stock;
 
-import Model.GoodsIn;
 import Model.Product;
 import TEmPoSmgr.TEmPoSmgr;
 import daos.PRODUCT;
 import daos.STOCK;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -33,12 +30,18 @@ public class GoodsInPageController {
     @FXML private TableColumn<Product, String> nameColumn;
     @FXML private TableColumn<Product, String> quantityColumn;
 
+//    @FXML private TableView<GoodsOrder> purchaseOrderTable;
+//    @FXML private TableColumn<GoodsOrder, String> uidColumn;
+//    @FXML private TableColumn<GoodsOrder, String> skuPoColumn;
+//    @FXML private TableColumn<GoodsOrder, String> quantityPoColumn;
+
 
     @FXML private TextField search;
     @FXML private Button searchButton;
     @FXML private Label error;
 
     private ArrayList<Product> goodsInArray = new ArrayList<>();
+    //private ArrayList<GoodsOrder> purchaseOrderArray = FXCollections.STOCK.getPurchaseOrders()
 
     /**
      * returns use to home page
@@ -76,35 +79,35 @@ public class GoodsInPageController {
 
 
     }
-
-    @FXML
-    private void purchaseOrderSaveClicked() throws IOException, JSONException {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Save Purchase Order");
-        alert.setHeaderText("Save Purchase Order");
-        alert.setContentText("Are you sure you want to save this as a purchase order?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            // ... user chose OK
-            if(processPurchaseOrder()){
-                error.setText("Purchase Order Saved.");
-                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-                alert2.setTitle("Saved");
-                alert2.setHeaderText("Purchase Order Saved");
-                alert2.setContentText("Purchase Order Saved.");
-                alert2.showAndWait();
-                goodsInArray = new ArrayList<>();
-                initialize();
-            }else{
-                error.setText("Error saving changes.");
-            }
-        } else {
-            // ... user chose CANCEL or closed the dialog
-        }
-
-
-    }
+//
+//    @FXML
+//    private void purchaseOrderSaveClicked() throws IOException, JSONException {
+//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//        alert.setTitle("Save Purchase Order");
+//        alert.setHeaderText("Save Purchase Order");
+//        alert.setContentText("Are you sure you want to save this as a purchase order?");
+//
+//        Optional<ButtonType> result = alert.showAndWait();
+//        if (result.get() == ButtonType.OK){
+//            // ... user chose OK
+//            if(processPurchaseOrder()){
+//                error.setText("Purchase Order Saved.");
+//                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+//                alert2.setTitle("Saved");
+//                alert2.setHeaderText("Purchase Order Saved");
+//                alert2.setContentText("Purchase Order Saved.");
+//                alert2.showAndWait();
+//                goodsInArray = new ArrayList<>();
+//                initialize();
+//            }else{
+//                error.setText("Error saving changes.");
+//            }
+//        } else {
+//            // ... user chose CANCEL or closed the dialog
+//        }
+//
+//
+//    }
 
     /**
      * Checks the search box for user input and then initialises the table again to reflect any change
@@ -164,14 +167,13 @@ public class GoodsInPageController {
 
         goodsInTable.setItems(FXCollections.observableList(goodsInArray));
 
-
         searchTable.setRowFactory( tv -> {
             TableRow<Product> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                     Product rowData = row.getItem();
                     rowData.incrementQuantity();
-                    //GoodsIn e = new GoodsIn();
+                    //GoodsOrder e = new GoodsOrder();
                     //e.setProduct(rowData);
                     goodsInArray.add(rowData);
 //                    System.out.println(rowData.toString());
@@ -184,8 +186,6 @@ public class GoodsInPageController {
             });
             return row ;
         });
-
-
 
 
         skuColumn.setCellValueFactory(cellData -> cellData.getValue().SKUProperty());
@@ -209,18 +209,21 @@ public class GoodsInPageController {
         return true;
     }
 
-    private boolean processPurchaseOrder() throws IOException, JSONException {
-        UUID uuid = UUID.randomUUID();
-        for(Product i : goodsInArray){
-            GoodsIn goodsIn = new GoodsIn();
-            goodsIn.setProduct(i);
-            goodsIn.setUID(uuid.toString());
-            //STOCK.createStock(i);
-            STOCK.createPurchaseOrder(goodsIn);
-
-        }
-        return true;
-    }
+//    private boolean processPurchaseOrder() throws IOException, JSONException {
+//        UUID uuid = UUID.randomUUID();
+//        String UID = uuid.toString();
+//        System.out.println("The generated UID is " + UID);
+//        for(Product i : goodsInArray){
+//            GoodsOrder goodsIn = new GoodsOrder();
+//            goodsIn.setProduct(i);
+//            goodsIn.setUID(UID);
+//            System.out.println(UID);
+//            //STOCK.createStock(i);
+//            STOCK.createPurchaseOrder(goodsIn);
+//
+//        }
+//        return true;
+//    }
 
 
     /**

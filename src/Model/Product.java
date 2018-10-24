@@ -2,6 +2,7 @@ package Model;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import org.json.JSONObject;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

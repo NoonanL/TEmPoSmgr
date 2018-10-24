@@ -1,21 +1,15 @@
 package Model;
 
+import javafx.beans.property.SimpleStringProperty;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class PurchaseOrder {
 
-    private ArrayList<GoodsIn> productsOrdered;
 
-    public PurchaseOrder(){
-        this.productsOrdered = new ArrayList<>();
-    }
-
-    public ArrayList<GoodsIn> getProductsOrdered() {
-        return productsOrdered;
-    }
-
-    public void addProduct(GoodsIn product){
-        this.productsOrdered.add(product);
-    }
 
 }

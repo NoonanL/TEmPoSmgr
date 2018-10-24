@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="625.0" prefWidth="1183.0" stylesheets="@../CSS/DarkTheme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Stock.GoodsInPageController">
+<AnchorPane prefHeight="625.0" prefWidth="1573.0" stylesheets="@../CSS/DarkTheme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Stock.GoodsInPageController">
     <children>
         <TableView fx:id="searchTable" editable="true" layoutX="834.0" layoutY="21.0" prefHeight="445.0" prefWidth="337.0" AnchorPane.bottomAnchor="159.0" AnchorPane.leftAnchor="834.0" AnchorPane.topAnchor="21.0">
             <columns>
@@ -32,5 +32,12 @@
       <Button fx:id="decrementButton" layoutX="647.0" layoutY="475.0" mnemonicParsing="false" onAction="#decrement" prefHeight="39.0" prefWidth="62.0" styleClass="button-raised-minus" />
       <Button layoutX="647.0" layoutY="533.0" mnemonicParsing="false" onAction="#SubmitClicked" prefHeight="52.0" prefWidth="121.0" styleClass="button-raised-save" />
       <Button layoutX="46.0" layoutY="533.0" mnemonicParsing="false" onAction="#purchaseOrderSaveClicked" prefHeight="52.0" prefWidth="295.0" styleClass="button-raised-save" text="Save Purchase Order" />
+      <TableView fx:id="purchaseOrderTable" editable="true" layoutX="1199.0" layoutY="26.0" prefHeight="445.0" prefWidth="337.0">
+         <columns>
+            <TableColumn fx:id="uidColumn" prefWidth="151.0" text="UID" />
+            <TableColumn fx:id="skuPoColumn" prefWidth="83.0" text="SKU" />
+            <TableColumn fx:id="quantityPoColumn" prefWidth="102.0" text="Quantity" />
+         </columns>
+      </TableView>
     </children>
 </AnchorPane>
