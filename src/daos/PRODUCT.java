@@ -44,7 +44,7 @@ public class PRODUCT {
     public static boolean deleteProduct(String targetProduct) throws IOException, JSONException {
 
         Map<String, String> parameters = new LinkedHashMap<>();
-        parameters.put("id" , targetProduct);
+        parameters.put("targetProductId" , targetProduct);
 
         return CRUD.delete(DELETEPRODUCT, parameters);
 

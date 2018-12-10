@@ -143,6 +143,7 @@ public class PurchaseOrderPageController {
     @FXML
     private void initialize() throws IOException, JSONException {
 
+        saved = "false";
         purchaseOrders = STOCK.getPurchaseOrders();
         UIDcolumn.setCellValueFactory(cellData -> cellData.getValue().UIDProperty());
         statusColumn.setCellValueFactory(cellData -> cellData.getValue().statusProperty());

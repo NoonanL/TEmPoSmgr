@@ -92,19 +92,19 @@ public class TEmPoSmgr extends Application {
             // Tools Menu
             Menu tools = new Menu("Tools");
             MenuItem customerCSV = new MenuItem("CSV Data Importer");
-            customerCSV.setOnAction(actionEcent -> showCustomersCSV());
+            customerCSV.setOnAction(actionEvent -> showCustomersCSV());
 
             MenuItem configuration = new MenuItem("Configure Till");
-            configuration.setOnAction(actionEcent -> showConfiguration());
+            configuration.setOnAction(actionEvent -> showConfiguration());
 
             MenuItem departments = new MenuItem("Departments");
-            departments.setOnAction(actionEcent -> showDepartments());
+            departments.setOnAction(actionEvent -> showDepartments());
 
             MenuItem brands = new MenuItem("Brands");
-            brands.setOnAction(actionEcent -> showBrands());
+            brands.setOnAction(actionEvent -> showBrands());
 
             MenuItem distributors = new MenuItem("Distributors");
-            distributors.setOnAction(actionEcent -> showDistributor());
+            distributors.setOnAction(actionEvent -> showDistributor());
 
             tools.getItems().addAll(customerCSV, configuration, departments, brands, distributors);
 

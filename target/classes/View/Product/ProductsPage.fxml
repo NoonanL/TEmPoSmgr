@@ -31,7 +31,7 @@
       <Label fx:id="description" layoutX="772.0" layoutY="260.0" prefHeight="115.0" prefWidth="263.0" styleClass="labelWhite" text="Description" wrapText="true" AnchorPane.rightAnchor="165.0" />
       <Button layoutX="873.0" layoutY="383.0" mnemonicParsing="false" onAction="#editClicked" prefHeight="40.0" prefWidth="115.0" styleClass="button-raised-edit" text="Edit" AnchorPane.rightAnchor="212.0" />
       <Button layoutX="1134.0" layoutY="549.0" mnemonicParsing="false" onAction="#backClicked" styleClass="button-raised-back" text="Back" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="14.0" />
-      <Button layoutX="765.0" layoutY="383.0" mnemonicParsing="false" styleClass="button-raised-delete" text="Delete" AnchorPane.rightAnchor="336.0" />
+      <Button layoutX="765.0" layoutY="383.0" mnemonicParsing="false" onAction="#deleteClicked" styleClass="button-raised-delete" text="Delete" AnchorPane.rightAnchor="336.0" />
       <Label fx:id="error" layoutX="772.0" layoutY="342.0" prefHeight="20.0" prefWidth="406.0" text="" />
       <Button layoutX="765.0" layoutY="441.0" mnemonicParsing="false" onAction="#newClicked" prefHeight="78.0" prefWidth="221.0" styleClass="button-raised-new" text="New" AnchorPane.rightAnchor="214.0" />
    </children>

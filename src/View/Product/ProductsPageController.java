@@ -90,6 +90,26 @@ public class ProductsPageController {
     }
 
     @FXML
+    private void deleteClicked() throws IOException, JSONException {
+
+        error.setText("");
+        Product selectedProduct = productTable.getSelectionModel().getSelectedItem();
+
+        if(selectedProduct == null){
+            error.setText("No product selected.");
+        }else {
+            error.setText("Product Id " + selectedProduct.getId() + " deleted.");
+            try {
+                PRODUCT.deleteProduct(selectedProduct.getId());
+            } catch (IOException | JSONException e) {
+                error.setText("Failed to delete product.");
+                e.printStackTrace();
+            }
+            refreshTable();
+        }
+    }
+
+    @FXML
     private void newClicked(){
         showCreateProductDialog();
     }

@@ -38,7 +38,7 @@ public class BrandsController {
     private void createNewClicked() throws IOException, JSONException {
         error.setText("");
 
-        if(brandField.getText().equals("") || distributorField.getSelectionModel() == null){
+        if(brandField.getText().equals("") || distributorField.getSelectionModel().getSelectedItem() == null){
             error.setText("Please enter values for all required fields.");
         }else{
             String brand = brandField.getText();
