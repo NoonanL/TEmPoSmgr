@@ -3,6 +3,7 @@ package daos;
 import Model.Customer;
 import Model.Product;
 import Utils.ParameterStringBuilder;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -110,11 +111,10 @@ public class PRODUCT {
 
     private static ArrayList<Product> parseProductData(JSONObject response) throws JSONException {
         ArrayList<Product> productList = new ArrayList<>();
-        for (Iterator it = response.keys(); it.hasNext(); ) {
-            String json = it.next().toString();
+        JSONArray productArray = response.getJSONArray("products");
             //Skip connection response object.
-            if(!json.equals("connection") && !json.equals("error") && !json.equals("response") && !json.equals("sessionId")) {
-                JSONObject userJson = (response.getJSONObject(json));
+            for (int i = 0; i < productArray.length(); i++) {
+                JSONObject userJson = (productArray.getJSONObject(i));
                 Product product = new Product();
                 product.setId(userJson.getString("id"));
                 product.setSKU(userJson.getString("SKU"));
@@ -126,7 +126,7 @@ public class PRODUCT {
                 product.setDescription(userJson.getString("description"));
                 productList.add(product);
             }
-        }
+
         return productList;
     }
 

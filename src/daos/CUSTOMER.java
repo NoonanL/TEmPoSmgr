@@ -3,6 +3,7 @@ package daos;
 import Model.Customer;
 import Model.User;
 import Utils.ParameterStringBuilder;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -119,27 +120,27 @@ public class CUSTOMER {
      */
     private static ArrayList<Customer> parseCustomerData(JSONObject response) throws JSONException {
         ArrayList<Customer> customerList = new ArrayList<>();
-        for (Iterator it = response.keys(); it.hasNext(); ) {
-            String json = it.next().toString();
-            //Skip connection response object.
-            if(!json.equals("connection") && !json.equals("error") && !json.equals("response") && !json.equals("sessionId")) {
-                JSONObject userJson = (response.getJSONObject(json));
-                Customer customer = new Customer();
-                customer.setId(userJson.getString("id"));
-                customer.setTitle(userJson.getString("title"));
-                customer.setFirstname(userJson.getString("firstname"));
-                customer.setSurname(userJson.getString("surname"));
-                customer.setStreet(userJson.getString("street"));
-                customer.setTown(userJson.getString("town"));
-                customer.setPostcode(userJson.getString("postcode"));
-                customer.setCity(userJson.getString("city"));
-                customer.setCountry(userJson.getString("country"));
-                customer.setMobile(userJson.getString("mobile"));
-                customer.setEmail(userJson.getString("email"));
-                customer.setMarketingStatus(userJson.getString("marketingStatus"));
-                customerList.add(customer);
-            }
+        JSONArray customerArray = response.getJSONArray("customers");
+        //System.out.println(test);
+        for (int i = 0; i < customerArray.length(); i++) {
+            JSONObject userJson = customerArray.getJSONObject(i);
+            Customer customer = new Customer();
+            customer.setId(userJson.getString("id"));
+            customer.setTitle(userJson.getString("title"));
+            customer.setFirstname(userJson.getString("firstname"));
+            customer.setSurname(userJson.getString("surname"));
+            customer.setStreet(userJson.getString("street"));
+            customer.setTown(userJson.getString("town"));
+            customer.setPostcode(userJson.getString("postcode"));
+            customer.setCity(userJson.getString("city"));
+            customer.setCountry(userJson.getString("country"));
+            customer.setMobile(userJson.getString("mobile"));
+            customer.setEmail(userJson.getString("email"));
+            customer.setMarketingStatus(userJson.getString("marketingStatus"));
+            customerList.add(customer);
         }
+
+
         return customerList;
     }
 
