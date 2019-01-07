@@ -50,7 +50,7 @@ public class TRANSACTION {
             transaction.setProductId(userJson.getString("productId"));
             transactionList.add(transaction);
         }
-
+    System.out.println(transactionList.toString());
         return transactionList;
     }
 }

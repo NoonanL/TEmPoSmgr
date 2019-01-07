@@ -9,6 +9,7 @@ import View.Product.ProductsPageController;
 import View.Stock.GoodsInPageController;
 import View.Stock.PurchaseOrderPageController;
 import View.Stock.StockPageController;
+import View.Transactions.TransactionsPageController;
 import View.Util.ConfigurationPageController;
 import View.Util.CsvParserController;
 import View.Util.DistributorPageController;
@@ -209,6 +210,29 @@ public class TEmPoSmgr extends Application {
 
             //this is important. This loads the loginPageController so that the Main App can access its methods
             CustomerPageController controller = loader.getController();
+            //calls the setMainApp method from loginPageController to make this the main app in the rootLayout
+            controller.setMainApp(this);
+
+
+            //required exception handling - don't worry about hint.
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void showTransactionsPage(){
+        try{
+
+            //load USER fxml page
+            FXMLLoader loader = new FXMLLoader(TEmPoSmgr.class.getResource("/View/Transactions/TransactionsPage.fxml"));
+            //load LoginPage of fxml type AnchorPane
+            AnchorPane TransactionsPage = (AnchorPane) loader.load();
+
+            //Set login page to the centre of root layout
+            rootLayout.setCenter(TransactionsPage);
+
+            //this is important. This loads the loginPageController so that the Main App can access its methods
+            TransactionsPageController controller = loader.getController();
             //calls the setMainApp method from loginPageController to make this the main app in the rootLayout
             controller.setMainApp(this);
 

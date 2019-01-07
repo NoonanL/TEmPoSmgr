@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Transactions.TransactionsPageController">
+    <children>
+        <TextField fx:id="search" layoutX="541.0" layoutY="540.0" prefHeight="40.0" prefWidth="170.0" styleClass="labelWhite" />
+        <Button layoutX="1098.0" layoutY="534.0" mnemonicParsing="false" onAction="#backClicked" styleClass="button-raised-back" text="Back" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+        <TableView fx:id="transactionTable" layoutX="14.0" layoutY="14.0" prefHeight="504.0" prefWidth="770.0">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="141.0" text="Transaction Id" />
+                <TableColumn fx:id="customerIdColumn" prefWidth="134.0" text="Customer Id" />
+                <TableColumn fx:id="productIdColumn" prefWidth="126.0" text="Product Id" />
+            </columns>
+        </TableView>
+        <Button layoutX="983.0" layoutY="363.0" mnemonicParsing="false" onAction="#editClicked" prefHeight="52.0" prefWidth="99.0" styleClass="button-raised-edit" text="Edit" />
+        <Label fx:id="transactionIdLabel" layoutX="879.0" layoutY="94.0" prefHeight="20.0" prefWidth="208.0" styleClass="labelWhite" wrapText="true" />
+        <Label fx:id="customerIdLabel" layoutX="879.0" layoutY="128.0" prefHeight="135.0" prefWidth="232.0" styleClass="labelWhite" wrapText="true" />
+        <Label fx:id="productIdLabel" layoutX="879.0" layoutY="274.0" prefHeight="59.0" prefWidth="208.0" styleClass="labelWhite" wrapText="true" />
+        <Label fx:id="error" layoutX="812.0" layoutY="449.0" prefHeight="69.0" prefWidth="309.0" styleClass="labelError" wrapText="true" />
+        <Button layoutX="879.0" layoutY="363.0" mnemonicParsing="false" onAction="#deleteCustomer" styleClass="button-raised-delete" text="Delete" />
+        <Button fx:id="searchButton" layoutX="718.0" layoutY="534.0" mnemonicParsing="false" onAction="#search" prefHeight="52.0" prefWidth="100.0" styleClass="button-raised-search" text="Search" />
+        <Button fx:id="searchButton1" layoutX="14.0" layoutY="534.0" mnemonicParsing="false" onAction="#refreshTable" styleClass="button-raised-refresh" text="Refresh Table" />
+    </children>
+    <stylesheets>
+        <URL value="@../CSS/DarkTheme.css" />
+        <URL value="@../CSS/DarkTheme.css" />
+    </stylesheets>
+</AnchorPane>

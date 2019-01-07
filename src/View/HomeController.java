@@ -112,6 +112,11 @@ public class HomeController {
     }
 
     @FXML
+    public void showTransactionsPage(){
+        mainApp.showTransactionsPage();
+    }
+
+    @FXML
     public void showBrandsPage(){
         mainApp.showBrands();
     }
