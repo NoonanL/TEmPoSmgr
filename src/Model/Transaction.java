@@ -10,12 +10,17 @@ public class Transaction {
     private SimpleStringProperty id;
     private SimpleStringProperty customerId;
     private SimpleStringProperty productId;
+    private SimpleStringProperty customerName;
+    private SimpleStringProperty productName;
+
 
 
     public Transaction(){
         this.id = new SimpleStringProperty();
         this.customerId = new SimpleStringProperty();
         this.productId = new SimpleStringProperty();
+        this.customerName = new SimpleStringProperty();
+        this.productName = new SimpleStringProperty();
     }
 
     public Transaction(String customerId, String productId){
@@ -64,8 +69,34 @@ public class Transaction {
         Map<String, String> parameters= new LinkedHashMap<>();
         parameters.put("id", this.getId());
         parameters.put("customerId" , this.getCustomerId());
+        parameters.put("customerName", this.getCustomerName());
         parameters.put("productId" , this.getProductId());
+        parameters.put("productName", this.getProductName());
 
         return parameters;
+    }
+
+    public String getCustomerName() {
+        return customerName.get();
+    }
+
+    public SimpleStringProperty customerNameProperty() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName.set(customerName);
+    }
+
+    public String getProductName() {
+        return productName.get();
+    }
+
+    public SimpleStringProperty productNameProperty() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName.set(productName);
     }
 }

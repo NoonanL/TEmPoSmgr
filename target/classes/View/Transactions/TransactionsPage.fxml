@@ -16,7 +16,9 @@
             <columns>
                 <TableColumn fx:id="idColumn" prefWidth="141.0" text="Transaction Id" />
                 <TableColumn fx:id="customerIdColumn" prefWidth="134.0" text="Customer Id" />
+            <TableColumn fx:id="customerNameColumn" prefWidth="134.0" text="Customer Name" />
                 <TableColumn fx:id="productIdColumn" prefWidth="126.0" text="Product Id" />
+            <TableColumn fx:id="productNameColumn" prefWidth="126.0" text="Product Name" />
             </columns>
         </TableView>
         <Button layoutX="983.0" layoutY="363.0" mnemonicParsing="false" onAction="#editClicked" prefHeight="52.0" prefWidth="99.0" styleClass="button-raised-edit" text="Edit" />

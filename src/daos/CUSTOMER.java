@@ -23,6 +23,7 @@ public class CUSTOMER {
     private static String EDITCUSTOMER = "http://localhost:9001/editCustomerServlet";
     private static String DELETECUSTOMER = "http://localhost:9001/deleteCustomerServlet";
     private static String SEARCHCUSTOMERS = "http://localhost:9001/searchCustomerServlet";
+    private static String GETCUSTOMERBYID = "http://localhost:9001/getCustomerByIdServlet";
 
     /**
      * Sends request to server to create a new customer.
@@ -88,6 +89,41 @@ public class CUSTOMER {
         }
         return customerList;
     }
+
+    public static Customer getCustomerById(String id) throws IOException, JSONException {
+
+
+        Customer customer = new Customer();
+        Map<String, String> parameters = new LinkedHashMap<>();
+        parameters.put("id",id);
+
+
+        JSONObject response = CRUD.retrieve(GETCUSTOMERBYID, parameters);
+
+        if(response.getString("connection").equals("true")){
+            for (Iterator it = response.keys(); it.hasNext(); ) {
+                String json = it.next().toString();
+                //Skip connection response object.
+                if(!json.equals("connection") && !json.equals("error") && !json.equals("response")) {
+                    JSONObject userJson = (response.getJSONObject(json));
+                    customer.setId(userJson.getString("id"));
+                    customer.setTitle(userJson.getString("title"));
+                    customer.setFirstname(userJson.getString("firstname"));
+                    customer.setSurname(userJson.getString("surname"));
+                    customer.setStreet(userJson.getString("street"));
+                    customer.setTown(userJson.getString("town"));
+                    customer.setPostcode(userJson.getString("postcode"));
+                    customer.setCity(userJson.getString("city"));
+                    customer.setCountry(userJson.getString("country"));
+                    customer.setMobile(userJson.getString("mobile"));
+                    customer.setEmail(userJson.getString("email"));
+                    customer.setMarketingStatus(userJson.getString("marketingStatus"));
+                }
+            }
+        }
+        return customer;
+    }
+
 
     /**
      * Send request to server to search customer data

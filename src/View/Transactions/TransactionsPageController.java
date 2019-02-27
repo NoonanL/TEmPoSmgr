@@ -28,10 +28,14 @@ public class TransactionsPageController {
     @FXML private TableView<Transaction> transactionTable;
     @FXML private TableColumn<Transaction, String> idColumn;
     @FXML private TableColumn<Transaction, String> customerIdColumn;
+    @FXML private TableColumn<Transaction, String> customerNameColumn;
     @FXML private TableColumn<Transaction, String> productIdColumn;
+    @FXML private TableColumn<Transaction, String> productNameColumn;
     @FXML private Label transactionIdLabel;
     @FXML private Label customerIdLabel;
+    @FXML private Label customerNameLabel;
     @FXML private Label productIdLabel;
+    @FXML private Label productNameLabel;
     @FXML private Label error;
 
     /**
@@ -58,8 +62,8 @@ public class TransactionsPageController {
 //                    transaction.getCountry();
 //            String contactString = transaction.getMobile() + "\n" + transaction.getEmail();
             transactionIdLabel.setText(transaction.getId());
-            customerIdLabel.setText(transaction.getCustomerId());
-            productIdLabel.setText(transaction.getProductId());
+            customerIdLabel.setText(transaction.getCustomerName());
+            productIdLabel.setText(transaction.getProductName());
         }
         else{
             transactionIdLabel.setText("");
@@ -110,7 +114,10 @@ public class TransactionsPageController {
 
         idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
         customerIdColumn.setCellValueFactory(cellData -> cellData.getValue().customerIdProperty());
+        customerNameColumn.setCellValueFactory(cellData -> cellData.getValue().customerNameProperty());
         productIdColumn.setCellValueFactory(cellData -> cellData.getValue().productIdProperty());
+        productNameColumn.setCellValueFactory(cellData -> cellData.getValue().productNameProperty());
+
 
 
         // Listen for selection changes and show the person details when changed.

@@ -47,10 +47,12 @@ public class TRANSACTION {
             Transaction transaction = new Transaction();
             transaction.setId(userJson.getString("id"));
             transaction.setCustomerId(userJson.getString("customerId"));
+            transaction.setCustomerName(userJson.getString("customerName"));
             transaction.setProductId(userJson.getString("productId"));
+            transaction.setProductName(userJson.getString("productName"));
             transactionList.add(transaction);
         }
-    System.out.println(transactionList.toString());
+
         return transactionList;
     }
 }
