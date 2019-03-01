@@ -50,6 +50,7 @@ public class TRANSACTION {
             transaction.setCustomerName(userJson.getString("customerName"));
             transaction.setProductId(userJson.getString("productId"));
             transaction.setProductName(userJson.getString("productName"));
+            transaction.setQuantity(userJson.getString("quantity"));
             transactionList.add(transaction);
         }
 

@@ -16,9 +16,10 @@
             <columns>
                 <TableColumn fx:id="idColumn" prefWidth="111.0" text="Transaction Id" />
                 <TableColumn fx:id="customerIdColumn" prefWidth="101.0" text="Customer Id" />
-            <TableColumn fx:id="customerNameColumn" prefWidth="231.0" text="Customer Name" />
-                <TableColumn fx:id="productIdColumn" prefWidth="78.0" text="Product Id" />
-            <TableColumn fx:id="productNameColumn" prefWidth="242.0" text="Product Name" />
+            <TableColumn fx:id="customerNameColumn" prefWidth="189.0" text="Customer Name" />
+                <TableColumn fx:id="productIdColumn" prefWidth="120.0" text="Product Id" />
+            <TableColumn fx:id="productNameColumn" prefWidth="162.0" text="Product Name" />
+            <TableColumn fx:id="productQuantityColumn" prefWidth="86.0" text="Quantity" />
             </columns>
         </TableView>
         <Label fx:id="error" layoutX="14.0" layoutY="592.0" prefHeight="52.0" prefWidth="487.0" styleClass="labelError" wrapText="true" />

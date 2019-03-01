@@ -31,6 +31,7 @@ public class TransactionsPageController {
     @FXML private TableColumn<Transaction, String> customerNameColumn;
     @FXML private TableColumn<Transaction, String> productIdColumn;
     @FXML private TableColumn<Transaction, String> productNameColumn;
+    @FXML private TableColumn<Transaction, String> productQuantityColumn;
     @FXML private Label transactionIdLabel;
     @FXML private Label customerIdLabel;
     @FXML private Label customerNameLabel;
@@ -100,6 +101,7 @@ public class TransactionsPageController {
         customerNameColumn.setCellValueFactory(cellData -> cellData.getValue().customerNameProperty());
         productIdColumn.setCellValueFactory(cellData -> cellData.getValue().productIdProperty());
         productNameColumn.setCellValueFactory(cellData -> cellData.getValue().productNameProperty());
+        productQuantityColumn.setCellValueFactory(cellData -> cellData.getValue().quantityProperty());
 
 
 

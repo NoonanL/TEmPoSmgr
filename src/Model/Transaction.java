@@ -12,6 +12,7 @@ public class Transaction {
     private SimpleStringProperty productId;
     private SimpleStringProperty customerName;
     private SimpleStringProperty productName;
+    private SimpleStringProperty quantity;
 
 
 
@@ -21,6 +22,7 @@ public class Transaction {
         this.productId = new SimpleStringProperty();
         this.customerName = new SimpleStringProperty();
         this.productName = new SimpleStringProperty();
+        this.quantity = new SimpleStringProperty();
     }
 
     public Transaction(String customerId, String productId){
@@ -72,6 +74,7 @@ public class Transaction {
         parameters.put("customerName", this.getCustomerName());
         parameters.put("productId" , this.getProductId());
         parameters.put("productName", this.getProductName());
+        parameters.put("quantity", this.getQuantity());
 
         return parameters;
     }
@@ -98,5 +101,17 @@ public class Transaction {
 
     public void setProductName(String productName) {
         this.productName.set(productName);
+    }
+
+    public String getQuantity() {
+        return quantity.get();
+    }
+
+    public SimpleStringProperty quantityProperty() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity.set(quantity);
     }
 }
